@@ -1,0 +1,56 @@
+/**app.wxss**/
+@import 'helpers/prompt.wxss';
+@import 'model/model.wxss';
+@import "wxParse/wxParse.wxss";
+page{
+  height: 100vh;
+  width: 100vw;
+  line-height: 1.6;
+  background: #f7f7f7;
+  font-family: -apple-system-font, "Helvetica Neue", sans-serif;
+  font-size: 32rpx;
+}
+.container {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+
+.tab-bar{
+  position: fixed;
+  width: 100%;
+  padding: 0px 2%;
+  background: #fff;
+  z-index: 1;
+  border-bottom: 1rpx solid #ECECEC;
+}
+.clear{
+  clear: both;
+}
+
+.menu-item{
+  width: 32%;
+  float: left;
+  text-align: center;
+  padding-top: 16rpx;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+.img{
+  width: 54rpx;
+  height: 54rpx;
+  display: block;
+  margin:auto;
+}
+
+.weui-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.weui-flex__item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}

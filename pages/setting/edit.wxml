@@ -1,0 +1,7 @@
+<!--pages/setting/edit.wxml-->
+<view class="indexs">
+   <textarea class="weui-textarea">{{value}}</textarea>  
+</view>
+<view class="submits">
+    <button>确认</button>
+</view>

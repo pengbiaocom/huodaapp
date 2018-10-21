@@ -1,0 +1,87 @@
+<!--pages/user/problem.wxml-->
+<view>
+<view class="names hide{{showView?'show':''}}" bindtap="onChangeShowState">
+<label class='hide_name'>{{showView?'新用户如何登录？':'新用户如何登录？'}}</label>
+</view>
+<view class="names hide{{showView?'':'show'}}" bindtap="onChangeShowState">
+<label class='hide_name'>{{showView?'新用户如何登录？':'新用户如何登录？'}}</label>
+</view>
+<view class="hide{{showView?'show':''}}">
+<view class='cutab_two'>
+<label class='cutab_two_name'>1.通过扫码或搜索e车家族进去小程序。</label>
+</view>
+<view class='cutab_two'>
+<label class='cutab_two_names'>2.输入手机号获取验证码。</label>
+</view>
+
+</view>
+<!--新用户如何让登录-->
+<!--挪车二维码如何领取-->
+<view>
+<view class="names show_hide{{showViews?'show_show':''}}" bindtap="btn_show">
+<label class='hide_name'>{{showView?'如何领取挪车码？':'如何领取挪车码？'}}</label>
+<image class='shows_img' src='../../image/eee.png'></image>
+</view>
+<view class="names show_hide{{showViews?'':'show_show'}}" bindtap="btn_show">
+<label class='hide_name'>{{showView?'如何领取挪车码？':'如何领取挪车码？'}}</label>
+</view>
+</view>
+<view class="show_hide{{showViews?'show_show':''}}">
+<view class='cutab_two'>
+<label class='cutab_two_name'>1.拨打客服电话,留下您的邮寄地址和电话,我们为您邮寄到家。</label>
+</view>
+<view class='cutab_two'>
+<label class='cutab_two_names'>2.拨打客户电话,了解与您最近的发放点,上门领取。</label>
+</view>
+</view>
+<!--挪车二维码如何领取-->
+
+<!--挪车服务如何领取 -->
+<view>
+<view class="names show_tab3_hide{{show_tab3?'show_tab3_show':''}}" bindtap="show_tab3">
+<label class='hide_name'>{{show_tab3?'挪车服务怎么使用？':'挪车服务怎么使用？'}}</label>
+<image class='shows_img' src='../../image/eee.png'></image>
+</view>
+<view class="names show_tab3_hide{{show_tab3?'':'show_tab3_show'}}" bindtap="show_tab3">
+<label class='hide_name'>{{show_tab3?'挪车服务怎么使用？':'挪车服务怎么使用？'}}</label>
+</view>
+</view>
+<view class="show_tab3_hide{{show_tab3?'show_tab3_show':''}}">
+<view class='cutab_two'>
+<label class='cutab_two_name'>1.进入挪车服务,点击扫码挪车。</label>
+</view>
+<view class='cutab_two'>
+<label class='cutab_two_names'>2.扫描挪车车辆二维码。</label>
+</view>
+<view class='cutab_two'>
+<label class='cutab_two_names'>3.输入挪车车牌号。</label>
+</view>
+<view class='cutab_two'>
+<label class='cutab_two_names'>4.拨打电话.</label>
+</view>
+</view>
+<!--挪车服务如何领取 -->
+
+<!--次卡如何办理 -->
+<view>
+<view class="names show_tab4__hide{{show_tab4?'show_tab4_show':''}}" bindtap="show_tab4">
+  <label class='hide_name'>
+     {{show_tab4?'次卡如何办理？':'次卡如何办理？'}}
+  </label>
+</view>
+<view class="names show_tab4__hide{{show_tab4?'':'show_tab4_show'}}" bindtap="show_tab4">
+  <label class='hide_name'>
+     {{show_tab4?'次卡如何办理？':'次卡如何办理？'}}
+  </label>
+</view>
+</view>
+<view class="show_tab4__hide{{show_tab4?'show_tab4_show':''}}">
+<view class='cutab_two'>
+   <label class='cutab_two_name'>1.进入我的,找到会员卡模块点击立即办理。</label>
+</view>
+<view class='cutab_two'>
+<label class='cutab_two_names'>2.选择要办理的种类。</label>
+</view>
+</view>
+<!--次卡如何办理 -->
+</view>

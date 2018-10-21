@@ -1,0 +1,55 @@
+<!--pages/order/detail.wxml-->
+<view class="indexs">
+   <view class="detail-title">订单已经取消</view>
+   <view class="detail-info">30分钟未完成支付，订单已取消</view>
+   <view class="detail-btn">
+     <button class="btn">在来一单</button>
+     <button class="btn button-lan">发红包</button>
+   </view>
+</view>
+
+<view class="indexs">
+  <view class="test-s">
+    <view class="userImg"><image src="/assets/images/fa.png"></image></view>
+    <view class="userRight border-bottom">
+        <view class="userRight-addr">槐树店路26号</view>
+        <view class="userRight-title">周瑞  135648589557</view>
+    </view>
+  </view>
+  <view class="test-s">
+    <view class="userImg"><image src="/assets/images/shou.png"></image></view>
+    <view class="userRight">
+        <view class="userRight-addr">槐树店路26号</view>
+        <view class="userRight-title">周瑞  135648589557</view>
+    </view>
+  </view>
+</view>
+
+<view class="indexs">
+  <view class="info border-bottom">
+      <view class="info-left">物品信息</view>
+      <view class="info-right">食品/5公斤</view>
+  </view>
+  <view class="info border-bottom">
+      <view class="info-left">支付方式</view>
+      <view class="info-right">在线支付</view>
+  </view>
+  <view class="info border-bottom">
+      <view class="info-left">订单编号</view>
+      <view class="info-right">
+        <view style="float:left;width:80%;">DH21025458455845</view>
+        <view style="float:left;width:20%;padding-top:30rpx;"><view class="btns1">复制</view></view>
+      </view>
+  </view>
+  <view class="info border-bottom">
+      <view class="info-left">备注信息</view>
+      <view class="info-right"></view>
+  </view>
+  <view class="info border-bottom">
+      <view class="info-left">订单总价</view>
+      <view class="info-right">
+         <view style="float:left;width:40%;">24元</view>
+         <view style="float:left;width:60%;padding-top:30rpx;"><button class="btns">价格明细</button></view>
+      </view>
+  </view>
+</view>

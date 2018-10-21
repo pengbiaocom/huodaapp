@@ -1,0 +1,57 @@
+{
+  "pages":[
+    
+    "pages/index/index",
+    "pages/index/setwode",
+    "pages/setting/index",
+    "pages/setting/edit",
+    "pages/coupon/index",
+    "pages/search/index",
+    "pages/index/duifang",
+    "pages/message/index",
+    "pages/message/detail",
+    "pages/order/detail",
+    "pages/order/index",
+    "pages/user/index",
+    "pages/user/problem",
+    "pages/user/about",
+    "pages/login/index",
+    "pages/user/feedback"
+    
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#479de6",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "货达",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#479de6",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/images/iconfont-home.png",
+        "selectedIconPath": "assets/images/iconfont-home-active.png",
+        "text": "下单"
+      },
+      {
+        "pagePath": "pages/message/index",
+        "iconPath": "assets/images/iconfont-xiao.png",
+        "selectedIconPath": "assets/images/iconfont-xiao-active.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "assets/images/iconfont-user.png",
+        "selectedIconPath": "assets/images/iconfont-user-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": false
+}

@@ -1,0 +1,150 @@
+/* pages/order/detail.wxss */
+.indexs{
+  margin: 20rpx 20rpx;
+  -moz-box-shadow:2px 2px 5px #D9D9D9; 
+  -webkit-box-shadow:2px 2px 5px #D9D9D9;
+   box-shadow:2px 2px 5px #D9D9D9;
+   background-color: #FFFFFF;
+  border-radius: 8rpx;
+}
+
+.detail-title{
+  width: 100%;
+  text-align: center;
+  font-size: 36rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+  padding-top: 20rpx;
+}
+
+.detail-info{
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999999;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.detail-btn{
+  padding-top: 20rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-left: 20%;
+}
+
+.btn{
+  width: 220rpx;
+  height: 70rpx;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 70rpx;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  background: #fff;
+  border: 1px solid #D9D9D9;
+  float: left;
+  margin-right: 20rpx;
+}
+button::after{
+  border: none;
+}
+
+.button-lan {
+  border:none;
+  background-color: #479de6;
+  color: #fff;
+}
+
+.test-s{
+  width: 100%;
+  height: 110rpx;
+  padding-top: 20rpx;
+}
+
+.border-bottom{
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.userImg{
+  padding-left: 5%;
+  float: left;
+  width: 10%;
+  padding-top: 25rpx;
+  border-radius: 35rpx;
+}
+.userImg image{
+    border-radius: 35rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.userRight{
+  float: left;
+  width: 80%;
+  padding-bottom: 20rpx;
+}
+
+.userRight-addr{
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.userRight-title{
+  width: 100%;
+  height: 40rpx;
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+.width-4{
+  width: 400px;
+}
+.info{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  height: 120rpx;
+}
+.info-left{
+  width: 30%;
+  float: left;
+  height: 120rpx;
+  line-height: 120rpx;
+  color: #ccc;
+}
+
+.info-right{
+  width: 70%;
+  float: left;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+.btns1{
+  width: 80rpx;
+  height: 60rpx;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  background: #fff;
+  border: 1px solid #479de6;
+  color: #479de6;
+  margin-right: 20rpx;
+}
+
+.btns{
+  width: 180rpx;
+  height: 60rpx;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  background: #fff;
+  border: 1px solid #479de6;
+  color: #479de6;
+  margin-right: 20rpx;
+}

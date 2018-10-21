@@ -1,0 +1,159 @@
+/* pages/user/problem.wxss */
+page{
+background-color: #f5f5f5;
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+/*顶部 */
+.head_cont{
+position: relative;
+width: 100%;
+height: 90rpx;
+line-height: 90rpx;
+background-color: #fff;
+}
+/*左边距线段 */
+.head_write{
+position: absolute;
+top: 15rpx;
+width: 10rpx;
+height: 60rpx;
+background-color:#b09648;
+}
+.head_title{
+position: absolute;
+left: 30rpx;
+font-size: 30rpx;
+color:#2a2a2a;
+}
+/*新用户如何登录 */
+.hide{
+display: none;
+}
+.show{
+display: block;
+}
+/*挪车二维码如何领取 */
+.show_hide{
+display: none;
+}
+.show_show{
+display: block;
+}
+
+/*挪车服务如何使用 */
+.show_tab3_hide{
+display: none;
+}
+.show_tab3_show{
+display: block;
+}
+
+/* ↓↓↓↓↓↓↓↓↓↓↓挪车服务↓↓↓↓↓↓↓↓↓↓↓ */
+.show_tab4__hide{
+display: none;
+}
+.show_tab4__show{
+display: block;
+}
+/*↑↑↑↑↑↑↑↑挪车服务↑↑↑↑↑↑↑↑ */
+
+/*列表 */
+.names{
+width: 100%;
+height: 120rpx;
+line-height: 120rpx;
+background-color: #fff;
+position: relative;
+border-bottom: 1px solid #EAEAEA;
+}
+.hide_name{
+position: absolute;
+left:30rpx;
+color: #2a2a2a;
+font-size: 30rpx;
+}
+
+.num_img{
+position: absolute;
+right: 230rpx;
+width: 28rpx;
+height: 28rpx;
+top: 46rpx;
+}
+
+.shows_img{
+position: absolute;
+right: 30rpx;
+width: 24rpx;
+height: 14rpx;
+top: 55rpx;
+}
+.cutab_two{
+width: 100%;
+height: 115rpx;
+position: relative;
+background-color: #fff;
+/* border-bottom: 1px solid #EAEAEA; */
+
+}
+/*问题ICON */
+.ques_img{
+position:relative;
+top:3rpx;
+padding-right: 18rpx;
+width: 34rpx;
+height: 27rpx;
+}
+.anser_img{
+position:relative;
+top:28rpx;
+padding-right: 18rpx;
+left: 30rpx;
+width: 34rpx;
+height: 27rpx;
+}
+/*回答 */
+.cutab_two_name{
+position: absolute;
+left: 80rpx;
+top: 38rpx;
+width: 80%;
+color: #868686;
+font-size: 28rpx;
+text-align: left;
+}
+/* */
+.cutab_two_names{
+position: absolute;
+left: 80rpx;
+top: 35rpx;
+color: #868686;
+font-size: 28rpx;
+}
+/* */
+
+/*拨打电话 */
+.bottom{
+position: fixed;
+bottom: 0rpx;
+font-size: 30rpx;
+width: 100%;
+color: #fff;
+height: 90rpx;
+line-height: 90rpx;
+text-align: center;
+}
+/* */
+.submit_tell{
+position: relative;
+width: 100%;
+text-align: center;
+line-height: 90rpx;
+height: 90rpx;
+background-color: #323232;
+display: inline-block;
+border-radius: 5rpx;
+}

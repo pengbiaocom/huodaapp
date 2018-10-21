@@ -1,0 +1,8 @@
+<!--pages/user/feedback.wxml-->
+<view class="indexs">
+   <textarea class="weui-textarea" placeholder="请您反馈对货达的意见和建议" />  
+</view>
+<view class="submits">
+    <button>发送</button>
+</view>
+

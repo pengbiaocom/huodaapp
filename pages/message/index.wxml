@@ -1,0 +1,18 @@
+<scroll-view class="scroll-list" scroll-y="true" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower">
+<view class="messages" wx:for="{{ messagelist.items }}" wx:key="">
+  <navigator url="/pages/message/detail?id={{item.id}}" class="weui-cells">
+      <view class="images">
+      <image class="kb-img-one"  src="{{item.more.thumbnail}}" data-src="{{item.more.thumbnail}}" bindtap="previewImage1"></image>
+      </view> 
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <view class="weui-title">{{item.post_title}}</view>
+            <view class="weui-title1">{{item.published_time}}</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">
+              
+        </view>
+      </view>
+  </navigator>
+</view>
+</scroll-view>

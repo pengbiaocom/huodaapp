@@ -1,0 +1,43 @@
+<view class="container">
+<view class="info_list">
+		<view class="weui-cells">
+        <view class="weui-cell weui-cell_access" bindtap="editNickname">
+            <view class="weui-cell__bd">昵称</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+               {{nickname}}
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">性别</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+               <picker bindchange="changeCountry"  value="{{countryIndex}}" range="{{countryList}}">
+                  <view class="tui-picker-detail">{{countryList[countryIndex]}}</view>
+               </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">生日</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+               <picker mode="date" value="{{date}}" start="{{start}}" end="{{end}}" bindchange="changeDate">
+                  <view class="tui-picker-detail">
+                     {{date}}
+                  </view>
+                </picker>
+            </view>
+        </view> 
+        <view class="weui-cell weui-cell_access" bindtap="editAddress">
+            <view class="weui-cell__bd">所在地</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+               {{address}}
+            </view>
+        </view> 
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">手机号</view>
+            <view class="weui-cell__ft ">
+               136****4562
+            </view>
+        </view>        
+    </view>
+    <view class="login-out">退出登录</view>
+</view>
+</view>

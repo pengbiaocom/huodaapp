@@ -1,0 +1,66 @@
+<!--pages/map/index.wxml-->
+<view class="container">
+<view class="list">
+  <view class="weui-cells">
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <image src="/assets/images/iconfont-addr-empty.png" class="imgs"></image>
+        </view>
+        <view class="weui-cell__bd" bindtap="translate">
+            {{areaSelectedStr}}{{province}} {{city}} {{county}}
+            <input name="province_id" hidden="true" value="{{province_id}}" />
+            <input name="city_id" hidden="true" value="{{city_id}}" />
+            <input name="county_id" hidden="true" value="{{county_id}}" />
+          </view>
+      </view>
+  </view>
+  <view class="weui-cells">
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <image src="/assets/images/danyuan.png" class="imgs"></image>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="inputs" type="text" placeholder="详细地址" name="address" value="{{address}}"  />
+        </view>
+      </view>
+  </view>
+  <view class="weui-cells text-aligns">
+      <button class="other-button"  formType="submit">确定</button>
+  </view>
+</view>
+<view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="请输入地址" value="{{ inputVal }}" bindinput="inputTyping" auto-focus/>
+            <view class="weui-icon-clear" bindtap="clearInput">
+                <icon type="clear" size="14"></icon>
+            </view>
+        </view>
+    </view>
+    <button class="weui-icon-search" bindtap="searchInput">搜索</button>
+</view>
+<view class="container1">
+  <view class="indexs">
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__bd">
+               <view class="weui-title">成都玻璃厂宿舍</view>
+               <view class="weui-title1">成都市成华区槐树店路26号</view>
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells border-top">
+         <view class="weui-cell">
+            <view class="weui-cell__bd">
+               <view class="weui-title">上航旅游(建材路第二服务网点)</view>
+               <view class="weui-title1">四川省成都市成华区隆鑫九熙</view>
+            </view>
+         </view>
+      </view>
+   </view>
+</view>
+</view>
+<import src="../../model/model.wxml"/>
+<template is="areaData" data="{{...item}}"/>
+

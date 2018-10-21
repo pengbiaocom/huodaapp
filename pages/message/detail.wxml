@@ -1,0 +1,14 @@
+<!--pages/message/detail.wxml-->
+<import src="../../wxParse/wxParse.wxml"/> 
+<view class='container'>
+  <view class='title'>{{ messagelist.item.post_title }}</view>
+  <view class='author-date'>
+    <text class='author'>作者：{{messagelist.item.user_name}}</text>
+    <text class='date'>日期：{{messagelist.item.published_time}}</text>
+  </view>
+  <view class='detail'>
+    <view class="wxParse">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>   
+    </view>
+  </view>
+</view>

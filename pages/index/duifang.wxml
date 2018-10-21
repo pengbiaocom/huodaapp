@@ -1,0 +1,55 @@
+<view class="top-nav" style='display:none;'>
+    <view class="top-nav-left"></view>
+    <view class="top-nav-center">发件人信息</view>
+    <view class="top-nav-right">
+      确定
+    </view>
+</view>
+<view class="container">
+  <view class="list">
+  <form bindsubmit="submitForm">
+    <view class="weui-cells" bindtap="setAddr">
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <image src="/assets/images/yuandian.png" class="imgs"></image>
+          </view>
+          <view class="weui-cell__bd" wx:if="{{province}}">
+            {{province}} {{city}} {{county}}
+          </view>
+          <view class="weui-cell__bd" wx:else>
+            选择地址
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">
+          </view>
+        </view>
+    </view>
+    <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <image src="/assets/images/fajianren.png" class="imgs"></image>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="inputs" type="text" placeholder="收件人姓名" name="user_name" value="{{user_name}}" />
+          </view>
+        </view>
+    </view>
+    <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <image src="/assets/images/dianhua.png" class="imgs"></image>
+          </view>
+          <view class="weui-cell__bd">
+              <input class="inputs" type="text" placeholder="收件人电话" name="user_tel" value="{{user_tel}}" />
+          </view>
+        </view>
+    </view>
+    <view class="weui-cells text-aligns">
+       <button hover-class="other-button-hover" formType="submit">确定</button>
+    </view>
+    </form>
+  </view>  
+  <view class="list" style="display:none;">
+    <import src="../common/prompt.wxml"/>
+    <template is="prompt" data="{{ prompt }}"/>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+<template name="prompt">
+	<view class="prompt-container" hidden="{{ prompt.hidden }}">
+	    <view class="prompt-message">
+	        <image src="{{ prompt.icon || '../../assets/images/empty.png' }}" class="prompt-icon" />
+	        <view class="prompt-title">{{ prompt.title || '空空如也' }}</view>
+	    </view>
+	</view>
+</template>

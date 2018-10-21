@@ -1,0 +1,185 @@
+<!--index.wxml-->
+<!-- <import src="../common/nav.wxml"/>
+<template is="nav" data="{{ tabBar }}"/> -->
+<view class="container">
+   <view class="indexs">
+      <view class="weui-cells" bindtap="setWoDe">
+         <view class="weui-cell">
+            <view class="weui-cell__bd">
+               <view class="weui-title">槐树店(地铁站)</view>
+               <view class="weui-title1">请完善信息</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+                	
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells border-top" bindtap="setduif">
+         <view class="weui-cell">
+            <view class="weui-cell__bd">
+               <view class="weui-title">天府三街(地铁站)</view>
+               <view class="weui-title1">请完善信息</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+                	
+            </view>
+         </view>
+      </view>
+   </view>
+   
+   <view class="indexs">
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/wup.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+               <view class="weui-title">
+                 物品
+               </view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access" style="display:none;">
+                <text class="wu-text-hui" wx:if="{{is_wupin}}">{{wupin_text}}</text>
+                <text class="wu-text-red" wx:else>请设置物品类型</text>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+               <picker bindchange="changeMultiPicker" mode = "multiSelector" value="{{multiIndex}}" range="{{multiArray}}">
+                <view class="tui-picker-detail">
+                {{multiArray[0][multiIndex[0]]}} / {{multiArray[1][multiIndex[1]]}} 
+                </view>
+              </picker>
+            </view>
+         </view>
+      </view>
+   </view>
+
+   <view class="indexs">
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/shijian.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+               <view class="weui-title">预估时间</view>
+            </view>
+            <view class="weui-cell__ft" style="font-size:28rpx;">
+                {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
+                <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}" style="display:none;">
+                <view class="tui-picker-detail">
+                  
+                </view>
+              </picker>
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells" bindtap="setCoupon" style="display:none;">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/youhui.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+               <view class="weui-title">优惠券</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+                	<text class="wu-text-hui">使用优惠券</text>
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells" bindtap="translate2" style="display:none;">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/xiaofei.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+               <view class="weui-title">加小费</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">
+                	<text class="wu-text-hui">{{xiaofei_text}}</text>
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/beizhu.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+               <view class="weui-title">备注</view>
+            </view>
+         </view>
+         <view class="text-area">
+          <textarea class="weui-textarea" placeholder="请输入备注内容" />
+          <view class="zhishu" hidden='true'>150</view>
+        </view>
+      </view>
+   </view>
+   <!-- 底部悬浮栏 -->
+    <view class="detail-nav">
+      <view class="nav-left">
+        <view class="nav-price"> -- 元 </view>
+        <view class="nav-center" bindtap="translate1">[价格明细]</view>
+      </view>
+      
+      <button class="button-red" bindtap="showModal" hover-class="btn-hover">提交订单</button>
+    </view>
+</view>
+
+
+<view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{m_show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444">
+    <view class="animation-element" catchtap="nono">
+      <view style="width:100%;height:70rpx;">
+        <view class="left-bt text" catchtap="hiddenFloatView">取消</view>
+        <view class="center-bt text">物品/重量</view>
+        <view class="right-bt text" data-wupin="{{wupin}}" catchtap="hiddenFloatView">确定</view>
+      </view>
+      <view class="line"></view> 
+      <picker-view indicator-style = "height:50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+      <!--区县-->
+      <picker-view-column>
+        <view wx:for="{{region}}" wx:for-item="jie" wx:key="id">
+          {{jie}}
+        </view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{zhong}}" wx:for-item="shi" wx:key="id">
+          {{shi}}
+        </view>
+      </picker-view-column>
+      </picker-view>
+  </view>
+</view>
+
+<view class="animation-element-wrapper" animation="{{animation1}}" style="visibility:{{m_show1 ? 'visible':'hidden'}}" bindtap="hiddenFloatView1" data-id="444">
+    <view class="animation-element" catchtap="nono">
+      <view style="width:100%;height:70rpx;">
+        <view class="left-bt text" catchtap="hiddenFloatView1">取消</view>
+        <view class="center-bt text">价格明细</view>
+        <view class="right-bt text" data-shijian="{{shijian}}" catchtap="hiddenFloatView1">确定</view>
+      </view>
+      <view class="line"></view> 
+      <view class="price-list">
+        <view class="price">
+          {{mingxi}}
+        </view>
+      </view>
+  </view>
+</view>
+
+<view class="animation-element-wrapper" animation="{{animation2}}" style="visibility:{{m_show2 ? 'visible':'hidden'}}" bindtap="hiddenFloatView2" data-id="444">
+    <view class="animation-element" catchtap="nono">
+      <view style="width:100%;height:70rpx;">
+        <view class="left-bt text" catchtap="hiddenFloatView2">取消</view>
+        <view class="center-bt text">取件时间</view>
+        <view class="right-bt text" data-xiaofei="{{xiaofei}}" catchtap="hiddenFloatView2">确定</view>
+      </view>
+      <view class="line"></view> 
+      <picker-view indicator-style = "height:50rpx;" value="{{value2}}" bindchange="bindChange2" catchtap="nono">
+      <!--区县-->
+      <picker-view-column>
+        <view wx:for="{{xiao}}" wx:for-item="jie" wx:key="id">
+          {{jie}}
+        </view>
+      </picker-view-column>
+      </picker-view>
+  </view>
+</view>

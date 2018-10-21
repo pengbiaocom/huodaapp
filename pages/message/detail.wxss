@@ -1,0 +1,52 @@
+/* pages/message/detail.wxss */
+.container {
+  padding: 20rpx 20rpx;
+  background: #fff;
+}
+
+.author-date {
+  padding-left: 30rpx;
+  padding-top: 20rpx;
+  border-bottom: 1px solid #D9D9D9;
+  text-align: center;
+}
+
+.author {
+  font-size: 30rpx;
+  font-weight: 300;
+  vertical-align: middle;
+  color: #666;
+}
+
+.const-text {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 20rpx;
+}
+
+.date {
+  font-size: 24rpx;
+  margin-left: 30rpx;
+  color: #999;
+  vertical-align: middle;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-top: 20rpx;
+  color: #4b556c;
+}
+
+.detail{
+  color: #666;
+  margin-top: 20rpx;
+  line-height: 44rpx;
+  letter-spacing: 2px;
+}
+
+text{
+  font-size: 24rpx;
+}
