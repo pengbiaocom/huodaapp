@@ -105,7 +105,7 @@
 
 .wu-text-hui{
   font-size: 28rpx;
-  color: C8C8CD;
+  color: #C8C8CD;
 }
 
 .detail-nav {
@@ -139,7 +139,7 @@
   float: left;
   text-align: left;
   padding-left: 10rpx;
-  color: #479de6;
+  color: #C8C8CD;
 }
 
 button {

@@ -20,7 +20,7 @@
       </view>
       <button hover-class="btna_active" class="btna weui-cell weui-cell_access" open-type="contact">
           <view class="weui-cell__hd">
-              <image src="/assets/images/iconfont-kefu.png" style="margin-bottom: 4rpx;margin-right: 8rpx;vertical-align: middle;width:20px; height: 20px;"></image>
+              <image src="/assets/images/kefu.png" style="margin-bottom: 4rpx;margin-right: 8rpx;vertical-align: middle;width:20px; height: 20px;"></image>
           </view>
           <view class="weui-cell__bd">
               联系客服

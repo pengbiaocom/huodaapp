@@ -4,7 +4,6 @@
    <view class="detail-info">30分钟未完成支付，订单已取消</view>
    <view class="detail-btn">
      <button class="btn">在来一单</button>
-     <button class="btn button-lan">发红包</button>
    </view>
 </view>
 
@@ -49,7 +48,7 @@
       <view class="info-left">订单总价</view>
       <view class="info-right">
          <view style="float:left;width:40%;">24元</view>
-         <view style="float:left;width:60%;padding-top:30rpx;"><button class="btns">价格明细</button></view>
+         <view style="float:left;width:60%;padding-top:30rpx;"><button class="btns">价格说明</button></view>
       </view>
   </view>
 </view>

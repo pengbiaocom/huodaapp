@@ -7,46 +7,84 @@ var show = false;
 var moveY = 200;
 Page({
   data: {
-    region: ['文件', '证件', '食品','蛋糕','生活用品'],
-    zhong: ['<5公斤','6公斤','7公斤','8公斤','9公斤','10公斤'],
-    value:[0,0],
-    wupin_text:'请设置物品类型',
-    wupin:'',
-    is_wupin:false,
-    xiaofei_text:'可以快速被抢单哦',
-    xiaofei:'',
-    xiao:['0','5','10','15','20','50','100'],
-    value2: [0],
-    m_show: show,
-    m_show1: show,
     m_show2: show,
     dateTimeArray1: null,
     dateTime1: null,
     startYear: 2000,
     endYear: 2050,
-    multiArray: [['文件', '证件', '食品', '蛋糕', '生活用品'], ['<5公斤', '6公斤', '7公斤', '8公斤', '9公斤', '10公斤']],
-    multiIndex: [0, 0],
-    mingxi:"价格明细价格明细"
+    multiArray: [],
+    multiIndex: 0,
+    texts: "至少5个字",
+    min: 5,//最少字数
+    max: 20, //最多字数
+    textValue:''
   },
   onLoad: function () {
     if (wx.getStorageSync('token')) {
       // app.editTabBar();
-      // 获取完整的年月日 时分秒，以及默认显示的数组
-      var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
-      var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
-      // 精确到分的处理，将数组的秒去掉
-      var lastArray = obj1.dateTimeArray.pop();
-      var lastTime = obj1.dateTime.pop();
-
-      this.setData({
-        dateTimeArray1: obj1.dateTimeArray,
-        dateTime1: obj1.dateTime
-      });
+      this.getData();
     } else {
       app.goLogin()
     }
     
   },
+  //字数限制  
+  inputs: function (e) {
+    // 获取输入框的内容
+    var value = e.detail.value;
+    // 获取输入框内容的长度
+    var len = parseInt(value.length);
+
+    //最少字数限制
+    if (len <= this.data.min)
+      this.setData({
+        texts: "至少5个字"
+      })
+    else if (len > this.data.min)
+      this.setData({
+        texts: " "
+      })
+
+    //最多字数限制
+    if (len > this.data.max) return;
+    // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
+    this.setData({
+      currentWordNumber: len, //当前字数
+      textValue: value
+    });
+  },
+  getData(){
+    var that = this;
+    // 获取完整的年月日 时分秒，以及默认显示的数组
+    var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    var obj1 = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    // 精确到分的处理，将数组的秒去掉
+    var lastArray = obj1.dateTimeArray.pop();
+    var lastTime = obj1.dateTime.pop();
+    this.setData({
+      dateTimeArray1: obj1.dateTimeArray,
+      dateTime1: obj1.dateTime
+    });
+    
+    //获取物品分类
+    app.HttpService.getCargo({})
+      .then(data => {
+        if (data.code == 1) {
+          if (data.data[0] === undefined || data.data[0].length == 0) {
+            wx.showToast({
+              title: '没有更多数据了！'
+            })
+          } else {
+            var multiArrays = [{ id: 0, name: '中件' }, { id: 0, name: '小件' }];
+            var multiArray = [...data.data[0], ...multiArrays]
+            that.setData({
+              multiArray: multiArray
+            })
+          }
+        }
+      })
+  },
+
   setWoDe:function(){
     wx.navigateTo({
       url: '/pages/index/setwode'
@@ -63,7 +101,7 @@ Page({
     })
   },
   showPrice(){
-
+    
   },
   changeDateTime1(e) {
     this.setData({ dateTime1: e.detail.value });
@@ -81,32 +119,6 @@ Page({
   changeMultiPicker(e) {
     this.setData({ multiIndex: e.detail.value })
   },
-  translate: function (e) {
-    var that = this;
-    if (t == 0) {
-      moveY = 0;
-      show = false;
-      t = 1;
-    } else {
-      moveY = 200;
-      show = true;
-      t = 0;
-    }
-    animationEvents(that, moveY, show);
-  },
-  translate1: function (e) {
-    var that = this;
-    if (t == 0) {
-      moveY = 0;
-      show = false;
-      t = 1;
-    } else {
-      moveY = 200;
-      show = true;
-      t = 0;
-    }
-    animationEvents1(that, moveY, show);
-  },
   translate2: function (e) {
     var that = this;
     if (t == 0) {
@@ -120,34 +132,6 @@ Page({
     }
     animationEvents2(that, moveY, show);
   },
-  hiddenFloatView(e) {
-    var wupin = e.currentTarget.dataset.wupin;
-    var is_wupin = false;
-    if (wupin != undefined) {
-      var is_wupin = true;
-      this.setData({
-        wupin_text: wupin,
-        is_wupin: is_wupin
-      });
-    }
-    moveY = 200;
-    show = true;
-    t = 0;
-    animationEvents(this, moveY, show);
-  },
-  hiddenFloatView1(e) {
-    var shijian = e.currentTarget.dataset.shijian;
-    if (shijian != undefined){
-      this.setData({
-        shijian_text: shijian
-      });
-    }
-    
-    moveY = 200;
-    show = true;
-    t = 0;
-    animationEvents1(this, moveY, show);
-  },
   hiddenFloatView2(e) {
     var xiaofei = e.currentTarget.dataset.xiaofei;
     if (xiaofei != undefined){
@@ -160,16 +144,6 @@ Page({
     t = 0;
     animationEvents2(this, moveY, show);
   },
-  bindChange:function(e){
-    var that = this;
-    var val = e.detail.value
-    var region = that.data.region;
-    var zhong = that.data.zhong;
-    var wupin = region[val[0]] + '/' + zhong[val[1]];
-    that.setData({
-      wupin: region[val[0]] + '/' + zhong[val[1]]
-    });
-  },
   bindChange2: function (e) {
     var that = this;
     var val = e.detail.value
@@ -180,40 +154,6 @@ Page({
   }
   
 })
-
-function animationEvents(that, moveY, show) {
-  that.animation = wx.createAnimation({
-    transformOrigin: "50% 50%",
-    duration: 400,
-    timingFunction: "ease",
-    delay: 0
-  }
-  )
-  that.animation.translateY(moveY + 'vh').step()
-
-  that.setData({
-    animation: that.animation.export(),
-    m_show: show
-  })
-
-}
-
-function animationEvents1(that, moveY, show) {
-  that.animation1 = wx.createAnimation({
-    transformOrigin: "50% 50%",
-    duration: 400,
-    timingFunction: "ease",
-    delay: 0
-  }
-  )
-  that.animation1.translateY(moveY + 'vh').step()
-
-  that.setData({
-    animation1: that.animation1.export(),
-    m_show1: show
-  })
-
-}
 
 function animationEvents2(that, moveY, show) {
   that.animation2 = wx.createAnimation({

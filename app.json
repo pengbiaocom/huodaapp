@@ -15,8 +15,9 @@
     "pages/user/index",
     "pages/user/problem",
     "pages/user/about",
-    "pages/login/index",
-    "pages/user/feedback"
+    "pages/user/feedback",
+    "pages/login/index"
+    
     
   ],
   "window": {

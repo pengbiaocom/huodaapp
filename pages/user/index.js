@@ -9,22 +9,22 @@ Page({
     userInfo: {},
     items: [
       {
-        icon: '../../assets/images/iconfont-order.png',
+        icon: '../../assets/images/order.png',
         text: '我的订单',
         path: '/pages/order/index'
       },
       {
-        icon: '../../assets/images/iconfont-order.png',
+        icon: '../../assets/images/wenti.png',
         text: '常见问题',
         path: '/pages/user/problem'
       },
       {
-        icon: '../../assets/images/iconfont-order.png',
+        icon: '../../assets/images/fankui.png',
         text: '意见反馈',
         path: '/pages/user/feedback'
       },
       {
-        icon: '../../assets/images/iconfont-order.png',
+        icon: '../../assets/images/about.png',
         text: '关于我们',
         path: '/pages/user/about'
       }

@@ -25,7 +25,15 @@ Page({
     address: "",
     user_name: "",
     user_tel: "",
-    types: 2
+    types: 2,
+    markers: [{
+      iconPath: "../../assets/images/iconfont-addr.png",
+      id: 0,
+      latitude: 30.572903,
+      longitude: 103.916931,
+      width: 30,
+      height: 30
+    }],
   },
 
   /**

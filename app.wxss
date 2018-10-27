@@ -3,7 +3,6 @@
 @import 'model/model.wxss';
 @import "wxParse/wxParse.wxss";
 page{
-  height: 100vh;
   width: 100vw;
   line-height: 1.6;
   background: #f7f7f7;
@@ -53,4 +52,8 @@ page{
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
+}
+
+.price_line{
+  text-decoration:line-through;
 }

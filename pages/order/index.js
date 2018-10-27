@@ -60,19 +60,32 @@ Page({
   onShow: function () {
   
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  initData() {
+    const order = this.data.order
+    const params = order && order.params
+    const status = params && params.status || 'all'
+    const uid = wx.getStorageSync('token');
+    this.setData({
+      order: {
+        items: [],
+        params: {
+          page: 1,
+          limit: 10,
+          status: status,
+          uid: uid['user_id']
+        },
+        paginate: {}
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  onTapTag(e) {
+    const status = e.currentTarget.dataset.cate
+    const index = e.currentTarget.dataset.index
+    this.initData()
+    this.setData({
+      activeIndex: index,
+      'order.params.status': status,
+    })
   },
 
   /**

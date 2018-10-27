@@ -8,12 +8,17 @@ class Service extends ServiceBase {
       wechatSignIn: 'wxapp/public/login',
       messge: 'wxapp/message',
       address:'wxapp/address',
+      cargo:'home/cargo',
     }
 	}
 
 	wechatSignIn(params) {
 		return this.postRequest(this.$$path.wechatSignIn, params)
 	}
+
+  getCargo(params){
+    return this.getRequest(`${this.$$path.cargo}/read`, params)
+  }
 	
 	getMessage(params) {
     return this.getRequest(`${this.$$path.messge}/lists`, params)

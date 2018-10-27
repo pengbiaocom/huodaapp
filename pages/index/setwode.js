@@ -64,6 +64,7 @@ Page({
       animation: that.animation.export(),
       m_show: show
     })
+
   },
   //点击选择城市按钮显示picker-view
   translate: function (e) {
