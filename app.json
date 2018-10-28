@@ -36,8 +36,8 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "assets/images/iconfont-home.png",
-        "selectedIconPath": "assets/images/iconfont-home-active.png",
+        "iconPath": "assets/images/iconfont-order.png",
+        "selectedIconPath": "assets/images/iconfont-order-active.png",
         "text": "下单"
       },
       {

@@ -69,6 +69,8 @@ App({
   },
   globalData: {
     userInfo: null,
+    single: [],
+    setwode:[],
     tabBar: {
       "color": "#9E9E9E",
       "selectedColor": "#f00",

@@ -5,9 +5,13 @@
    <view class="indexs">
       <view class="weui-cells" bindtap="setWoDe">
          <view class="weui-cell">
-            <view class="weui-cell__bd">
-               <view class="weui-title">槐树店(地铁站)</view>
-               <view class="weui-title1">请完善信息</view>
+            <view class="weui-cell__bd" wx:if="{{setwode != ''}}">
+               <view class="weui-title">{{setwode.address}}</view>
+               <view class="weui-title1">{{setwode.user_name}} {{setwode.user_tel}}</view>
+            </view>
+            <view class="weui-cell__bd" wx:else>
+               <view class="weui-title">{{quyuText}}</view>
+               <view class="weui-title1">{{quyuAddress}}</view>
             </view>
             <view class="weui-cell__ft weui-cell__ft_in-access">
                 	
@@ -16,9 +20,13 @@
       </view>
       <view class="weui-cells border-top" bindtap="setduif">
          <view class="weui-cell">
-            <view class="weui-cell__bd">
-               <view class="weui-title">天府三街(地铁站)</view>
-               <view class="weui-title1">请完善信息</view>
+            <view class="weui-cell__bd" wx:if="{{duifang != ''}}">
+               <view class="weui-title">{{duifang.province}}{{duifang.city}}{{duifang.county}}{{duifang.address}}</view>
+               <view class="weui-title1">{{duifang.user_name}} {{duifang.user_tel}}</view>
+            </view>
+            <view class="weui-cell__bd" wx:else>
+               <view class="weui-title">{{quyuText1}}</view>
+               <view class="weui-title1">{{quyuAddress1}}</view>
             </view>
             <view class="weui-cell__ft weui-cell__ft_in-access">
                 	

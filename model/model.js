@@ -1,7 +1,7 @@
 import __config from '../etc/config'
 var provinces = [];//省
-var citys = [];//城市
-var countys = [];//区县
+var citys = [{ id: 0, name: '请选择', level: 1, upid: 0, is_show: 1 }];//城市
+var countys = [{ id: 0, name: '请选择', level: 1, upid: 0, is_show: 1 }];//区县
 var value = [0, 0, 0];//数据位置下标
 
 var xuanz = [{id:0,name:'请选择',level:1,upid:0,is_show:1}];
@@ -18,7 +18,7 @@ function updateAreaData( that, status, e){
           provinces = [...xuanz, ...res.data];
           if (provinces){
             //获取地级市数据
-            getCityArr(provinces[0].id);
+            //getCityArr(provinces[0].id);
           }
         }
       })
@@ -45,7 +45,7 @@ function updateAreaData( that, status, e){
           citys = [...xuanz, ...res.data];
           if (citys){
             //获取区县数据
-            getCountyInfo(citys[0].id);
+            //getCountyInfo(citys[0].id);
           }else{
             citys[0] = { name: '' };
           }

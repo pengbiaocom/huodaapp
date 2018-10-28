@@ -15,7 +15,9 @@ page{
   justify-content: space-between;
   box-sizing: border-box;
 } 
-
+.phcolor{
+    color: #000;
+}
 .tab-bar{
   position: fixed;
   width: 100%;

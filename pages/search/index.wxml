@@ -20,19 +20,19 @@
           <image src="/assets/images/danyuan.png" class="imgs"></image>
         </view>
         <view class="weui-cell__bd">
-            <input class="inputs" type="text" placeholder="详细地址" name="address" value="{{address}}"  />
+            <input class="inputs" type="text" bindinput="getAddress" placeholder-class="phcolor" placeholder="详细地址" name="address" value="{{address}}"  />
         </view>
       </view>
   </view>
   <view class="weui-cells text-aligns">
-      <button class="other-button"  formType="submit">确定</button>
+      <button class="other-button"  bindtap="submitTap">确定</button>
   </view>
 </view>
 <view class="weui-search-bar">
     <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
             <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder="请输入地址" value="{{ inputVal }}" bindinput="inputTyping" auto-focus/>
+            <input type="text" class="weui-search-bar__input" placeholder-class="phcolor" placeholder="请输入地址" value="{{ inputVal }}" bindinput="inputTyping" auto-focus/>
             <view class="weui-icon-clear" bindtap="clearInput">
                 <icon type="clear" size="14"></icon>
             </view>

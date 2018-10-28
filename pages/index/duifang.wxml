@@ -14,7 +14,7 @@
             <image src="/assets/images/yuandian.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd" wx:if="{{province}}">
-            {{province}} {{city}} {{county}}
+            {{province}} {{city}} {{county}}{{address}}
           </view>
           <view class="weui-cell__bd" wx:else>
             选择地址
@@ -30,7 +30,7 @@
             <image src="/assets/images/fajianren.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd">
-              <input class="inputs" type="text" placeholder="收件人姓名" name="user_name" value="{{user_name}}" />
+              <input class="inputs" type="text" bindinput="getUserName" placeholder="收件人姓名" name="user_name" value="{{user_name}}" />
           </view>
         </view>
     </view>
@@ -40,7 +40,7 @@
             <image src="/assets/images/dianhua.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd">
-              <input class="inputs" type="text" placeholder="收件人电话" name="user_tel" value="{{user_tel}}" />
+              <input class="inputs" type="text" bindinput="getPhone" placeholder="收件人电话" name="user_tel" value="{{user_tel}}" />
           </view>
         </view>
     </view>

@@ -9,6 +9,7 @@ class Service extends ServiceBase {
       messge: 'wxapp/message',
       address:'wxapp/address',
       cargo:'home/cargo',
+      order:'order',
     }
 	}
 
@@ -17,7 +18,7 @@ class Service extends ServiceBase {
 	}
 
   getCargo(params){
-    return this.getRequest(`${this.$$path.cargo}/read`, params)
+    return this.getRequest(`${this.$$path.cargo}`, params)
   }
 	
 	getMessage(params) {

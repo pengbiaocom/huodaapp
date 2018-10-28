@@ -7,6 +7,12 @@ var show = false;
 var moveY = 200;
 Page({
   data: {
+    setwode:[],
+    duifang:[],
+    quyuText: '请填写发件人地址',
+    quyuAddress: '请完善信息',
+    quyuText1:'请填写收件人地址',
+    quyuAddress1:'请完善信息',
     m_show2: show,
     dateTimeArray1: null,
     dateTime1: null,
@@ -19,14 +25,16 @@ Page({
     max: 20, //最多字数
     textValue:''
   },
-  onLoad: function () {
+  onLoad: function (option) {
     if (wx.getStorageSync('token')) {
       // app.editTabBar();
-      this.getData();
     } else {
       app.goLogin()
     }
     
+  },
+  onShow:function(){
+    this.getData();
   },
   //字数限制  
   inputs: function (e) {
@@ -65,6 +73,19 @@ Page({
       dateTimeArray1: obj1.dateTimeArray,
       dateTime1: obj1.dateTime
     });
+
+    var single = app.globalData.single;
+    if (single != ''){
+      this.setData({
+        duifang:single
+      });
+    }
+    var setwode = app.globalData.setwode;
+    if (setwode != ''){
+      this.setData({
+        setwode: setwode
+      });
+    }
     
     //获取物品分类
     app.HttpService.getCargo({})
@@ -84,7 +105,50 @@ Page({
         }
       })
   },
+  showModal: function () {
+    var uid = wx.getStorageSync('uid')
+    var dateTimeArray1 = this.data.dateTimeArray1;
+    var dateTime1 = this.data.dateTime1;
+     var params = {
+       uid:uid,
+       send_address: this.data.setwode.address,
+       send_username: this.data.setwode.user_name,
+       send_phone: this.data.setwode.user_tel,
+       get_region_one: this.data.duifang.province_id,
+       get_region_tow: this.data.duifang.city_id,
+       get_region_three: this.data.duifang.county_id,
+       get_address: this.data.duifang.address,
+       get_username:this.data.duifang.user_name,
+       get_phone:this.data.duifang.user_tel,
+       cid: this.data.multiArray[this.data.multiIndex].id,
+      dateTime1: dateTimeArray1[0][dateTime1[0]]+'-'+dateTimeArray1[1][dateTime1[1]]+'-'+dateTimeArray1[2][dateTime1[2]]+ dateTimeArray1[3][dateTime1[3]]+':'+dateTimeArray1[4][dateTime1[4]],
+       remarks: this.data.textValue
+     };
+    console.log(params)
+    var len = parseInt(params.remarks.length);
+    if(params.send_address==''){
+      wx.showModal({
+        title: '提示信息',
+        content: "请填写发件人信息",
+        showCancel: false
+      })
+    }else if(params.get_address==''){
+      wx.showModal({
+        title: '提示信息',
+        content: "请填写收件人信息",
+        showCancel: false
+      })
+    }else if (len <= this.data.min){
+      wx.showModal({
+        title: '提示信息',
+        content: this.data.texts,
+        showCancel: false
+      })
+    }else{
+      
+    } 
 
+  },
   setWoDe:function(){
     wx.navigateTo({
       url: '/pages/index/setwode'
@@ -99,9 +163,6 @@ Page({
     wx.navigateTo({
       url: '/pages/coupon/index'
     })
-  },
-  showPrice(){
-    
   },
   changeDateTime1(e) {
     this.setData({ dateTime1: e.detail.value });

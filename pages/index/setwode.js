@@ -1,5 +1,5 @@
 // pages/index/setwode.js
-const App = getApp()
+const app = getApp()
 import __config from '../../etc/config'
 var model = require('../../model/model.js')
 var item = {};
@@ -26,7 +26,6 @@ Page({
     user_name:"",
     user_tel:"",
     types:1
-
   },
 
   /**
@@ -38,7 +37,7 @@ Page({
         title: "发件人信息"
       })
     } else {
-      App.goLogin()
+      app.goLogin()
     }
     
   },
@@ -86,34 +85,27 @@ Page({
   },
   submitForm(e) {
     var params = e.detail.value
-    var uid = wx.getStorageSync("uid");
-    params.uid = uid;
-    params.types = this.data.types
     console.log(params)
-    App.HttpService.postAddress(params)
-      .then(data => {
-        if (data.code == 0) {
-          wx.setStorageSync("address_id", data.id);
-          wx.showModal({
-            title: '友情提示',
-            content: data.msg,
-            showCancel: !1,
-            success: function (res) {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/index/index'
-                })
-              }
-            }
-          })
-        } else {
-          App.WxService.showModal({
-            title: '友情提示',
-            content: data.msg,
-            showCancel: !1
-          })
-        }
+    
+    if(params.address==''){
+      wx.showModal({
+        title: '提示信息',
+        content: '请填写详细地址',
+        showCancel: false
       })
+    }else if(params.user_name=='' || params.user_tel==''){
+      wx.showModal({
+        title: '提示信息',
+        content: '请填写发件人姓名和电话',
+        showCancel: false
+      })
+    }else{
+      app.globalData.setwode = params;
+      wx.switchTab({
+        url: '/pages/index/index'
+      })
+    }
+  
   },
 
   /**
