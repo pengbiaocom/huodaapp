@@ -4,6 +4,7 @@
 @import "wxParse/wxParse.wxss";
 page{
   width: 100vw;
+  height: 100%;
   line-height: 1.6;
   background: #f7f7f7;
   font-family: -apple-system-font, "Helvetica Neue", sans-serif;

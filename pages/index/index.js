@@ -23,7 +23,9 @@ Page({
     texts: "至少5个字",
     min: 5,//最少字数
     max: 20, //最多字数
-    textValue:''
+    textValue:'',
+    estimated_time: 10,
+    distribution_price: 30,
   },
   onLoad: function (option) {
     if (wx.getStorageSync('token')) {
@@ -77,8 +79,15 @@ Page({
     var single = app.globalData.single;
     if (single != ''){
       this.setData({
-        duifang:single
+        duifang:single,
+        estimated_time: single.estimated_time,
+        distribution_price: single.distribution_price,
+        youPrice: parseFloat(single.distribution_price) + 5
       });
+    }else{
+      this.setData({
+        youPrice: parseFloat(this.data.distribution_price) + 5
+      })
     }
     var setwode = app.globalData.setwode;
     if (setwode != ''){
@@ -121,8 +130,9 @@ Page({
        get_username:this.data.duifang.user_name,
        get_phone:this.data.duifang.user_tel,
        cid: this.data.multiArray[this.data.multiIndex].id,
-      dateTime1: dateTimeArray1[0][dateTime1[0]]+'-'+dateTimeArray1[1][dateTime1[1]]+'-'+dateTimeArray1[2][dateTime1[2]]+ dateTimeArray1[3][dateTime1[3]]+':'+dateTimeArray1[4][dateTime1[4]],
-       remarks: this.data.textValue
+       estimate_time: dateTimeArray1[0][dateTime1[0]]+'-'+dateTimeArray1[1][dateTime1[1]]+'-'+dateTimeArray1[2][dateTime1[2]]+ dateTimeArray1[3][dateTime1[3]]+':'+dateTimeArray1[4][dateTime1[4]],
+       remarks: this.data.textValue,
+       order_total_price: this.data.distribution_price
      };
     console.log(params)
     var len = parseInt(params.remarks.length);
@@ -138,14 +148,71 @@ Page({
         content: "请填写收件人信息",
         showCancel: false
       })
-    }else if (len <= this.data.min){
+    }else if (len < this.data.min){
       wx.showModal({
         title: '提示信息',
         content: this.data.texts,
         showCancel: false
       })
     }else{
-      
+      app.HttpService.postAddOrder(params)
+        .then(data => {
+          console.log(data)
+          if (data.code == 0) {
+            wx.showModal({
+              title: '提示信息',
+              content: data.msg,
+              showCancel: false,
+              confirmColor: '#479de6',
+              success: function (res) {
+                wx.navigateTo({
+                  url: '/pages/order/index'
+                })
+              }
+            })
+            // 发起支付
+            // wx.requestPayment({
+            //   appId: data.data.appId,
+            //   timeStamp: data.data.timeStamp.toString(),
+            //   nonceStr: data.data.nonceStr,
+            //   package: data.data.package,
+            //   signType: data.data.signType,
+            //   paySign: data.data.paySign,
+            //   fail: function (aaa) {
+            //     if (aaa.errMsg == "requestPayment:fail cancel") {
+            //       // console.log(data.data.sorder_sn)
+            //       // App.HttpService.setSeedsDel({ sorder_sn: data.data.sorder_sn })
+            //       //   .then(data => {
+            //       //     //  console.log(data)
+            //       //   })
+            //     }
+            //   },
+            //   success: function () {
+            //     wx.showModal({
+            //       title: '提示信息',
+            //       content: "支付成功",
+            //       showCancel: false,
+            //       confirmColor: '#479de6',
+            //       success: function (res) {
+            //         wx.redirectTo({
+            //           url: '/pages/order/index',
+            //         });
+            //       }
+            //     })
+            //   }
+            // })
+          }else{
+            wx.showModal({
+              title: '提示信息',
+              content: data.msg,
+              showCancel: false,
+              confirmColor: '#479de6',
+              success: function (res) {
+
+              }
+            })
+          }
+        })
     } 
 
   },

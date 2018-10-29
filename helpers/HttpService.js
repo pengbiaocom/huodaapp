@@ -9,13 +9,25 @@ class Service extends ServiceBase {
       messge: 'wxapp/message',
       address:'wxapp/address',
       cargo:'home/cargo',
-      order:'order',
+      order:'home/order',
     }
 	}
 
 	wechatSignIn(params) {
 		return this.postRequest(this.$$path.wechatSignIn, params)
 	}
+
+  postAddOrder(params){
+    return this.getRequest(`${this.$$path.order}/save`, params)
+  }
+
+  getOrderList(params){
+    return this.getRequest(`${this.$$path.order}/index`, params)
+  }
+
+  getOrderDetail(params){
+    return this.getRequest(`${this.$$path.order}/detail`, params)
+  }
 
   getCargo(params){
     return this.getRequest(`${this.$$path.cargo}`, params)
@@ -31,6 +43,10 @@ class Service extends ServiceBase {
 
   postAddress(params){
     return this.getRequest(`${this.$$path.address}/add`, params)
+  }
+
+  getOrderDate(params){
+    return this.getRequest(`${this.$$path.address}/get_estimated_time`, params)
   }
   
   getOrderDelete(params){

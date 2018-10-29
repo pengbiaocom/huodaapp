@@ -3,32 +3,33 @@
 
 <template is="nav" data="{{ navList, activeIndex }}"/>
 <scroll-view class="scroll-list" scroll-y="true" bindscrolltolower="lower">
+   <view hidden="{{order.items ? false : true}}" wx:for-items="{{order.items}}" wx:key="{{index}}">
     <navigator url="/pages/order/detail?id={{item.id}}" class="order-list">
       <view class="orderListTitle">
         <view class="userImg"><image src="/assets/images/fa.png"></image></view>
-        <text class="userName">DH21025458455845</text>
+        <text class="userName">{{item.order_number}}</text>
         <text class="orderStatus">交易成功</text>
       </view>
       <view class="orderListDetails">
          <view class="details-list">
            <view class="list-left">发：</view>
-           <view class="list-right">槐树店路26号</view>
+           <view class="list-right">{{item.send_address}}</view>
          </view>
           <view class="details-list">
            <view class="list-left">收：</view>
-           <view class="list-right">槐树店路26号</view>
+           <view class="list-right">{{item.province}}{{item.city}}{{item.county}}{{item.get_address}}</view>
          </view>
       </view>
       <view class="productCount">
          <view class="product-left">
-            2018-09-22 12:23:34
+            {{item.create_time}}
          </view>
          <view class="product-right">
             <button class="btn">再来一单</button>
          </view>
       </view>
     </navigator>
-
+    </view>
     
     <template is="prompt" data="{{ prompt }}"/>
 </scroll-view>

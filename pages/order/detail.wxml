@@ -1,7 +1,10 @@
 <!--pages/order/detail.wxml-->
 <view class="indexs">
-   <view class="detail-title">订单已经取消</view>
-   <view class="detail-info">30分钟未完成支付，订单已取消</view>
+   <view class="detail-title" wx:if="{{order.item.order_status==0}}">订单进行中</view>
+   <view class="detail-title" wx:elif="{{order.item.order_status==1}}">订单已支付</view>
+   <view class="detail-title" wx:elif="{{order.item.order_status==2}}">订单已完成</view>
+   <view class="detail-title" wx:elif="{{order.item.order_status==3}}">订单已经取消</view>
+   <view class="detail-info" wx:elif="{{order.item.order_status==3}}">30分钟未完成支付，订单已取消</view>
    <view class="detail-btn">
      <button class="btn">在来一单</button>
    </view>
@@ -11,15 +14,15 @@
   <view class="test-s">
     <view class="userImg"><image src="/assets/images/fa.png"></image></view>
     <view class="userRight border-bottom">
-        <view class="userRight-addr">槐树店路26号</view>
-        <view class="userRight-title">周瑞  135648589557</view>
+        <view class="userRight-addr">{{order.item.send_address}}</view>
+        <view class="userRight-title">{{order.item.send_username}}  {{order.item.send_phone}}</view>
     </view>
   </view>
   <view class="test-s">
     <view class="userImg"><image src="/assets/images/shou.png"></image></view>
     <view class="userRight">
-        <view class="userRight-addr">槐树店路26号</view>
-        <view class="userRight-title">周瑞  135648589557</view>
+        <view class="userRight-addr">{{order.item.province}}{{order.item.city}}{{order.item.county}}{{order.item.get_address}}</view>
+        <view class="userRight-title">{{order.item.get_username}}  {{order.item.get_phone}}</view>
     </view>
   </view>
 </view>
@@ -27,7 +30,7 @@
 <view class="indexs">
   <view class="info border-bottom">
       <view class="info-left">物品信息</view>
-      <view class="info-right">食品/5公斤</view>
+      <view class="info-right">{{order.item.cargo_name}}</view>
   </view>
   <view class="info border-bottom">
       <view class="info-left">支付方式</view>
@@ -36,18 +39,18 @@
   <view class="info border-bottom">
       <view class="info-left">订单编号</view>
       <view class="info-right">
-        <view style="float:left;width:80%;">DH21025458455845</view>
-        <view style="float:left;width:20%;padding-top:30rpx;"><view class="btns1">复制</view></view>
+        <view style="float:left;width:80%;">{{order.item.order_number}}</view>
+        <view style="float:left;width:20%;padding-top:30rpx;"><view class="btns1" bindtap="copyBtn">复制</view></view>
       </view>
   </view>
   <view class="info border-bottom">
       <view class="info-left">备注信息</view>
-      <view class="info-right"></view>
+      <view class="info-right">{{order.item.remarks}}</view>
   </view>
   <view class="info border-bottom">
       <view class="info-left">订单总价</view>
       <view class="info-right">
-         <view style="float:left;width:40%;">24元</view>
+         <view style="float:left;width:40%;">{{order.item.order_total_price}}元</view>
          <view style="float:left;width:60%;padding-top:30rpx;"><button class="btns">价格说明</button></view>
       </view>
   </view>

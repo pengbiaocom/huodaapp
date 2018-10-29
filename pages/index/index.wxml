@@ -63,7 +63,7 @@
               预估时间
             </view>
             <view class="weui-cell__ft" style="font-size:28rpx;">
-               {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
+               {{estimated_time}}分钟 
                 <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}" style="display:none;">
                 <view class="tui-picker-detail">
                   
@@ -116,8 +116,8 @@
    <!-- 底部悬浮栏 -->
     <view class="detail-nav">
       <view class="nav-left">
-        <view class="nav-price"> 30 元 </view>
-        <view class="nav-center price_line">￥35元</view>
+        <view class="nav-price"> {{distribution_price}} 元 </view>
+        <view class="nav-center price_line">￥{{youPrice}}元</view>
       </view>
       
       <button class="button-red" bindtap="showModal" hover-class="btn-hover">立即下单</button>

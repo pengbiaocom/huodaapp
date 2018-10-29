@@ -1,4 +1,5 @@
 // pages/order/index.js
+const app = getApp()
 Page({
 
   /**
@@ -23,7 +24,7 @@ Page({
     if (wx.getStorageSync('token')) {
 
     } else {
-      App.goLogin()
+      app.goLogin()
     }
     this.setData({
       navList: [
@@ -46,25 +47,18 @@ Page({
       ]
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.initData()
+    this.getOrderList()
   },
   initData() {
     const order = this.data.order
     const params = order && order.params
     const status = params && params.status || 'all'
-    const uid = wx.getStorageSync('token');
+    var uid = wx.getStorageSync('uid')
     this.setData({
       order: {
         items: [],
@@ -72,7 +66,7 @@ Page({
           page: 1,
           limit: 10,
           status: status,
-          uid: uid['user_id']
+          uid: uid
         },
         paginate: {}
       }
@@ -86,26 +80,63 @@ Page({
       activeIndex: index,
       'order.params.status': status,
     })
+    this.getOrderList()
   },
+  getOrderList() {
+    const order = this.data.order
+    const params = order.params
 
+    app.HttpService.getOrderList(params)
+      .then(data => {
+        if (data.code == 0) {
+          order.items = [...order.items, ...data.data]
+          order.paginate = data.paginate
+          order.params.limit = data.paginate.limit
+          this.setData({
+            order: order,
+            'prompt.hidden': order.items.length,
+          })
+        } else {
+          this.setData({
+            'order.paginate.page': 1,
+            'order.params.page': 1,
+            'prompt.hidden': order.items.length,
+          })
+        }
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+      })
+  },
+  lower() {
+    if (this.data.order.items.length) {
+      if (this.data.order.paginate.page == this.data.order.params.page) {
+        wx.showToast({
+          title: '没有更多数据了！'
+        })
+        return
+      }
+      this.setData({
+        "order.params.page": this.data.order.paginate.page
+      })
+      this.getOrderList()
+    }
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    this.initData()
+    this.getOrderList()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    this.lower()
   }
 })

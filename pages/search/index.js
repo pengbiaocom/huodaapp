@@ -90,10 +90,18 @@ Page({
         showCancel: false
       })
     }else{
-      app.globalData.single = param;
-      wx.navigateTo({
-        url: '/pages/index/duifang'
-      })
+      app.HttpService.getOrderDate({ id: param.county_id})
+        .then(data => {
+          if (data.code == 0) {
+            param.estimated_time = data.data.estimated_time;
+            param.distribution_price = data.data.distribution_price;
+            app.globalData.single = param;
+            wx.navigateTo({
+              url: '/pages/index/duifang'
+            })
+          }
+        })
+      
     }
   },
   clearInput() {
