@@ -47,6 +47,7 @@ Page({
     var params = messagelist.params
     App.HttpService.getMessage(params)
       .then(data => {
+      
         if (data.code == 1) {
           if (data.data.list === undefined || data.data.list.length == 0) {
             wx.showToast({

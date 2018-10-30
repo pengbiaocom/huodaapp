@@ -40,7 +40,7 @@
             <image src="/assets/images/dianhua.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd">
-              <input class="inputs" type="text" bindinput="getPhone" placeholder="收件人电话" name="user_tel" value="{{user_tel}}" />
+              <input class="inputs" type="number" bindinput="getPhone" placeholder="收件人电话" name="user_tel" value="{{user_tel}}" />
           </view>
         </view>
     </view>

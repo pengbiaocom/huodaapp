@@ -122,8 +122,7 @@ Page({
               estimated_time: address.estimate_time,
               distribution_price: address.order_total_price,
               youPrice: parseFloat(address.order_total_price) + 5,
-              multiIndex: address.cid,
-              textValue: address.remarks
+              multiIndex: address.cid
             })
           }else{
             that.setData({
@@ -172,7 +171,6 @@ Page({
        remarks: this.data.textValue,
        order_total_price: this.data.distribution_price
      };
-    console.log(params)
     var len = parseInt(params.remarks.length);
     if(params.send_address==''){
       wx.showModal({
@@ -197,6 +195,9 @@ Page({
         .then(data => {
           console.log(data)
           if (data.code == 0) {
+            this.setData({
+              textValue:''
+            })
             wx.showModal({
               title: '提示信息',
               content: data.msg,
