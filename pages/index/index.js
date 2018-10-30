@@ -7,8 +7,8 @@ var show = false;
 var moveY = 200;
 Page({
   data: {
-    setwode:[],
-    duifang:[],
+    setwode:null,
+    duifang:null,
     quyuText: '请填写发件人地址',
     quyuAddress: '请完善信息',
     quyuText1:'请填写收件人地址',
@@ -33,7 +33,6 @@ Page({
     } else {
       app.goLogin()
     }
-    
   },
   onShow:function(){
     this.getData();
@@ -71,29 +70,68 @@ Page({
     // 精确到分的处理，将数组的秒去掉
     var lastArray = obj1.dateTimeArray.pop();
     var lastTime = obj1.dateTime.pop();
-    this.setData({
+    that.setData({
       dateTimeArray1: obj1.dateTimeArray,
       dateTime1: obj1.dateTime
     });
 
+    var setwode = app.globalData.setwode;
+    if (setwode != '') {
+      that.setData({
+        setwode: setwode
+      });
+    }
+
     var single = app.globalData.single;
     if (single != ''){
-      this.setData({
+      that.setData({
         duifang:single,
         estimated_time: single.estimated_time,
         distribution_price: single.distribution_price,
         youPrice: parseFloat(single.distribution_price) + 5
       });
     }else{
-      this.setData({
-        youPrice: parseFloat(this.data.distribution_price) + 5
-      })
-    }
-    var setwode = app.globalData.setwode;
-    if (setwode != ''){
-      this.setData({
-        setwode: setwode
-      });
+      var uid = wx.getStorageSync('uid');
+      var params = {
+        uid:uid,
+        type:0
+      };
+      app.HttpService.getUserAddress(params)
+        .then(data => {
+          if (data.code == 1) {
+            var address= data.data[0];
+            var setwode1 = {
+              user_name: address.send_username,
+              address: address.send_address,
+              user_tel: address.send_phone
+            };
+            var duifang1 = {
+              city_id: address.get_region_tow,
+              city : address.city,
+              province_id : address.get_region_one,
+              province : address.province,
+              county : address.county,
+              county_id : address.get_region_three,
+              address : address.get_address,
+              user_name : address.get_username,
+              user_tel : address.get_phone
+            };
+            that.setData({
+              setwode: setwode1,
+              duifang: duifang1,
+              estimated_time: address.estimate_time,
+              distribution_price: address.order_total_price,
+              youPrice: parseFloat(address.order_total_price) + 5,
+              multiIndex: address.cid,
+              textValue: address.remarks
+            })
+          }else{
+            that.setData({
+              youPrice: parseFloat(this.data.distribution_price) + 5
+            })
+          }
+        })
+      
     }
     
     //获取物品分类
@@ -130,7 +168,7 @@ Page({
        get_username:this.data.duifang.user_name,
        get_phone:this.data.duifang.user_tel,
        cid: this.data.multiArray[this.data.multiIndex].id,
-       estimate_time: dateTimeArray1[0][dateTime1[0]]+'-'+dateTimeArray1[1][dateTime1[1]]+'-'+dateTimeArray1[2][dateTime1[2]]+ dateTimeArray1[3][dateTime1[3]]+':'+dateTimeArray1[4][dateTime1[4]],
+       estimate_time: this.data.estimated_time,
        remarks: this.data.textValue,
        order_total_price: this.data.distribution_price
      };

@@ -85,7 +85,6 @@ Page({
   },
   submitForm(e) {
     var params = e.detail.value
-    console.log(params)
     
     if(params.address==''){
       wx.showModal({

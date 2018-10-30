@@ -5,7 +5,7 @@
    <view class="indexs">
       <view class="weui-cells" bindtap="setWoDe">
          <view class="weui-cell">
-            <view class="weui-cell__bd" wx:if="{{setwode != ''}}">
+            <view class="weui-cell__bd" wx:if="{{setwode != null}}">
                <view class="weui-title">{{setwode.address}}</view>
                <view class="weui-title1">{{setwode.user_name}} {{setwode.user_tel}}</view>
             </view>
@@ -20,7 +20,7 @@
       </view>
       <view class="weui-cells border-top" bindtap="setduif">
          <view class="weui-cell">
-            <view class="weui-cell__bd" wx:if="{{duifang != ''}}">
+            <view class="weui-cell__bd" wx:if="{{duifang != null}}">
                <view class="weui-title">{{duifang.province}}{{duifang.city}}{{duifang.county}}{{duifang.address}}</view>
                <view class="weui-title1">{{duifang.user_name}} {{duifang.user_tel}}</view>
             </view>
@@ -108,7 +108,7 @@
             </view>
          </view>
          <view class="text-area">
-          <textarea class="weui-textarea" placeholder='{{texts}}' cursor-spacing ="120" minlength="{{min}}" maxlength="{{max}}" bindinput="inputs" />
+          <textarea class="weui-textarea" placeholder='{{texts}}' cursor-spacing ="120" minlength="{{min}}" maxlength="{{max}}" bindinput="inputs" value="{{textValue}}" />
           <view class="zhishu">{{currentWordNumber|0}}/{{max}}</view>
         </view>
       </view>
