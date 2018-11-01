@@ -28,7 +28,7 @@ Page({
     address: "",
     user_name: "",
     user_tel: "",
-    estimated_time:'',
+    estimated_time:0,
     distribution_price:'',
     types: 2,
     markers: [{
@@ -68,8 +68,10 @@ Page({
         county: single.county,
         county_id: single.county_id,
         address: single.address,
-        estimated_time: single.estimated_time,
         distribution_price: single.distribution_price,
+        "markers.latitude":single.lat,
+        "markers.longitude": single.lng,
+        estimated_time: single.estimated_time
       });
     }
   },
@@ -101,8 +103,8 @@ Page({
       address: this.data.address,
       user_name:this.data.user_name,
       user_tel:this.data.user_tel,
-      estimated_time: this.data.estimated_time,
       distribution_price: this.data.distribution_price,
+      estimated_time: this.data.estimated_time
     };
     if (param.province_id == 0 || param.city_id == 0 || param.county_id == 0 || param.address=='') {
       wx.showModal({

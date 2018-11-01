@@ -76,46 +76,50 @@ Page({
     });
 
     var setwode = app.globalData.setwode;
-    if (setwode != '') {
-      that.setData({
-        setwode: setwode
-      });
-    }
-
     var single = app.globalData.single;
-    if (single != ''){
-      that.setData({
-        duifang:single,
-        estimated_time: single.estimated_time,
-        distribution_price: single.distribution_price,
-        youPrice: parseFloat(single.distribution_price) + 5
-      });
-    }else{
-      var uid = wx.getStorageSync('uid');
-      var params = {
-        uid:uid,
-        type:0
-      };
-      app.HttpService.getUserAddress(params)
-        .then(data => {
-          if (data.code == 1) {
-            var address= data.data[0];
-            var setwode1 = {
-              user_name: address.send_username,
-              address: address.send_address,
-              user_tel: address.send_phone
-            };
-            var duifang1 = {
-              city_id: address.get_region_tow,
-              city : address.city,
-              province_id : address.get_region_one,
-              province : address.province,
-              county : address.county,
-              county_id : address.get_region_three,
-              address : address.get_address,
-              user_name : address.get_username,
-              user_tel : address.get_phone
-            };
+
+    var uid = wx.getStorageSync('uid');
+    var params = {
+      uid: uid,
+      type: 0
+    };
+    app.HttpService.getUserAddress(params)
+      .then(data => {
+        if (data.code == 1) {
+          var address = data.data[0];
+          var setwode1 = {
+            user_name: address.send_username,
+            address: address.send_address,
+            user_tel: address.send_phone
+          };
+          var duifang1 = {
+            city_id: address.get_region_tow,
+            city: address.city,
+            province_id: address.get_region_one,
+            province: address.province,
+            county: address.county,
+            county_id: address.get_region_three,
+            address: address.get_address,
+            user_name: address.get_username,
+            user_tel: address.get_phone
+          };
+          if (setwode != '') {
+            that.setData({
+              setwode: setwode
+            });
+          } else {
+            that.setData({
+              setwode: setwode1
+            });
+          }
+          if (single != '') {
+            that.setData({
+              duifang: single,
+              estimated_time: single.estimated_time,
+              distribution_price: single.distribution_price,
+              youPrice: parseFloat(single.distribution_price) + 5
+            });
+          } else {
             that.setData({
               setwode: setwode1,
               duifang: duifang1,
@@ -124,14 +128,29 @@ Page({
               youPrice: parseFloat(address.order_total_price) + 5,
               multiIndex: address.cid
             })
-          }else{
+          }
+
+        } else {
+          if (setwode != '') {
+            that.setData({
+              setwode: setwode
+            });
+          }
+          if (single != '') {
+            that.setData({
+              duifang: single,
+              estimated_time: single.estimated_time,
+              distribution_price: single.distribution_price,
+              youPrice: parseFloat(single.distribution_price) + 5
+            });
+          } else{
             that.setData({
               youPrice: parseFloat(this.data.distribution_price) + 5
             })
           }
-        })
-      
-    }
+
+        }
+      })
     
     //获取物品分类
     app.HttpService.getCargo({})

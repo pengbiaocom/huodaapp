@@ -11,12 +11,18 @@ class Service extends ServiceBase {
       cargo:'home/cargo',
       order:'home/order',
       address1:'home/address',
+      Geo:'home/Geo',
+      Faq:'home/Faq',
     }
 	}
 
 	wechatSignIn(params) {
 		return this.postRequest(this.$$path.wechatSignIn, params)
 	}
+
+  postAddFaq(params){
+    return this.getRequest(`${this.$$path.Faq}/save`, params)
+  }
 
   getUserAddress(params){
     return this.getRequest(`${this.$$path.address1}/read`, params)
@@ -51,7 +57,7 @@ class Service extends ServiceBase {
   }
 
   getOrderDate(params){
-    return this.getRequest(`${this.$$path.address}/get_estimated_time`, params)
+    return this.getRequest(`${this.$$path.Geo}/read`, params)
   }
   
   getOrderDelete(params){

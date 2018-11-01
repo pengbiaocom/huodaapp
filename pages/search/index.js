@@ -90,11 +90,14 @@ Page({
         showCancel: false
       })
     }else{
-      app.HttpService.getOrderDate({ id: param.county_id})
+      app.HttpService.getOrderDate({ region: param.county_id, address:param.address})
         .then(data => {
-          if (data.code == 0) {
+          if (data.code == 1) {
+            param.distribution_price = data.data.info.distribution_price;
+            param.lat = data.data.geo[1];
+            param.lng = data.data.geo[0];
             param.estimated_time = data.data.estimated_time;
-            param.distribution_price = data.data.distribution_price;
+            console.log(param)
             app.globalData.single = param;
             wx.navigateTo({
               url: '/pages/index/duifang'
