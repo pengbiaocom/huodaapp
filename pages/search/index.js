@@ -18,6 +18,7 @@ Page({
     province_id: 0,
     county_id: 0,
     address: "",
+    addresslist:''
   },
 
   /**
@@ -30,7 +31,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var uid = wx.getStorageSync('uid');
+    var params = {
+      uid: uid,
+      type: 1
+    };
+    app.HttpService.getUserAddress(params)
+      .then(data => {
+        if (data.code == 1) {
+          var address = data.data[0];
+          this.setData({
+            addresslist: address
+          })
+          console.log(this.data.addresslist)
+        }
+      })
   },
   getAddress:function(e){
     var val = e.detail.value;
@@ -92,6 +107,7 @@ Page({
     }else{
       app.HttpService.getOrderDate({ region: param.county_id, address:param.address})
         .then(data => {
+          console.log(data)
           if (data.code == 1) {
             param.distribution_price = data.data.info.distribution_price;
             param.lat = data.data.geo[1];

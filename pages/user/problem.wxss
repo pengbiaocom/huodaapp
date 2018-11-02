@@ -5,155 +5,95 @@ display: flex;
 flex-direction: column;
 height: 100%;
 }
-
-/*顶部 */
-.head_cont{
-position: relative;
-width: 100%;
-height: 90rpx;
-line-height: 90rpx;
-background-color: #fff;
+.scroll-list {
+    overflow: hidden;
 }
-/*左边距线段 */
-.head_write{
-position: absolute;
-top: 15rpx;
-width: 10rpx;
-height: 60rpx;
-background-color:#b09648;
-}
-.head_title{
-position: absolute;
-left: 30rpx;
-font-size: 30rpx;
-color:#2a2a2a;
-}
-/*新用户如何登录 */
-.hide{
-display: none;
-}
-.show{
-display: block;
-}
-/*挪车二维码如何领取 */
-.show_hide{
-display: none;
-}
-.show_show{
-display: block;
+.messages{
+  margin: 20rpx 20rpx;
+  -moz-box-shadow:2px 2px 5px #D9D9D9; 
+  -webkit-box-shadow:2px 2px 5px #D9D9D9;
+   box-shadow:2px 2px 5px #D9D9D9;
 }
 
-/*挪车服务如何使用 */
-.show_tab3_hide{
-display: none;
+.weui-cells {
+  position: relative;
+  background-color: #FFFFFF;
+  line-height: 1.41176471;
+  font-size: 17px;
 }
-.show_tab3_show{
-display: block;
+.weui-cell {
+  padding: 10px 15px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
-
-/* ↓↓↓↓↓↓↓↓↓↓↓挪车服务↓↓↓↓↓↓↓↓↓↓↓ */
-.show_tab4__hide{
-display: none;
+.weui-cell:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #D9D9D9;
+  color: #D9D9D9;
+  left: 15px;
 }
-.show_tab4__show{
-display: block;
-}
-/*↑↑↑↑↑↑↑↑挪车服务↑↑↑↑↑↑↑↑ */
-
-/*列表 */
-.names{
-width: 100%;
-height: 120rpx;
-line-height: 120rpx;
-background-color: #fff;
-position: relative;
-border-bottom: 1px solid #EAEAEA;
-}
-.hide_name{
-position: absolute;
-left:30rpx;
-color: #2a2a2a;
-font-size: 30rpx;
+.weui-cell:first-child:before {
+  display: none;
 }
 
-.num_img{
-position: absolute;
-right: 230rpx;
-width: 28rpx;
-height: 28rpx;
-top: 46rpx;
+.weui-cell__bd {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.images{
+  width: 100%;
 }
 
-.shows_img{
-position: absolute;
-right: 30rpx;
-width: 24rpx;
-height: 14rpx;
-top: 55rpx;
+.kb-img-one {
+  width: 100%;
 }
-.cutab_two{
-width: 100%;
-height: 115rpx;
-position: relative;
-background-color: #fff;
-/* border-bottom: 1px solid #EAEAEA; */
 
+.weui-title{
+  font-size: 28rpx;
 }
-/*问题ICON */
-.ques_img{
-position:relative;
-top:3rpx;
-padding-right: 18rpx;
-width: 34rpx;
-height: 27rpx;
-}
-.anser_img{
-position:relative;
-top:28rpx;
-padding-right: 18rpx;
-left: 30rpx;
-width: 34rpx;
-height: 27rpx;
-}
-/*回答 */
-.cutab_two_name{
-position: absolute;
-left: 80rpx;
-top: 38rpx;
-width: 80%;
-color: #868686;
-font-size: 28rpx;
-text-align: left;
-}
-/* */
-.cutab_two_names{
-position: absolute;
-left: 80rpx;
-top: 35rpx;
-color: #868686;
-font-size: 28rpx;
-}
-/* */
 
-/*拨打电话 */
-.bottom{
-position: fixed;
-bottom: 0rpx;
-font-size: 30rpx;
-width: 100%;
-color: #fff;
-height: 90rpx;
-line-height: 90rpx;
-text-align: center;
+.weui-title1{
+  font-size: 24rpx;
+  color: #C8C8CD;
 }
-/* */
-.submit_tell{
-position: relative;
-width: 100%;
-text-align: center;
-line-height: 90rpx;
-height: 90rpx;
-background-color: #323232;
-display: inline-block;
-border-radius: 5rpx;
+
+.weui-cell__ft {
+  text-align: right;
+  color: #999999;
+}
+.weui-cell_access {
+  color: inherit;
+}
+
+.weui-cell__ft_in-access {
+  padding-right: 13px;
+  position: relative;
+}
+.weui-cell__ft_in-access:after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: relative;
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  margin-top: -2px;
+  right: 2px;
 }

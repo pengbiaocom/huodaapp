@@ -12,7 +12,7 @@ class Service extends ServiceBase {
       order:'home/order',
       address1:'home/address',
       Geo:'home/Geo',
-      Faq:'home/Faq',
+      Faq:'home/faq',
     }
 	}
 
@@ -21,7 +21,7 @@ class Service extends ServiceBase {
 	}
 
   postAddFaq(params){
-    return this.getRequest(`${this.$$path.Faq}/save`, params)
+    return this.getRequest(`${this.$$path.Geo}/save`, params)
   }
 
   getUserAddress(params){
@@ -47,6 +47,10 @@ class Service extends ServiceBase {
 	getMessage(params) {
     return this.getRequest(`${this.$$path.messge}/lists`, params)
 	}
+
+  getProblem(params){
+    return this.getRequest(`${this.$$path.messge}/problem`, params)
+  }
 
   getMessageDetail(params) {
     return this.getRequest(`${this.$$path.messge}/read`, params)

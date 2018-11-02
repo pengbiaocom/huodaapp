@@ -1,19 +1,20 @@
 // pages/user/problem.js
-const App = getApp()
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    // 新用户如何让登录
-    showView: false,
-    //挪车二维码如何领取
-    showViews: false,
-    // 挪车服务如何领取
-    show_tab3: false,
-    // 次卡如何办理
-    show_tab4: false,
+    problemlist: {
+      items: [],
+      params: {
+        page: 1,
+        limit: 10
+      },
+      paginate: {},
+
+    },
   },
 
   /**
@@ -21,117 +22,117 @@ Page({
    */
   onLoad: function (options) {
     if (wx.getStorageSync('token')) {
-      wx.setNavigationBarTitle({
-        title: "常见问题"
-      })
-      // 新用户如何让登录
-      showView: (options.showView == "true" ? true : false);
-      //挪车二维码如何领取
-      showViews: (options.showViews == "true" ? true : false);
-      // 挪车服务如何领取
-      show_tab3: (options.show_tab3 == "true" ? true : false);
-      // 次卡如何办理
-      show_tab4: (options.show_tab4 == "true" ? true : false);
+     
     } else {
-      App.goLogin()
+      app.goLogin()
     }
     
-  },
-  // 新用户如何让登录
-  onChangeShowState: function () {
-    var that = this;
-    that.setData({
-      // 1
-      showView: (!that.data.showView),
-      // 2
-      showViews: false,
-      // 3
-      show_tab3: false,
-      // 4
-      show_tab4: false
-    })
-  },
-  //挪车二维码如何领取
-  btn_show: function () {
-    var that = this;
-    that.setData({
-      // 2
-      showViews: (!that.data.showViews),
-      // 1
-      showView: false,
-      // 3
-      show_tab3: false,
-      // 4
-      show_tab4: false
-    })
-  },
-  // 挪车服务如何领取
-  show_tab3: function () {
-    var that = this;
-    that.setData({
-      // 3
-      show_tab3: (!that.data.show_tab3),
-      // 2
-      showViews: false,
-      // 1
-      showView: false,
-      // 4
-      show_tab4: false
-    })
-  },
-  // 次卡如何办理
-  show_tab4: function () {
-    var that = this;
-    that.setData({
-      // 4
-      show_tab4: (!that.data.show_tab4),
-      // 3
-      show_tab3: false,
-      // 2
-      showViews: false,
-      // 1
-      showView: false,
-    })
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var problemlist = {
+      items: [],
+      params: {
+        page: 1,
+        limit: 10
+      },
+      paginate: {},
+    }
+    this.setData({
+      problemlist: problemlist
+    })
+    this.getProblem();
   },
+  getProblem:function(){
+    const problemlist = this.data.problemlist
+    var params = problemlist.params
+    app.HttpService.getProblem(params)
+      .then(data => {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+        if (data.code == 1) {
+          if (data.data.list === undefined || data.data.list.length == 0) {
+            wx.showToast({
+              title: '没有更多数据了！'
+            })
+          } else {
+            problemlist.items = [...problemlist.items, ...data.data.list]
+            problemlist.paginate = data.data.paginate
+            problemlist.params.limit = data.data.paginate.limit
+            console.log(problemlist)
+            this.setData({
+              problemlist: problemlist,
+              'prompt.hidden': problemlist.items.length,
+            })
+          }
+        }
+        this.setData({
+          hidden: true
+        })
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+      })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    // 显示顶部刷新图标
+    wx.showNavigationBarLoading();
+    const problemlist = {
+      items: [],
+      params: {
+        page: 1,
+        limit: 10,
+      },
+      paginate: {}
+    }
 
+    this.setData({
+      problemlist: problemlist,
+      hidden: false
+    })
+    this.getProblem()
   },
-
+  toupper() {
+    const problemlist = {
+      items: [],
+      params: {
+        page: 1,
+        limit: 10,
+      },
+      paginate: {}
+    }
+    this.setData({
+      problemlist: problemlist,
+      hidden: false
+    })
+    this.getProblem()
+    setTimeout(function () {
+      wx.stopPullDownRefresh()
+    }, 1000)
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.lower()
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  lower() {
+    if (this.data.problemlist.paginate.page == this.data.problemlist.params.page) {
+      wx.showToast({
+        title: '没有更多数据了！'
+      })
+      return
+    }
+    this.setData({
+      "problemlist.params.page": this.data.problemlist.paginate.page,
+      hidden: false
+    })
+    this.getProblem()
   }
 })

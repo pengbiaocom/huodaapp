@@ -49,6 +49,10 @@ Page({
             'messagelist.item': data.data
           })
         }
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
       })
   },
   /**

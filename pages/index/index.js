@@ -103,6 +103,7 @@ Page({
             user_name: address.get_username,
             user_tel: address.get_phone
           };
+          console.log(setwode)
           if (setwode != '') {
             that.setData({
               setwode: setwode
@@ -121,7 +122,6 @@ Page({
             });
           } else {
             that.setData({
-              setwode: setwode1,
               duifang: duifang1,
               estimated_time: address.estimate_time,
               distribution_price: address.order_total_price,

@@ -49,9 +49,8 @@ Page({
         showCancel: false
       })
     }else{
-      app.HttpService.postAddFaq(params)
+      app.HttpService.postAddFaq(param)
         .then(data => {
-          console.log(data)
           if (data.code == 1) {
             this.setData({
               textValue: ''
