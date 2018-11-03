@@ -103,7 +103,6 @@ Page({
             user_name: address.get_username,
             user_tel: address.get_phone
           };
-          console.log(setwode)
           if (setwode != '') {
             that.setData({
               setwode: setwode
@@ -137,12 +136,20 @@ Page({
             });
           }
           if (single != '') {
-            that.setData({
-              duifang: single,
-              estimated_time: single.estimated_time,
-              distribution_price: single.distribution_price,
-              youPrice: parseFloat(single.distribution_price) + 5
-            });
+            if (single.estimated_time != undefined){
+              that.setData({
+                duifang: single,
+                estimated_time: single.estimated_time,
+                distribution_price: single.distribution_price,
+                youPrice: parseFloat(single.distribution_price) + 5
+              });
+            }else{
+              that.setData({
+                duifang: single,
+                distribution_price: single.distribution_price,
+                youPrice: parseFloat(single.distribution_price) + 5
+              });
+            }
           } else{
             that.setData({
               youPrice: parseFloat(this.data.distribution_price) + 5

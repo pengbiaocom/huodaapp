@@ -2,7 +2,7 @@
 .scroll-list {
     overflow: hidden;
     /* height: 82%; */
-    height: 92%;
+    /* height: 92%; */
 }
 
 
@@ -130,6 +130,13 @@ swiper-item image {
 }
 button::after{
   border: none;
+}
+.cancel-btn{
+    border: 1rpx solid #ccc;
+}
+.topay-btn{
+    border:1px solid #e64340;
+    color: #e64340;
 }
 
 

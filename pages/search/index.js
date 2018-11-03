@@ -43,7 +43,6 @@ Page({
           this.setData({
             addresslist: address
           })
-          console.log(this.data.addresslist)
         }
       })
   },
@@ -82,6 +81,31 @@ Page({
     model.updateAreaData(this, 1, e);
     item = this.data.item;
   },
+  selectAddress:function(e){
+    var data = e.currentTarget.dataset;
+    var param = {
+      province_id: data.provinceid,
+      province: data.province,
+      city_id: data.cityid,
+      city: data.city,
+      county_id: data.countyid,
+      county: data.county,
+      address: data.address
+    };
+    app.HttpService.getOrderDate({ region: param.county_id, address: param.address })
+      .then(data => {
+        if (data.code == 1) {
+          param.distribution_price = data.data.info.distribution_price;
+          param.lat = data.data.geo[1];
+          param.lng = data.data.geo[0];
+          param.estimated_time = data.data.estimated_time;
+          app.globalData.single = param;
+          wx.navigateTo({
+            url: '/pages/index/duifang'
+          })
+        }
+      })
+  },
   submitTap:function(){
     var param = {
       province_id: this.data.province_id,
@@ -107,20 +131,17 @@ Page({
     }else{
       app.HttpService.getOrderDate({ region: param.county_id, address:param.address})
         .then(data => {
-          console.log(data)
           if (data.code == 1) {
             param.distribution_price = data.data.info.distribution_price;
             param.lat = data.data.geo[1];
             param.lng = data.data.geo[0];
             param.estimated_time = data.data.estimated_time;
-            console.log(param)
             app.globalData.single = param;
             wx.navigateTo({
               url: '/pages/index/duifang'
             })
           }
         })
-      
     }
   },
   clearInput() {
@@ -136,44 +157,5 @@ Page({
   },
   searchInput() {
     // this.search()
-  },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    //请求数据
-    model.updateAreaData(that, 0, e);
-    that.animation = wx.createAnimation({
-      transformOrigin: "50% 50%",
-      duration: 0,
-      timingFunction: "ease",
-      delay: 0
-    })
-    that.animation.translateY(200 + 'vh').step();
-    that.setData({
-      animation: that.animation.export(),
-      m_show: show,
-      city_id: 0,
-      province_id: 0,
-      county_id: 0,
-    })
-    // 隐藏导航栏加载框
-    wx.hideNavigationBarLoading();
-    // 停止下拉动作
-    wx.stopPullDownRefresh();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

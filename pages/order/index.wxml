@@ -25,7 +25,8 @@
             {{item.create_time}}
          </view>
          <view class="product-right">
-            <button class="btn">再来一单</button>
+            <view class="btn topay-btn" wx:if="{{item.order_status==0}}" bindtap="toPayTap" data-id="{{item.order_number}}" data-money="{{item.order_total_price}}">马上付款</view>
+            <view class="btn cancel-btn" bindtap="toIndex" wx:else>再来一单</view>
          </view>
       </view>
     </navigator>

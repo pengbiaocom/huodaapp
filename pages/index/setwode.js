@@ -81,7 +81,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    var uid = wx.getStorageSync('uid');
+    var params = {
+      uid: uid,
+      type: 0
+    };
+    app.HttpService.getUserAddress(params)
+      .then(data => {
+        if (data.code == 1) {
+          var address = data.data[0];
+          that.setData({
+            user_name: address.send_username,
+            address: address.send_address,
+            user_tel: address.send_phone
+          });
+        }
+      })
   },
   submitForm(e) {
     var params = e.detail.value

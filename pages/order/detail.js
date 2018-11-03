@@ -1,5 +1,6 @@
 // pages/order/detail.js
 const app = getApp()
+var wxpay = require('../../utils/pay.js')
 Page({
 
   /**
@@ -18,8 +19,8 @@ Page({
   onLoad: function (options) {
     if (wx.getStorageSync('token')) {
       this.setData({
-        // id: options.id
-        id:3
+        id: options.id
+        // id:3
       })
     } else {
       app.goLogin()
@@ -45,12 +46,9 @@ Page({
     var param = {
       id:id
     };
-    console.log(param)
     app.HttpService.getOrderDetail(param)
       .then(data => {
-        console.log(data);
         if (data.code == 0) {
-          console.log(data.data)
           this.setData({
             'order.item': data.data
           })
@@ -78,5 +76,16 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+  toPayTap: function (e) {
+    var that = this;
+    var orderId = e.currentTarget.dataset.id;
+    var money = e.currentTarget.dataset.money;
+    wxpay.wxpay(app, money, orderId, "/pages/order/index");
+  },
+  toIndex: function () {
+    wx.navigateTo({
+      url: '/pages/index/index'
+    })
   }
 })

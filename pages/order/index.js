@@ -1,5 +1,6 @@
 // pages/order/index.js
 const app = getApp()
+var wxpay = require('../../utils/pay.js')
 Page({
 
   /**
@@ -138,5 +139,16 @@ Page({
    */
   onReachBottom: function () {
     this.lower()
+  },
+  toPayTap: function (e) {
+    var that = this;
+    var orderId = e.currentTarget.dataset.id;
+    var money = e.currentTarget.dataset.money;
+    wxpay.wxpay(app, money, orderId, "/pages/order/index");
+  },
+  toIndex:function(){
+    wx.navigateTo({
+      url: '/pages/index/index'
+    })
   }
 })

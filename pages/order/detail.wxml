@@ -6,7 +6,8 @@
    <view class="detail-title" wx:elif="{{order.item.order_status==3}}">订单已经取消</view>
    <view class="detail-info" wx:elif="{{order.item.order_status==3}}">30分钟未完成支付，订单已取消</view>
    <view class="detail-btn">
-     <button class="btn">在来一单</button>
+      <button class="btn topay-btn" wx:if="{{item.order_status==0}}" bindtap="toPayTap" data-id="{{item.order_number}}" data-money="{{item.order_total_price}}">马上付款</button>
+      <button class="btn cancel-btn" bindtap="toIndex" wx:else>再来一单</button>
    </view>
 </view>
 

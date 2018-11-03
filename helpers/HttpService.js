@@ -32,6 +32,10 @@ class Service extends ServiceBase {
     return this.getRequest(`${this.$$path.order}/save`, params)
   }
 
+  postPayment(params) {
+    return this.postRequest(`${this.$$path.order}/prepay`, params)
+  }
+
   getOrderList(params){
     return this.getRequest(`${this.$$path.order}/index`, params)
   }

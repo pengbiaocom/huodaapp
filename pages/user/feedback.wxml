@@ -1,6 +1,6 @@
 <!--pages/user/feedback.wxml-->
 <view class="indexs">
-   <textarea class="weui-textarea" bindinput="inputs" placeholder="请您反馈对货达的意见和建议" />  
+   <textarea class="weui-textarea" bindinput="inputs" cursor-spacing ="120" placeholder="请您反馈对货达的意见和建议" />  
 </view>
 <view class="submits">
     <button bindtap="showModal" hover-class="btn-hover">发送</button>

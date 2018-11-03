@@ -1,5 +1,5 @@
 // pages/user/index.js
-const App = getApp()
+const app = getApp()
 Page({
 
   /**
@@ -39,7 +39,7 @@ Page({
     if (wx.getStorageSync('token')) {
       this.getUserInfo()
     } else {
-      App.goLogin()
+      app.goLogin()
     }
   },
   /**
@@ -77,20 +77,6 @@ Page({
       }
     }) 
   },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
   /**
    * 用户点击右上角分享
    */

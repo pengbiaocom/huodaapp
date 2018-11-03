@@ -58,9 +58,10 @@ Page({
     this.initData();
   },
   initData(){
+    var that = this;
     var single = app.globalData.single;
     if (single != '') {
-      this.setData({
+      that.setData({
         city_id: single.city_id,
         city: single.city,
         province_id: single.province_id,
@@ -69,10 +70,56 @@ Page({
         county_id: single.county_id,
         address: single.address,
         distribution_price: single.distribution_price,
-        "markers.latitude":single.lat,
-        "markers.longitude": single.lng,
-        estimated_time: single.estimated_time
       });
+      if (single.lat != undefined && single.lng != undefined){
+        that.setData({
+          "markers.latitude": single.lat,
+          "markers.longitude": single.lng,
+        });
+      }
+      if (single.estimated_time !=undefined){
+        that.setData({
+          estimated_time: single.estimated_time
+        });
+      }
+    }else{
+      var uid = wx.getStorageSync('uid');
+      var params = {
+        uid: uid,
+        type: 0
+      };
+      app.HttpService.getUserAddress(params)
+        .then(data => {
+          if (data.code == 1) {
+            var address = data.data[0];
+            app.HttpService.getOrderDate({ region: address.county_id, address: address.get_address })
+              .then(data => {
+                if (data.code == 1) {
+                  var lat = data.data.geo[1];
+                  var lng = data.data.geo[0];
+                  if (lat != undefined && lng != undefined) {
+                    that.setData({
+                      "markers.latitude": lat,
+                      "markers.longitude": lng,
+                    });
+                  }
+                }
+              })
+            that.setData({
+              city_id: address.get_region_tow,
+              city: address.city,
+              province_id: address.get_region_one,
+              province: address.province,
+              county: address.county,
+              county_id: address.get_region_three,
+              address: address.get_address,
+              user_name: address.get_username,
+              user_tel: address.get_phone,
+              estimated_time: address.estimate_time,
+              distribution_price: address.order_total_price
+            });
+          }
+        })
     }
   },
   setAddr() {
