@@ -48,11 +48,11 @@
       <view class="info-left">备注信息</view>
       <view class="info-right">{{order.item.remarks}}</view>
   </view>
-  <view class="info border-bottom">
+  <view class="info">
       <view class="info-left">订单总价</view>
       <view class="info-right">
          <view style="float:left;width:40%;">{{order.item.order_total_price}}元</view>
-         <view style="float:left;width:60%;padding-top:30rpx;"><button class="btns">价格说明</button></view>
+         <!-- <view style="float:left;width:60%;padding-top:30rpx;"><button class="btns">价格说明</button></view> -->
       </view>
   </view>
 </view>

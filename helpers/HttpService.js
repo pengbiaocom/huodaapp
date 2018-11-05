@@ -21,7 +21,7 @@ class Service extends ServiceBase {
 	}
 
   postAddFaq(params){
-    return this.getRequest(`${this.$$path.Geo}/save`, params)
+    return this.postRequest(`${this.$$path.Faq}/read`, params)
   }
 
   getUserAddress(params){

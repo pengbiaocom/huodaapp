@@ -2,9 +2,8 @@
 .scroll-list {
     overflow: hidden;
     /* height: 82%; */
-    /* height: 92%; */
+    height: 92%;
 }
-
 
 .topbar {
     margin-top: 0;

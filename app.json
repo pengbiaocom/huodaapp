@@ -17,7 +17,6 @@
     "pages/user/about",
     "pages/user/feedback",
     "pages/login/index"
-    
   ],
   "window": {
     "navigationBarBackgroundColor": "#479de6",

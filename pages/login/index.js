@@ -32,14 +32,15 @@ Page({
           if (data.code) {
             const params = {
               "code": data.code,
-              "userInfo": res.detail.userInfo,
               "encrypted_data": encryptedData,
               "iv": iv,
               "raw_data": res.detail.rawData,
               "signature": res.detail.signature
             }
+            console.log(params)
             App.HttpService.wechatSignIn(params)
               .then(row => {
+                console.log(row)
                 if (row.code == 1) {
                   wx.setStorageSync("token", row.data.token);
                   wx.setStorageSync("uid",row.data.user.id);
@@ -47,20 +48,20 @@ Page({
                     that.goIndex();
                   }
                 } else {
-                  App.WxService.showModal({
+                  wx.showModal({
                     title: '友情提示',
                     content: row.msg,
-                    showCancel: !1,
+                    showCancel: false
                   })
                 }
               }).catch(e => {
                 console.log(e)
               })
           } else {
-            App.WxService.showModal({
+            wx.showModal({
               title: '友情提示',
-              content: '登录失败',
-              showCancel: !1,
+              content: "登录失败",
+              showCancel: false
             })
           }
         },

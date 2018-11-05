@@ -130,7 +130,6 @@ Page({
   onPullDownRefresh: function () {
     // 显示顶部刷新图标
     wx.showNavigationBarLoading();
-    this.initData()
     this.getOrderList()
   },
 

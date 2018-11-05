@@ -5,4 +5,3 @@
 <view class="submits">
     <button bindtap="showModal" hover-class="btn-hover">发送</button>
 </view>
-

@@ -57,6 +57,7 @@ page{
 .weui-cell__ft {
   text-align: right;
   color: #999999;
+  font-size: 28rpx;
 }
 .weui-cell_access {
   color: inherit;
@@ -137,12 +138,12 @@ page{
 .nav-price{
   float: left;
   color: #FF8C00;
+  padding-left: 10rpx;
 }
 
 .nav-center{
   float: left;
   text-align: left;
-  padding-left: 10rpx;
   color: #C8C8CD;
 }
 
@@ -172,9 +173,8 @@ button::after{
 }
 
 .text-area{
-  margin: 0rpx 20rpx 20rpx 20rpx;
-  margin-bottom: 20rpx;
   padding-bottom: 20rpx;
+  padding: 20rpx 20rpx;
 }
 .weui-textarea{
   width: 94%;
@@ -220,4 +220,34 @@ button::after{
 .price{
   padding: 20rpx 20rpx;
   font-size: 28rpx;
+}
+
+.radio {
+  display: inline-block;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-right: 10rpx;
+  cursor: pointer;
+}
+radio{
+  transform:scale(0.7);
+}
+
+.note2_item text{ display: block; font-size:26rpx; line-height: 40rpx; height: 40rpx; overflow: hidden; white-space: nowrap; text-overflow:ellipsis; }
+
+.wx-switch-input{
+width:82rpx !important;
+height:40rpx !important;
+margin:0 !important;
+padding: 0 !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+width:80rpx !important;
+height:36rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+width:38rpx !important;
+height:36rpx !important;
 }

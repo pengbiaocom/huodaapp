@@ -49,6 +49,7 @@ Page({
         showCancel: false
       })
     }else{
+      console.log(param)
       app.HttpService.postAddFaq(param)
         .then(data => {
           if (data.code == 1) {
@@ -61,7 +62,7 @@ Page({
               showCancel: false,
               confirmColor: '#479de6',
               success: function (res) {
-                wx.navigateTo({
+                wx.switchTab({
                   url: '/pages/user/index'
                 })
               }

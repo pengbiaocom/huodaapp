@@ -26,6 +26,16 @@ Page({
     textValue:'',
     estimated_time: 10,
     distribution_price: 30,
+    items: [
+      { name: '小件', value: 'small', checked: 'true'},
+      { name: '大件', value: 'large' },
+      { name: '多项', value: 'many' },
+    ],
+    radio_value:'small',
+    hiddenmodalput: true,  
+    model_test:'请输入物品信息',
+    model_value:'',
+    switch_value:false,
   },
   onLoad: function (option) {
     if (wx.getStorageSync('token')) {
@@ -36,6 +46,47 @@ Page({
   },
   onShow:function(){
     this.getData();
+  },
+  switch1Change: function (e) {
+    var distribution_price = parseFloat(this.data.distribution_price);
+    if (e.detail.value == false){
+      var price = distribution_price - 5
+    }else{
+      var price = distribution_price + 5
+    }
+    this.setData({
+      switch_value: e.detail.value,
+      distribution_price: price.toFixed(2)
+    })
+  },
+  radioChange: function (e) {
+    this.setData({
+      radio_value: e.detail.value
+    })
+  },
+  modalinput: function () {
+    this.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+  },  
+  //取消按钮  
+  cancel: function () {
+    this.setData({
+      hiddenmodalput: true,
+      model_value:''
+    });
+  },
+  //确认  
+  confirm: function () {
+    this.setData({
+      hiddenmodalput: true
+    })
+  },
+  modalTextArea:function(e){
+    var value = e.detail.value;
+    this.setData({
+      model_value: value
+    });
   },
   //字数限制  
   inputs: function (e) {
@@ -124,8 +175,7 @@ Page({
               duifang: duifang1,
               estimated_time: address.estimate_time,
               distribution_price: address.order_total_price,
-              youPrice: parseFloat(address.order_total_price) + 5,
-              multiIndex: address.cid
+              youPrice: parseFloat(address.order_total_price) + 5
             })
           }
 
@@ -181,6 +231,10 @@ Page({
     var uid = wx.getStorageSync('uid')
     var dateTimeArray1 = this.data.dateTimeArray1;
     var dateTime1 = this.data.dateTime1;
+    var return_goods = 0;
+    if (this.data.switch_value==true){
+      return_goods = 1;
+    }
      var params = {
        uid:uid,
        send_address: this.data.setwode.address,
@@ -195,7 +249,10 @@ Page({
        cid: this.data.multiArray[this.data.multiIndex].id,
        estimate_time: this.data.estimated_time,
        remarks: this.data.textValue,
-       order_total_price: this.data.distribution_price
+       order_total_price: this.data.distribution_price,
+       radio_value: this.data.radio_value,
+       model_value: this.data.model_value,
+       return_goods: return_goods
      };
     var len = parseInt(params.remarks.length);
     if(params.send_address==''){
@@ -217,6 +274,16 @@ Page({
         showCancel: false
       })
     }else{
+      if (params.radio_value =='many'){
+        if (params.model_value==''){
+          wx.showModal({
+            title: '提示信息',
+            content: "请填写物品信息",
+            showCancel: false
+          })
+          return false;
+        }
+      }
       app.HttpService.postAddOrder(params)
         .then(data => {
           console.log(data)

@@ -2,6 +2,7 @@
 <!-- <import src="../common/nav.wxml"/>
 <template is="nav" data="{{ tabBar }}"/> -->
 <view class="container">
+   
    <view class="indexs">
       <view class="weui-cells" bindtap="setWoDe">
          <view class="weui-cell">
@@ -34,9 +35,32 @@
          </view>
       </view>
    </view>
-   
    <view class="indexs">
       <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/xuanz.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd weui-title">
+              <radio-group class="radio-group" bindchange="radioChange">
+                <label class="radio" wx:for="{{items}}" wx:key="">
+                  <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+                </label>
+              </radio-group>
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/beizhu.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd weui-title">
+              备注：所说的电风扇
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells" wx:if="{{radio_value=='large'}}">
          <view class="weui-cell">
             <view class="weui-cell__hd">
               <image src="/assets/images/wup.png" class="imgs"></image>
@@ -51,8 +75,21 @@
             </view>
          </view>
       </view>
+      <view class="weui-cells" wx:elif="{{radio_value=='many'}}">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/wup.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd weui-title">
+             物品
+            </view>
+            <view class="weui-cell__ft note2_item" style='width:70%;' bindtap="modalinput">
+               <text wx:if="{{model_value !=''}}">{{model_value}}</text>
+               <text wx:else>点我填写...</text>
+            </view>
+         </view>
+      </view>
    </view>
-
    <view class="indexs">
       <view class="weui-cells">
          <view class="weui-cell">
@@ -112,18 +149,34 @@
           <view class="zhishu">{{currentWordNumber|0}}/{{max}}</view>
         </view>
       </view>
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/tui.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+              <view class="weui-title">带退货</view>
+            </view>
+            <view class="weui-cell__ft">
+               <switch class="wx-switch-input" checked="{{switch_value}}" bindchange="switch1Change"/> 
+            </view>
+         </view>
+      </view>
+      <view style="width:100%;height:120rpx;"></view>
    </view>
    <!-- 底部悬浮栏 -->
     <view class="detail-nav">
       <view class="nav-left">
-        <view class="nav-price"> {{distribution_price}} 元 </view>
-        <view class="nav-center price_line">￥{{youPrice}}元</view>
+        <view class="nav-center price_line">原价：￥{{youPrice}}</view>
+        <view class="nav-price">优惠价：￥{{distribution_price}}</view>
       </view>
       
       <button class="button-red" bindtap="showModal" hover-class="btn-hover">立即下单</button>
     </view>
 </view>
-
+<modal hidden="{{hiddenmodalput}}" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+    <textarea class="weui-textarea" placeholder='{{model_test}}' cursor-spacing ="120" bindinput="modalTextArea" value="{{model_value}}" />
+</modal>  
 <view class="animation-element-wrapper" animation="{{animation2}}" style="visibility:{{m_show2 ? 'visible':'hidden'}}" bindtap="hiddenFloatView2" data-id="444">
     <view class="animation-element" catchtap="nono">
       <view style="width:100%;height:70rpx;">
