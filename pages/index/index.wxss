@@ -138,13 +138,13 @@ page{
 .nav-price{
   float: left;
   color: #FF8C00;
-  padding-left: 10rpx;
 }
 
 .nav-center{
   float: left;
   text-align: left;
   color: #C8C8CD;
+  padding-left: 20rpx;
 }
 
 button {
@@ -174,7 +174,7 @@ button::after{
 
 .text-area{
   padding-bottom: 20rpx;
-  padding: 20rpx 20rpx;
+  padding: 0rpx 30rpx;
 }
 .weui-textarea{
   width: 94%;
@@ -226,28 +226,35 @@ button::after{
   display: inline-block;
   height: 40rpx;
   line-height: 40rpx;
-  margin-right: 10rpx;
+  margin-left: 25rpx;
+  margin-right: 40rpx;
   cursor: pointer;
 }
 radio{
   transform:scale(0.7);
 }
 
+.beis{
+  color: #888;
+  font-size: 23rpx;
+  text-align: center;
+}
+
 .note2_item text{ display: block; font-size:26rpx; line-height: 40rpx; height: 40rpx; overflow: hidden; white-space: nowrap; text-overflow:ellipsis; }
 
 .wx-switch-input{
-width:82rpx !important;
-height:40rpx !important;
+width:102rpx !important;
+height:50rpx !important;
 margin:0 !important;
 padding: 0 !important;
 }
 /*白色样式（false的样式）*/
 .wx-switch-input::before{
-width:80rpx !important;
-height:36rpx !important;
+width:100rpx !important;
+height:46rpx !important;
 }
 /*绿色样式（true的样式）*/
 .wx-switch-input::after{
-width:38rpx !important;
-height:36rpx !important;
+width:58rpx !important;
+height:46rpx !important;
 }

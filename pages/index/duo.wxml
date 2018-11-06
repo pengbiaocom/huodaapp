@@ -1,0 +1,6 @@
+<view class="indexs">
+   <textarea class="weui-textarea" bindinput="inputs" cursor-spacing ="120" placeholder="请输入物品信息" />  
+</view>
+<view class="submits">
+    <button bindtap="showModal" hover-class="btn-hover">确定</button>
+</view>

@@ -71,6 +71,7 @@ App({
     userInfo: null,
     single: [],
     setwode:[],
+    model_value:null,
     tabBar: {
       "color": "#9E9E9E",
       "selectedColor": "#f00",

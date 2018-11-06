@@ -3,6 +3,7 @@
     
     "pages/index/index",
     "pages/index/setwode",
+    "pages/index/duo",
     "pages/setting/index",
     "pages/setting/edit",
     "pages/coupon/index",

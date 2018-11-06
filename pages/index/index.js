@@ -21,11 +21,12 @@ Page({
     multiArray: [],
     multiIndex: 0,
     texts: "至少5个字",
-    min: 5,//最少字数
-    max: 20, //最多字数
+    min: 5,
+    max: 20, 
     textValue:'',
     estimated_time: 10,
     distribution_price: 30,
+    youPrice:0,
     items: [
       { name: '小件', value: 'small', checked: 'true'},
       { name: '大件', value: 'large' },
@@ -35,7 +36,7 @@ Page({
     hiddenmodalput: true,  
     model_test:'请输入物品信息',
     model_value:'',
-    switch_value:false,
+    switch_value:true,
   },
   onLoad: function (option) {
     if (wx.getStorageSync('token')) {
@@ -48,15 +49,8 @@ Page({
     this.getData();
   },
   switch1Change: function (e) {
-    var distribution_price = parseFloat(this.data.distribution_price);
-    if (e.detail.value == false){
-      var price = distribution_price - 5
-    }else{
-      var price = distribution_price + 5
-    }
     this.setData({
-      switch_value: e.detail.value,
-      distribution_price: price.toFixed(2)
+      switch_value: e.detail.value
     })
   },
   radioChange: function (e) {
@@ -65,29 +59,10 @@ Page({
     })
   },
   modalinput: function () {
-    this.setData({
-      hiddenmodalput: !this.data.hiddenmodalput
+    wx.navigateTo({
+      url: '/pages/index/duo'
     })
   },  
-  //取消按钮  
-  cancel: function () {
-    this.setData({
-      hiddenmodalput: true,
-      model_value:''
-    });
-  },
-  //确认  
-  confirm: function () {
-    this.setData({
-      hiddenmodalput: true
-    })
-  },
-  modalTextArea:function(e){
-    var value = e.detail.value;
-    this.setData({
-      model_value: value
-    });
-  },
   //字数限制  
   inputs: function (e) {
     // 获取输入框的内容
@@ -128,6 +103,13 @@ Page({
 
     var setwode = app.globalData.setwode;
     var single = app.globalData.single;
+    var model_value = app.globalData.model_value;
+
+    if (model_value != null){
+      that.setData({
+        model_value: model_value
+      })
+    }
 
     var uid = wx.getStorageSync('uid');
     var params = {
@@ -232,8 +214,10 @@ Page({
     var dateTimeArray1 = this.data.dateTimeArray1;
     var dateTime1 = this.data.dateTime1;
     var return_goods = 0;
+    var price = this.data.distribution_price;
     if (this.data.switch_value==true){
       return_goods = 1;
+      price = this.data.youPrice;
     }
      var params = {
        uid:uid,
@@ -249,7 +233,7 @@ Page({
        cid: this.data.multiArray[this.data.multiIndex].id,
        estimate_time: this.data.estimated_time,
        remarks: this.data.textValue,
-       order_total_price: this.data.distribution_price,
+       order_total_price: price,
        radio_value: this.data.radio_value,
        model_value: this.data.model_value,
        return_goods: return_goods
@@ -411,7 +395,7 @@ Page({
     that.setData({
       xiaofei: '+'+xiao[val[0]]+'元'
     });
-  }
+  },
   
 })
 
