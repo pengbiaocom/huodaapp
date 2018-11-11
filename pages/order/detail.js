@@ -59,6 +59,39 @@ Page({
         wx.stopPullDownRefresh();
       })
   },
+  isTui:function(){
+    var param = {
+      id: this.data.id
+    };
+    app.HttpService.getIsTui(param)
+      .then(data => {
+        if (data.code == 0) {
+          wx.showModal({
+            title: '提示信息',
+            content: data.msg,
+            showCancel: false,
+            confirmColor: '#479de6',
+            success: function (res) {
+              wx.switchTab({
+                url: '/pages/user/index'
+              })
+            }
+          })
+        }else{
+          wx.showModal({
+            title: '提示信息',
+            content: data.msg,
+            showCancel: false,
+            confirmColor: '#479de6',
+            success: function (res) {
+              wx.switchTab({
+                url: '/pages/user/index'
+              })
+            }
+          })
+        }
+      })
+  },
   copyBtn: function (e) {
     var that = this;
     wx.setClipboardData({

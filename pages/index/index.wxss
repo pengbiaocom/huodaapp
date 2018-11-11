@@ -237,7 +237,6 @@ radio{
 .beis{
   color: #888;
   font-size: 23rpx;
-  text-align: center;
 }
 
 .note2_item text{ display: block; font-size:26rpx; line-height: 40rpx; height: 40rpx; overflow: hidden; white-space: nowrap; text-overflow:ellipsis; }

@@ -27,6 +27,8 @@ Page({
     estimated_time: 10,
     distribution_price: 30,
     youPrice:0,
+    lat:0,
+    lng:0,
     items: [
       { name: '小件', value: 'small', checked: 'true'},
       { name: '大件', value: 'large' },
@@ -134,7 +136,9 @@ Page({
             county_id: address.get_region_three,
             address: address.get_address,
             user_name: address.get_username,
-            user_tel: address.get_phone
+            user_tel: address.get_phone,
+            lat:address.lat,
+            lng:address.lng
           };
           if (setwode != '') {
             that.setData({
@@ -236,7 +240,9 @@ Page({
        order_total_price: price,
        radio_value: this.data.radio_value,
        model_value: this.data.model_value,
-       return_goods: return_goods
+       return_goods: return_goods,
+       lat: this.data.duifang.lat,
+       lng:this.data.duifang.lng
      };
     var len = parseInt(params.remarks.length);
     if(params.send_address==''){

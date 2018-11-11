@@ -31,6 +31,8 @@
   height: 90rpx;
   line-height: 90rpx;
   align-items: center;
+  display: flex;
+  padding-bottom: 20rpx;
 }
 
 .btn{
@@ -50,10 +52,12 @@ button::after{
 
 .cancel-btn{
     border: 1rpx solid #ccc;
+    float: left;
 }
 .topay-btn{
     border:1px solid #e64340;
     color: #e64340;
+    float: left;
 }
 
 .button-lan {

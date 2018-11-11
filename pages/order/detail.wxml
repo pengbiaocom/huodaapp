@@ -8,6 +8,7 @@
    <view class="detail-btn">
       <button class="btn topay-btn" wx:if="{{item.order_status==0}}" bindtap="toPayTap" data-id="{{item.order_number}}" data-money="{{item.order_total_price}}">马上付款</button>
       <button class="btn cancel-btn" bindtap="toIndex" wx:else>再来一单</button>
+      <button class="btn cancel-btn" bindtap="isTui" wx:if="{{item.is_tui==1}}">取消订单</button>
    </view>
 </view>
 

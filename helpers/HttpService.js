@@ -36,6 +36,10 @@ class Service extends ServiceBase {
     return this.postRequest(`${this.$$path.order}/prepay`, params)
   }
 
+  getIsTui(params){
+    return this.getRequest(`${this.$$path.order}/order_tui`, params)
+  }
+
   getOrderList(params){
     return this.getRequest(`${this.$$path.order}/index`, params)
   }

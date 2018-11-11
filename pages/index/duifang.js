@@ -151,7 +151,9 @@ Page({
       user_name:this.data.user_name,
       user_tel:this.data.user_tel,
       distribution_price: this.data.distribution_price,
-      estimated_time: this.data.estimated_time
+      estimated_time: this.data.estimated_time,
+      lat: this.data.markers.latitude,
+      lng: this.data.markers.longitude
     };
     if (param.province_id == 0 || param.city_id == 0 || param.county_id == 0 || param.address=='') {
       wx.showModal({
