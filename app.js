@@ -70,6 +70,7 @@ App({
   globalData: {
     userInfo: null,
     single: [],
+    single1: [],
     setwode:[],
     model_value:null,
     tabBar: {

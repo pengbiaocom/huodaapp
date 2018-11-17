@@ -77,7 +77,7 @@ Page({
           markers: markers
         });
       }
-      
+      console.log(that.data.markers)
       if (single.estimated_time !=undefined){
         that.setData({
           estimated_time: single.estimated_time
@@ -113,6 +113,7 @@ Page({
               width: 30,
               height: 30
             }];
+            console.log(markers)
             that.setData({
               markers: markers
             });
@@ -144,8 +145,8 @@ Page({
       user_tel:this.data.user_tel,
       distribution_price: this.data.distribution_price,
       estimated_time: this.data.estimated_time,
-      lat: this.data.markers.latitude,
-      lng: this.data.markers.longitude
+      lat: this.data.markers[0].latitude,
+      lng: this.data.markers[0].longitude
     };
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
     if (param.address=='') {
@@ -173,7 +174,7 @@ Page({
         showCancel: false
       })
     } else {
-      app.globalData.single = param;
+      app.globalData.single1 = param;
       wx.switchTab({
         url: '/pages/index/index'
       })

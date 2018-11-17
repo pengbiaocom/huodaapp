@@ -104,7 +104,7 @@ Page({
     });
 
     var setwode = app.globalData.setwode;
-    var single = app.globalData.single;
+    var single = app.globalData.single1;
     var model_value = app.globalData.model_value;
     if (model_value != null){
       that.setData({
