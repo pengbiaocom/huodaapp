@@ -23,7 +23,7 @@
   <view class="test-s">
     <view class="userImg"><image src="/assets/images/shou.png"></image></view>
     <view class="userRight">
-        <view class="userRight-addr">{{order.item.province}}{{order.item.city}}{{order.item.county}}{{order.item.get_address}}</view>
+        <view class="userRight-addr">{{order.item.get_address}}</view>
         <view class="userRight-title">{{order.item.get_username}}  {{order.item.get_phone}}</view>
     </view>
   </view>

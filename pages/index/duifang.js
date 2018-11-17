@@ -62,12 +62,6 @@ Page({
     var single = app.globalData.single;
     if (single != '') {
       that.setData({
-        city_id: single.city_id,
-        city: single.city,
-        province_id: single.province_id,
-        province: single.province,
-        county: single.county,
-        county_id: single.county_id,
         address: single.address,
         distribution_price: single.distribution_price,
       });
@@ -92,7 +86,7 @@ Page({
         .then(data => {
           if (data.code == 1) {
             var address = data.data[0];
-            app.HttpService.getOrderDate({ region: address.county_id, address: address.get_address })
+            app.HttpService.getOrderDate({ address: address.get_address })
               .then(data => {
                 if (data.code == 1) {
                   var lat = data.data.geo[1];
@@ -106,12 +100,6 @@ Page({
                 }
               })
             that.setData({
-              city_id: address.get_region_tow,
-              city: address.city,
-              province_id: address.get_region_one,
-              province: address.province,
-              county: address.county,
-              county_id: address.get_region_three,
               address: address.get_address,
               user_name: address.get_username,
               user_tel: address.get_phone,
@@ -141,12 +129,6 @@ Page({
   },
   submitForm(e) {
     var param = {
-      province_id: this.data.province_id,
-      province: this.data.province,
-      city_id: this.data.city_id,
-      city: this.data.city,
-      county_id: this.data.county_id,
-      county: this.data.county,
       address: this.data.address,
       user_name:this.data.user_name,
       user_tel:this.data.user_tel,
@@ -155,7 +137,8 @@ Page({
       lat: this.data.markers.latitude,
       lng: this.data.markers.longitude
     };
-    if (param.province_id == 0 || param.city_id == 0 || param.county_id == 0 || param.address=='') {
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    if (param.address=='') {
       wx.showModal({
         title: '提示信息',
         content: '请选择地址',
@@ -165,6 +148,18 @@ Page({
       wx.showModal({
         title: '提示信息',
         content: '请填写收件人姓名和电话',
+        showCancel: false
+      })
+    } else if (param.user_tel.length != 11) {
+      wx.showModal({
+        title: '提示信息',
+        content: '手机号长度有误',
+        showCancel: false
+      })
+    } else if (!myreg.test(param.user_tel)) {
+      wx.showModal({
+        title: '提示信息',
+        content: '请输入正确的手机号',
         showCancel: false
       })
     } else {

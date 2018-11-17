@@ -13,8 +13,8 @@
           <view class="weui-cell__hd">
             <image src="/assets/images/yuandian.png" class="imgs"></image>
           </view>
-          <view class="weui-cell__bd" wx:if="{{province}}">
-            {{province}} {{city}} {{county}}{{address}}
+          <view class="weui-cell__bd" wx:if="{{address}}">
+            {{address}}
           </view>
           <view class="weui-cell__bd" wx:else>
             选择地址

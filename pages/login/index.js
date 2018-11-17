@@ -37,7 +37,6 @@ Page({
               "raw_data": res.detail.rawData,
               "signature": res.detail.signature
             }
-            console.log(params)
             App.HttpService.wechatSignIn(params)
               .then(row => {
                 console.log(row)

@@ -2,6 +2,7 @@
 const app = getApp()
 import __config from '../../etc/config'
 var model = require('../../model/model.js')
+var amapFile = require('../../utils/amap-wx.js');
 var item = {};
 var t = 0;
 var show = false;
@@ -25,7 +26,8 @@ Page({
     address:"",
     user_name:"",
     user_tel:"",
-    types:1
+    types:1,
+    tips: {}
   },
 
   /**
@@ -46,7 +48,39 @@ Page({
       url: '/pages/search/index'
     })
   },
-  
+  bindInput: function (e) {
+    var that = this;
+    var keywords = e.detail.value;
+    var key = __config.key;
+    console.log(key)
+    if (keywords != '') {
+      var myAmapFun = new amapFile.AMapWX({ key: key });
+      myAmapFun.getInputtips({
+        keywords: keywords,
+        location: '104.025652,30.630897',
+        success: function (data) {
+          if (data && data.tips) {
+            that.setData({
+              tips: data.tips
+            });
+          }
+
+        }
+      })
+    } else {
+      that.setData({
+        tips: {}
+      });
+    }
+
+  },
+  bindSearch: function (e) {
+    var keywords = e.target.dataset.keywords;
+    this.setData({
+      address: keywords,
+      tips: {}
+    })
+  },
   onReady: function (e) {
     var that = this;
     //请求数据
@@ -101,7 +135,7 @@ Page({
   },
   submitForm(e) {
     var params = e.detail.value
-    
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
     if(params.address==''){
       wx.showModal({
         title: '提示信息',
@@ -112,6 +146,18 @@ Page({
       wx.showModal({
         title: '提示信息',
         content: '请填写发件人姓名和电话',
+        showCancel: false
+      })
+    } else if (params.user_tel.length != 11){
+      wx.showModal({
+        title: '提示信息',
+        content: '手机号长度有误',
+        showCancel: false
+      })
+    } else if (!myreg.test(params.user_tel)){
+      wx.showModal({
+        title: '提示信息',
+        content: '请输入正确的手机号',
         showCancel: false
       })
     }else{

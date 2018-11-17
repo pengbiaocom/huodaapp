@@ -19,7 +19,7 @@
       <view class="weui-cells border-top" bindtap="setduif">
          <view class="weui-cell">
             <view class="weui-cell__bd" wx:if="{{duifang != null}}">
-               <view class="weui-title">{{duifang.province}}{{duifang.city}}{{duifang.county}}{{duifang.address}}</view>
+               <view class="weui-title">{{duifang.address}}</view>
                <view class="weui-title1">{{duifang.user_name}} {{duifang.user_tel}}</view>
             </view>
             <view class="weui-cell__bd" wx:else>

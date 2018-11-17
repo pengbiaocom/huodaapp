@@ -1,51 +1,27 @@
 <!--pages/map/index.wxml-->
 <view class="container">
-<view class="list">
-  <view class="weui-cells">
-      <view class="weui-cell">
-        <view class="weui-cell__hd">
-          <image src="/assets/images/iconfont-addr-empty.png" class="imgs"></image>
-        </view>
-        <view class="weui-cell__bd" bindtap="translate">
-            {{areaSelectedStr}}{{province}} {{city}} {{county}}
-            <input name="province_id" hidden="true" value="{{province_id}}" />
-            <input name="city_id" hidden="true" value="{{city_id}}" />
-            <input name="county_id" hidden="true" value="{{county_id}}" />
-          </view>
-      </view>
-  </view>
-  <view class="weui-cells">
-      <view class="weui-cell">
-        <view class="weui-cell__hd">
-          <image src="/assets/images/danyuan.png" class="imgs"></image>
-        </view>
-        <view class="weui-cell__bd">
-            <input class="inputs" type="text" bindinput="getAddress" placeholder-class="phcolor" placeholder="详细地址" name="address" value="{{address}}"  />
-        </view>
-      </view>
-  </view>
-  <view class="weui-cells text-aligns">
-      <button class="other-button"  bindtap="submitTap">确定</button>
-  </view>
-</view>
 <view class="weui-search-bar">
     <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
             <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder-class="phcolor" placeholder="请输入地址" value="{{ inputVal }}" bindinput="inputTyping" auto-focus/>
+            <input type="text" class="weui-search-bar__input" placeholder-class="phcolor" placeholder="请输入地址" value="{{ inputVal }}" bindinput="bindInput" />
             <view class="weui-icon-clear" bindtap="clearInput">
                 <icon type="clear" size="14"></icon>
             </view>
         </view>
     </view>
-    <button class="weui-icon-search" bindtap="searchInput">搜索</button>
 </view>
-<view class="container1">
+<view class="container1" wx:if="{{tips.length>0}}">
+<view bindtouchstart="bindSearch" data-keywords="{{i.name}}" class="text_box" wx:for="{{tips}}" wx:for-item="i" wx:key="">
+    {{i.name}}
+  </view>
+</view>
+<view class="container1" wx:else>
   <view class="indexs">
       <view class="weui-cells border-top" wx:for="{{ addresslist }}" wx:key="">
-         <view class="weui-cell" data-provinceid="{{item.get_region_one}}" data-cityid="{{item.get_region_three}}" data-countyid="{{item.get_region_tow}}" data-address="{{item.get_address}}" data-province="{{item.province}}" data-city="{{item.city}}" data-county="{{item.county}}" bindtap="selectAddress">
+         <view class="weui-cell" data-address="{{item.get_address}}" bindtap="selectAddress">
             <view class="weui-cell__bd">
-               <view class="weui-title">{{item.province}}{{item.city}}{{item.county}}{{item.get_address}}</view>
+               <view class="weui-title">{{item.get_address}}</view>
                <view class="weui-title1">{{item.get_username}} {{item.get_phone}}</view>
             </view>
             <view class="weui-cell__ft weui-cell__ft_in-access">

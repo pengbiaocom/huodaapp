@@ -2,6 +2,7 @@
 const app = getApp()
 import __config from '../../etc/config'
 var model = require('../../model/model.js')
+var amapFile = require('../../utils/amap-wx.js');
 var item = {};
 var t = 0;
 var show = false;
@@ -18,7 +19,8 @@ Page({
     province_id: 0,
     county_id: 0,
     address: "",
-    addresslist:''
+    addresslist:'',
+    tips: {}
   },
 
   /**
@@ -26,6 +28,49 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  bindInput: function (e) {
+    var that = this;
+    var keywords = e.detail.value;
+    var key = __config.key;
+    if (keywords !=''){
+      var myAmapFun = new amapFile.AMapWX({ key: key });
+      myAmapFun.getInputtips({
+        keywords: keywords,
+        location: '104.025652,30.630897',
+        success: function (data) {
+          if (data && data.tips) {
+            that.setData({
+              tips: data.tips
+            });
+          }
+        }
+      })
+    }else{
+      that.setData({
+        tips: {}
+      });
+    }
+    
+  },
+  bindSearch: function (e) {
+    var keywords = e.target.dataset.keywords;
+    app.HttpService.getOrderDate({ address: keywords })
+      .then(data => {
+        if (data.code == 1) {
+          var param = {
+            address: keywords,
+            distribution_price: data.data.price,
+            lat: data.data.geo[1],
+            lng: data.data.geo[0],
+            estimated_time: data.data.duration
+          };
+          app.globalData.single = param;
+          wx.navigateTo({
+            url: '/pages/index/duifang'
+          })
+        }
+      })
   },
   /**
    * 生命周期函数--监听页面显示
@@ -83,22 +128,16 @@ Page({
   },
   selectAddress:function(e){
     var data = e.currentTarget.dataset;
-    var param = {
-      province_id: data.provinceid,
-      province: data.province,
-      city_id: data.cityid,
-      city: data.city,
-      county_id: data.countyid,
-      county: data.county,
-      address: data.address
-    };
-    app.HttpService.getOrderDate({ region: param.county_id, address: param.address })
+    app.HttpService.getOrderDate({ address: data.address })
       .then(data => {
         if (data.code == 1) {
-          param.distribution_price = data.data.info.distribution_price;
-          param.lat = data.data.geo[1];
-          param.lng = data.data.geo[0];
-          param.estimated_time = data.data.estimated_time;
+          var param = {
+            address: data.address,
+            distribution_price: data.data.price,
+            lat: data.data.geo[1],
+            lng: data.data.geo[0],
+            estimated_time: data.data.duration
+          };
           app.globalData.single = param;
           wx.navigateTo({
             url: '/pages/index/duifang'

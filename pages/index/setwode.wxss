@@ -145,3 +145,19 @@ button {
 button::after{
   border: none;
 }
+.section{
+  position: relative;
+}
+.section_text{
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+}
+.text_box{
+  padding-left: 25rpx;
+  border-bottom:1px solid #c3c3c3;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+}

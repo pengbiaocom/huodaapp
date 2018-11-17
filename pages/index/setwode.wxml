@@ -8,14 +8,19 @@
 <view class="container">
   <view class="list">
     <form bindsubmit="submitForm">
-    <view class="weui-cells">
+    <view class="weui-cells section">
       <view class="weui-cell">
         <view class="weui-cell__hd">
           <image src="/assets/images/danyuan.png" class="imgs"></image>
         </view>
         <view class="weui-cell__bd">
-            <input class="inputs" type="text" placeholder="详细地址" name="address" value="{{address}}"  />
+            <input class="inputs" type="text" placeholder="详细地址" name="address" value="{{address}}" bindinput="bindInput" />
         </view>
+      </view>
+    </view>
+    <view class="section_text">
+      <view bindtouchstart="bindSearch" data-keywords="{{i.name}}" class="text_box" wx:for="{{tips}}" wx:for-item="i" wx:key="">
+      {{i.name}}
       </view>
     </view>
     <view class="weui-cells">

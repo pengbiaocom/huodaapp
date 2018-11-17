@@ -17,7 +17,7 @@
          </view>
           <view class="details-list">
            <view class="list-left">收：</view>
-           <view class="list-right">{{item.province}}{{item.city}}{{item.county}}{{item.get_address}}</view>
+           <view class="list-right">{{item.get_address}}</view>
          </view>
       </view>
       <view class="productCount">

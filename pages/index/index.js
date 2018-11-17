@@ -106,13 +106,12 @@ Page({
     var setwode = app.globalData.setwode;
     var single = app.globalData.single;
     var model_value = app.globalData.model_value;
-
     if (model_value != null){
       that.setData({
         model_value: model_value
       })
     }
-
+    
     var uid = wx.getStorageSync('uid');
     var params = {
       uid: uid,
@@ -128,12 +127,6 @@ Page({
             user_tel: address.send_phone
           };
           var duifang1 = {
-            city_id: address.get_region_tow,
-            city: address.city,
-            province_id: address.get_region_one,
-            province: address.province,
-            county: address.county,
-            county_id: address.get_region_three,
             address: address.get_address,
             user_name: address.get_username,
             user_tel: address.get_phone,
@@ -228,9 +221,6 @@ Page({
        send_address: this.data.setwode.address,
        send_username: this.data.setwode.user_name,
        send_phone: this.data.setwode.user_tel,
-       get_region_one: this.data.duifang.province_id,
-       get_region_tow: this.data.duifang.city_id,
-       get_region_three: this.data.duifang.county_id,
        get_address: this.data.duifang.address,
        get_username:this.data.duifang.user_name,
        get_phone:this.data.duifang.user_tel,
