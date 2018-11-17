@@ -8,6 +8,7 @@ class Service extends ServiceBase {
       wechatSignIn: 'wxapp/public/login',
       messge: 'wxapp/message',
       address:'wxapp/address',
+      user:'wxapp/user',
       cargo:'home/cargo',
       order:'home/order',
       address1:'home/address',
@@ -19,6 +20,14 @@ class Service extends ServiceBase {
 	wechatSignIn(params) {
 		return this.postRequest(this.$$path.wechatSignIn, params)
 	}
+
+  postUserInfo(params){
+    return this.postRequest(`${this.$$path.user}/getUserInfo`, params)
+  }
+
+  postUpdateUser(params){
+    return this.postRequest(`${this.$$path.user}/update_user`, params)
+  }
 
   postAddFaq(params){
     return this.postRequest(`${this.$$path.Faq}/read`, params)

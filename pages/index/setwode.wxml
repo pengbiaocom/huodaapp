@@ -9,37 +9,37 @@
   <view class="list">
     <form bindsubmit="submitForm">
     <view class="weui-cells section">
-      <view class="weui-cell">
+      <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <image src="/assets/images/danyuan.png" class="imgs"></image>
         </view>
         <view class="weui-cell__bd">
-            <input class="inputs" type="text" placeholder="详细地址" name="address" value="{{address}}" bindinput="bindInput" />
+            <input class="weui-input" type="text" placeholder="详细地址" name="address" value="{{address}}" bindinput="bindInput" />
         </view>
       </view>
     </view>
     <view class="section_text">
-      <view bindtouchstart="bindSearch" data-keywords="{{i.name}}" class="text_box" wx:for="{{tips}}" wx:for-item="i" wx:key="">
-      {{i.name}}
+      <view  class="text_box" wx:for="{{tips}}" wx:for-item="i" wx:key="">
+        <text bindtouchstart="bindSearch" data-keywords="{{i.name}}">{{i.name}}</text> 
       </view>
     </view>
     <view class="weui-cells">
-        <view class="weui-cell">
+        <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
             <image src="/assets/images/fajianren.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd">
-              <input class="inputs" name="user_name" type="text" placeholder="发件人姓名" value="{{user_name}}" />
+              <input class="weui-input" name="user_name" type="text" placeholder="发件人姓名" value="{{user_name}}" />
           </view>
         </view>
     </view>
     <view class="weui-cells">
-        <view class="weui-cell">
+        <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
             <image src="/assets/images/dianhua.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd">
-              <input class="inputs" name="user_tel" type="number" placeholder="发件人电话" value="{{user_tel}}" />
+              <input class="weui-input" name="user_tel" type="number" placeholder="发件人电话" value="{{user_tel}}"/>
           </view>
         </view>
     </view>

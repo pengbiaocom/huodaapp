@@ -3,7 +3,10 @@
 		<view class="weui-cells">
         <view class="weui-cell weui-cell_access" bindtap="editNickname">
             <view class="weui-cell__bd">昵称</view>
-            <view class="weui-cell__ft weui-cell__ft_in-access">
+            <view class="weui-cell__ft weui-cell__ft_in-access" wx:if="{{user_name !=''}}">
+               {{user_name}}
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access" wx:else>
                {{nickname}}
             </view>
         </view>
@@ -25,7 +28,7 @@
                 </picker>
             </view>
         </view> 
-        <view class="weui-cell weui-cell_access" bindtap="editAddress">
+        <view class="weui-cell weui-cell_access" bindtap="editAddress" hidden='true'>
             <view class="weui-cell__bd">所在地</view>
             <view class="weui-cell__ft weui-cell__ft_in-access">
                {{address}}
@@ -33,11 +36,16 @@
         </view> 
         <view class="weui-cell weui-cell_access">
             <view class="weui-cell__bd">手机号</view>
-            <view class="weui-cell__ft ">
-               136****4562
+            <view class="weui-cell__ft " bindtap="modalinput">
+               {{mobile}}
             </view>
-        </view>        
+        </view>         
     </view>
-    <view class="login-out">退出登录</view>
+    <view class="submits">
+        <button bindtap="toSubmit">确认</button>
+    </view>
+<modal hidden="{{hiddenmodalput}}" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+    <input type='text' placeholder="请输入手机号" bindinput="getPhone"  />
+</modal>
 </view>
 </view>

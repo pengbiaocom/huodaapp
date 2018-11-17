@@ -47,7 +47,13 @@
   line-height: 90rpx;
   font-size: 32rpx;
   color:inherit;
+  
 }
+
+.weui-cell1:before{
+   border: none;
+}
+
 .btna_active {
   background-color: #ECECEC;
 }
@@ -171,4 +177,17 @@ border:none;
 }
 .weui-check__label:active {
   background-color: #ECECEC;
-}  
+} 
+
+.login-out{
+  margin-top: 20rpx;
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: #479de6;
+  background: #fff;
+}
+.tui-picker-detail{
+  width: 100%;
+}   

@@ -20,7 +20,7 @@ Page({
     county_id: 0,
     address: "",
     addresslist:'',
-    tips: {}
+    tips: []
   },
 
   /**
@@ -48,7 +48,7 @@ Page({
       })
     }else{
       that.setData({
-        tips: {}
+        tips: []
       });
     }
     
@@ -63,11 +63,19 @@ Page({
             distribution_price: data.data.price,
             lat: data.data.geo[1],
             lng: data.data.geo[0],
-            estimated_time: data.data.duration
+            estimated_time: data.data.duration,
+            user_name:'',
+            user_tel:''
           };
           app.globalData.single = param;
           wx.navigateTo({
             url: '/pages/index/duifang'
+          })
+        }else{
+          wx.showModal({
+            title: '提示信息',
+            content: '请输入正确地址',
+            showCancel: false
           })
         }
       })
@@ -127,16 +135,18 @@ Page({
     item = this.data.item;
   },
   selectAddress:function(e){
-    var data = e.currentTarget.dataset;
-    app.HttpService.getOrderDate({ address: data.address })
+    var select_data = e.currentTarget.dataset;
+    app.HttpService.getOrderDate({ address: select_data.address })
       .then(data => {
         if (data.code == 1) {
           var param = {
-            address: data.address,
+            address: select_data.address,
             distribution_price: data.data.price,
             lat: data.data.geo[1],
             lng: data.data.geo[0],
-            estimated_time: data.data.duration
+            estimated_time: data.data.duration,
+            user_name: select_data.username,
+            user_tel: select_data.usertel,
           };
           app.globalData.single = param;
           wx.navigateTo({
@@ -185,7 +195,8 @@ Page({
   },
   clearInput() {
     this.setData({
-      inputVal: ''
+      inputVal: '',
+      tips:[]
     })
   },
   inputTyping(e) {

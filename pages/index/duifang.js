@@ -76,6 +76,12 @@ Page({
           estimated_time: single.estimated_time
         });
       }
+      if (single.user_name !=''){
+        that.setData({
+          user_name: single.user_name,
+          user_tel: single.user_tel,
+        });
+      }
     }else{
       var uid = wx.getStorageSync('uid');
       var params = {
@@ -86,25 +92,14 @@ Page({
         .then(data => {
           if (data.code == 1) {
             var address = data.data[0];
-            app.HttpService.getOrderDate({ address: address.get_address })
-              .then(data => {
-                if (data.code == 1) {
-                  var lat = data.data.geo[1];
-                  var lng = data.data.geo[0];
-                  if (lat != undefined && lng != undefined) {
-                    that.setData({
-                      "markers.latitude": lat,
-                      "markers.longitude": lng,
-                    });
-                  }
-                }
-              })
             that.setData({
               address: address.get_address,
               user_name: address.get_username,
               user_tel: address.get_phone,
               estimated_time: address.estimate_time,
-              distribution_price: address.order_total_price
+              distribution_price: address.order_total_price,
+              "markers.latitude": address.lat,
+              "markers.longitude": address.lng,
             });
           }
         })

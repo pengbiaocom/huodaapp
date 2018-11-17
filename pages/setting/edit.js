@@ -37,6 +37,17 @@ Page({
     }
     
   },
+  inputs: function (e) {
+    var value = e.detail.value;
+    this.setData({
+      value: value
+    });
+  },
+  toSubmit:function(){
+    wx.navigateTo({
+      url: '/pages/setting/index?type=1&value=' + this.data.value
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

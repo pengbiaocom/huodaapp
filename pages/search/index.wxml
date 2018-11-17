@@ -4,22 +4,22 @@
     <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
             <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder-class="phcolor" placeholder="请输入地址" value="{{ inputVal }}" bindinput="bindInput" />
+            <input type="text" class="weui-search-bar__input" placeholder="请输入地址" value="{{ inputVal }}" bindinput="bindInput" />
             <view class="weui-icon-clear" bindtap="clearInput">
                 <icon type="clear" size="14"></icon>
             </view>
         </view>
     </view>
 </view>
-<view class="container1" wx:if="{{tips.length>0}}">
-<view bindtouchstart="bindSearch" data-keywords="{{i.name}}" class="text_box" wx:for="{{tips}}" wx:for-item="i" wx:key="">
-    {{i.name}}
+<view class="container1 section_text" wx:if="{{tips.length>0}}">
+  <view class="text_box" wx:for="{{tips}}" wx:for-item="i" wx:key="">
+    <text bindtouchstart="bindSearch" data-keywords="{{i.name}}">{{i.name}}</text> 
   </view>
 </view>
 <view class="container1" wx:else>
   <view class="indexs">
       <view class="weui-cells border-top" wx:for="{{ addresslist }}" wx:key="">
-         <view class="weui-cell" data-address="{{item.get_address}}" bindtap="selectAddress">
+         <view class="weui-cell" data-username="{{item.get_username}}" data-usertel="{{item.get_phone}}" data-address="{{item.get_address}}" bindtap="selectAddress">
             <view class="weui-cell__bd">
                <view class="weui-title">{{item.get_address}}</view>
                <view class="weui-title1">{{item.get_username}} {{item.get_phone}}</view>

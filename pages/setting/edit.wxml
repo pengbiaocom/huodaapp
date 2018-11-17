@@ -1,7 +1,7 @@
 <!--pages/setting/edit.wxml-->
 <view class="indexs">
-   <textarea class="weui-textarea">{{value}}</textarea>  
+   <textarea class="weui-textarea" bindinput="inputs" value="{{value}}"></textarea>  
 </view>
 <view class="submits">
-    <button>确认</button>
+    <button bindtap="toSubmit">确认</button>
 </view>

@@ -2,13 +2,12 @@
 @import 'helpers/prompt.wxss';
 @import 'model/model.wxss';
 @import "wxParse/wxParse.wxss";
+@import "helpers/weui.wxss";
 page{
   width: 100vw;
   height: 100%;
-  line-height: 1.6;
   background: #f7f7f7;
-  font-family: -apple-system-font, "Helvetica Neue", sans-serif;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 .container {
   height: 100%;
@@ -17,7 +16,8 @@ page{
   box-sizing: border-box;
 } 
 .phcolor{
-    color: #000;
+    color: #ECECEC;
+    font-size: 26rpx;
 }
 .tab-bar{
   position: fixed;
@@ -59,4 +59,11 @@ page{
 
 .price_line{
   text-decoration:line-through;
+}
+
+.inputs{
+  font-size: 28rpx;
+}
+.ph_holder{
+  font-size: 28rpx;
 }

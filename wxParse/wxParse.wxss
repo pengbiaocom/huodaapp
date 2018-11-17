@@ -2,7 +2,7 @@
   padding: 10rpx;
   margin: 0 5px;
   font-family: Helvetica,sans-serif;
-  font-size: 30rpx;
+  font-size: 28rpx;
   color: #666;
   line-height: 1.8;
 }

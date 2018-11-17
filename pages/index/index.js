@@ -38,7 +38,7 @@ Page({
     hiddenmodalput: true,  
     model_test:'请输入物品信息',
     model_value:'',
-    switch_value:true,
+    switch_value:false,
   },
   onLoad: function (option) {
     if (wx.getStorageSync('token')) {

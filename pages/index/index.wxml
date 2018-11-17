@@ -38,7 +38,7 @@
             <view class="weui-cell__hd" hidden='true'>
               <image src="/assets/images/xuanz.png" class="imgs"></image>
             </view>
-            <view class="weui-cell__bd weui-title" style="padding-left:40rpx;">
+            <view class="weui-cell__bd weui-title" style="padding-left:60rpx;">
               <radio-group class="radio-group" bindchange="radioChange">
                 <label class="radio" wx:for="{{items}}" wx:key="">
                   <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
@@ -48,11 +48,11 @@
          </view>
       </view>
       <view class="weui-cells">
-         <view class="weui-cell" style="padding-top:0px;">
+         <view class="weui-cell">
             <view class="weui-cell__hd" hidden='true'>
               <image src="/assets/images/beizhu.png" class="imgs"></image>
             </view>
-            <view class="weui-cell__bd weui-title beis">
+            <view class="weui-cell__bd beis">
               备注：所说的电风扇
             </view>
          </view>
@@ -165,11 +165,11 @@
    <!-- 底部悬浮栏 -->
     <view class="detail-nav">
       <view class="nav-left" hidden="{{!switch_value}}">
-        <view class="nav-price">原价：￥{{youPrice}}</view>
+        <view class="nav-price">原价:￥{{youPrice}}</view>
       </view>
       <view class="nav-left" hidden="{{switch_value}}">
-        <view class="nav-price">优惠价：￥{{distribution_price}}</view>
-        <view class="nav-center price_line">原价：￥{{youPrice}}</view>
+        <view class="nav-price">优惠价:￥{{distribution_price}}</view>
+        <view class="nav-center price_line">原价:￥{{youPrice}}</view>
       </view>
       <button class="button-red" bindtap="showModal" hover-class="btn-hover">立即下单</button>
     </view>

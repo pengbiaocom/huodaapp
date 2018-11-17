@@ -34,16 +34,20 @@ Page({
           id: 'all',
         },
         {
-          title: '进行中',
+          title: '待支付',
           id: 0,
         },
         {
-          title: '完成单',
+          title: '进行中',
           id: 1,
         },
         {
-          title: '取消单',
+          title: '完成单',
           id: 2,
+        },
+        {
+          title: '取消单',
+          id: -1,
         }
       ]
     })
