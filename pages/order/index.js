@@ -150,7 +150,7 @@ Page({
     wxpay.wxpay(app, money, orderId, "/pages/order/index");
   },
   toIndex:function(){
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/index/index'
     })
   }

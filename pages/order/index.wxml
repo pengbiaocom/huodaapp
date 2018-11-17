@@ -4,13 +4,13 @@
 <template is="nav" data="{{ navList, activeIndex }}"/>
 <scroll-view class="scroll-list" scroll-y="true" bindscrolltolower="lower">
    <view hidden="{{order.items ? false : true}}" wx:for-items="{{order.items}}" wx:key="{{index}}">
-    <navigator url="/pages/order/detail?id={{item.id}}" class="order-list">
-      <view class="orderListTitle">
+    <view  class="order-list">
+      <navigator url="/pages/order/detail?id={{item.id}}" class="orderListTitle">
         <view class="userImg"><image src="/assets/images/fa.png"></image></view>
         <text class="userName">{{item.order_number}}</text>
         <text class="orderStatus">交易成功</text>
-      </view>
-      <view class="orderListDetails">
+      </navigator>
+      <navigator url="/pages/order/detail?id={{item.id}}" class="orderListDetails">
          <view class="details-list">
            <view class="list-left">发：</view>
            <view class="list-right">{{item.send_address}}</view>
@@ -19,7 +19,7 @@
            <view class="list-left">收：</view>
            <view class="list-right">{{item.get_address}}</view>
          </view>
-      </view>
+      </navigator>
       <view class="productCount">
          <view class="product-left">
             {{item.create_time}}
@@ -29,7 +29,7 @@
             <button class="btn cancel-btn" bindtap="toIndex" wx:else>再来一单</button>
          </view>
       </view>
-    </navigator>
+    </view>
     </view>
     
     <template is="prompt" data="{{ prompt }}"/>
