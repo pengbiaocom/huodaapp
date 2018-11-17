@@ -57,7 +57,8 @@ Page({
       var myAmapFun = new amapFile.AMapWX({ key: key });
       myAmapFun.getInputtips({
         keywords: keywords,
-        location: '104.025652,30.630897',
+        city: '510100',
+        citylimit: true,
         success: function (data) {
           if (data && data.tips) {
             that.setData({

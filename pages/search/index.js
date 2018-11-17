@@ -38,6 +38,7 @@ Page({
       myAmapFun.getInputtips({
         keywords: keywords,
         city:'510100',
+        citylimit:true,
         success: function (data) {
           if (data && data.tips) {
             console.log(data.tips)
