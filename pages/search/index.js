@@ -37,7 +37,7 @@ Page({
       var myAmapFun = new amapFile.AMapWX({ key: key });
       myAmapFun.getInputtips({
         keywords: keywords,
-        location: '104.025652,30.630897',
+        city:'510100',
         success: function (data) {
           if (data && data.tips) {
             console.log(data.tips)
@@ -52,11 +52,16 @@ Page({
         tips: []
       });
     }
-    
+    that.setData({
+      inputVal: keywords
+    })
   },
   bindSearch: function (e) {
-    var keywords = e.target.dataset.keywords;
-    app.HttpService.getOrderDate({ address: keywords })
+    var keywords = e.currentTarget.dataset.keywords;
+    var district = e.currentTarget.dataset.district;
+    var location = e.currentTarget.dataset.location;
+    if (location == undefined) location = "";
+    app.HttpService.getOrderDate({ address: district + keywords, location: location })
       .then(data => {
         if (data.code == 1) {
           var param = {
@@ -86,14 +91,12 @@ Page({
    */
   onShow: function () {
     var uid = wx.getStorageSync('uid');
-    console.log(uid)
     var params = {
       uid: uid,
       type: 1
     };
     app.HttpService.getUserAddress(params)
       .then(data => {
-        console.log(data)
         if (data.code == 1) {
           var address = data.data[0];
           this.setData({
@@ -139,14 +142,14 @@ Page({
   },
   selectAddress:function(e){
     var select_data = e.currentTarget.dataset;
-    app.HttpService.getOrderDate({ address: select_data.address })
+    app.HttpService.getOrderDate({ address: select_data.address, location:"" })
       .then(data => {
         if (data.code == 1) {
           var param = {
             address: select_data.address,
             distribution_price: data.data.price,
-            lat: data.data.geo[1],
-            lng: data.data.geo[0],
+            lat: select_data.lat,
+            lng: select_data.lng,
             estimated_time: data.data.duration,
             user_name: select_data.username,
             user_tel: select_data.usertel,
@@ -157,44 +160,6 @@ Page({
           })
         }
       })
-  },
-  submitTap:function(){
-    var param = {
-      province_id: this.data.province_id,
-      province: this.data.province,
-      city_id: this.data.city_id,
-      city: this.data.city,
-      county_id: this.data.county_id,
-      county: this.data.county,
-      address: this.data.address
-    };
-    if(param.province_id==0 || param.city_id==0 || param.county_id==0){
-      wx.showModal({
-        title: '提示信息',
-        content: '请选择区域',
-        showCancel: false
-      })
-    }else if(param.address==''){
-      wx.showModal({
-        title: '提示信息',
-        content: '请填写详细地址',
-        showCancel: false
-      })
-    }else{
-      app.HttpService.getOrderDate({ region: param.county_id, address:param.address})
-        .then(data => {
-          if (data.code == 1) {
-            param.distribution_price = data.data.info.distribution_price;
-            param.lat = data.data.geo[1];
-            param.lng = data.data.geo[0];
-            param.estimated_time = data.data.estimated_time;
-            app.globalData.single = param;
-            wx.navigateTo({
-              url: '/pages/index/duifang'
-            })
-          }
-        })
-    }
   },
   clearInput() {
     this.setData({
@@ -209,6 +174,30 @@ Page({
     // this.search()
   },
   searchInput() {
-    // this.search()
+    var keywords = this.data.inputVal;
+    app.HttpService.getOrderDate({ address: keywords, location: "" })
+      .then(data => {
+        if (data.code == 1) {
+          var param = {
+            address: keywords,
+            distribution_price: data.data.price,
+            lat: data.data.geo[1],
+            lng: data.data.geo[0],
+            estimated_time: data.data.duration,
+            user_name: '',
+            user_tel: ''
+          };
+          app.globalData.single = param;
+          wx.navigateTo({
+            url: '/pages/index/duifang'
+          })
+        } else {
+          wx.showModal({
+            title: '提示信息',
+            content: '请输入正确地址',
+            showCancel: false
+          })
+        }
+      })
   }
 })

@@ -10,10 +10,11 @@
             </view>
         </view>
     </view>
+    <button class="weui-icon-search" bindtap="searchInput">搜索</button>
 </view>
 <view class="container1 section_text" wx:if="{{tips.length>0}}">
-  <view class="weui-cells border-top" wx:for="{{ tips }}" wx:key="">
-      <view class="weui-cell" data-keywords="{{item.name}}"  bindtap="bindSearch">
+  <view class="weui-cells border-top" wx:for="{{ tips }}" wx:key="" data-keywords="{{item.name}}" data-district="{{item.district}}" data-location="{{item.location}}"  bindtap="bindSearch">
+      <view class="weui-cell">
         <view class="weui-cell__bd">
             <view class="weui-title">{{item.name}}</view>
             <view class="weui-title1">{{item.district}}</view>
@@ -23,7 +24,7 @@
 </view>
 <view class="container1" wx:else>
   <view class="weui-cells border-top" wx:for="{{ addresslist }}" wx:key="">
-      <view class="weui-cell" data-username="{{item.get_username}}" data-usertel="{{item.get_phone}}" data-address="{{item.get_address}}" bindtap="selectAddress">
+      <view class="weui-cell" data-username="{{item.get_username}}" data-usertel="{{item.get_phone}}" data-address="{{item.get_address}}" data-lat="{{item.lat}}" data-lng="{{item.lng}}" bindtap="selectAddress">
         <view class="weui-cell__bd">
             <view class="weui-title">{{item.get_address}}</view>
             <view class="weui-title1">{{item.get_username}} {{item.get_phone}}</view>

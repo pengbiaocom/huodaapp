@@ -65,7 +65,13 @@ border:none;
   height: 100%;
   background-color: #479de6;
 }
-
+.weui-icon-search{
+  background-color: #479de6;
+  color: white;
+  margin-left: 10rpx;
+  text-align: right;
+  margin-right: 0px;
+}
 
 .section_text{
   position: absolute;
