@@ -45,7 +45,7 @@
         </view>
     </view>
     <view class="weui-cells text-aligns">
-     <map id="map" longitude="104.066620" latitude="30.665085" scale="11"  markers="{{markers}}" style="width: 100%; height: 400rpx;"></map>
+     <map id="map" longitude="104.025652" latitude="30.630897" scale="12"  markers="{{markers}}" style="width: 100%; height: 600rpx;"></map>
     </view>
     <view class="weui-cells text-aligns">
        <button hover-class="other-button-hover" formType="submit">确定</button>

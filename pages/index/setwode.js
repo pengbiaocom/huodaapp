@@ -27,7 +27,7 @@ Page({
     user_name:"",
     user_tel:"",
     types:1,
-    tips: {}
+    tips: []
   },
 
   /**
@@ -69,7 +69,7 @@ Page({
       })
     } else {
       that.setData({
-        tips: {}
+        tips: []
       });
     }
 

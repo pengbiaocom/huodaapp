@@ -40,6 +40,7 @@ Page({
         location: '104.025652,30.630897',
         success: function (data) {
           if (data && data.tips) {
+            console.log(data.tips)
             that.setData({
               tips: data.tips
             });
@@ -85,12 +86,14 @@ Page({
    */
   onShow: function () {
     var uid = wx.getStorageSync('uid');
+    console.log(uid)
     var params = {
       uid: uid,
       type: 1
     };
     app.HttpService.getUserAddress(params)
       .then(data => {
+        console.log(data)
         if (data.code == 1) {
           var address = data.data[0];
           this.setData({

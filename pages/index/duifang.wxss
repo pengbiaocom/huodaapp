@@ -60,6 +60,11 @@
   padding-top: 10rpx;
 }
 
+.text-aligns image{
+  width: 100%;
+  height: 100%;
+}
+
 button {
   color: white;
   text-align: center;

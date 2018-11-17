@@ -1,4 +1,7 @@
 /* pages/map/index.wxss */
+.container{
+  overflow: hidden;
+}
 .weui-search-bar {
   position: relative;
   padding: 5px 5px;
@@ -19,7 +22,7 @@ border:none;
 .container1{
   padding-top: 10rpx;
   background: #fff;
-  height: 92%;
+  height: 91%;
 }
 
 .indexs{
@@ -28,7 +31,6 @@ border:none;
   -webkit-box-shadow:2px 2px 5px #D9D9D9;
    box-shadow:2px 2px 5px #D9D9D9;
 }
-
 
 .imgs{
   margin-bottom: 2px;
@@ -43,7 +45,7 @@ border:none;
 }
 
 .weui-title1{
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #C8C8CD;
 }
 
@@ -64,19 +66,24 @@ border:none;
   background-color: #479de6;
 }
 
-.section{
-  position: relative;
-}
+
 .section_text{
   position: absolute;
   width: 100%;
   z-index: 1000;
   background-color: white;
+  overflow: auto;
 }
 .text_box{
   padding-left: 25rpx;
-  border-bottom:1px solid #c3c3c3;
-  height: 70rpx;
-  line-height: 70rpx;
+  border-bottom:1px solid #ECECEC;
+  height: 80rpx;
+  line-height: 80rpx;
   font-size: 28rpx;
+}
+
+::-webkit-scrollbar{
+width: 6rpx;
+height: 6rpx;
+background-color: #ECECEC;
 }

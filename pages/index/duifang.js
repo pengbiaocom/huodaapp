@@ -2,6 +2,7 @@
 const app = getApp()
 import __config from '../../etc/config'
 var model = require('../../model/model.js')
+var amapFile = require('../../utils/amap-wx.js');
 var item = {};
 var t = 0;
 var show = false;
@@ -32,10 +33,9 @@ Page({
     distribution_price:'',
     types: 2,
     markers: [{
-      iconPath: "../../assets/images/iconfont-addr.png",
-      id: 0,
-      latitude: 30.572903,
-      longitude: 103.916931,
+      iconPath:"../../assets/images/iconfont-addr.png",
+      latitude: 30.558384,
+      longitude: 103.950323,
       width: 30,
       height: 30
     }],
@@ -66,11 +66,18 @@ Page({
         distribution_price: single.distribution_price,
       });
       if (single.lat != undefined && single.lng != undefined){
+        var markers = [{
+          iconPath: "../../assets/images/iconfont-addr.png",
+          latitude: single.lat,
+          longitude: single.lng,
+          width: 30,
+          height: 30
+        }];
         that.setData({
-          "markers.latitude": single.lat,
-          "markers.longitude": single.lng,
+          markers: markers
         });
       }
+      
       if (single.estimated_time !=undefined){
         that.setData({
           estimated_time: single.estimated_time
@@ -97,9 +104,17 @@ Page({
               user_name: address.get_username,
               user_tel: address.get_phone,
               estimated_time: address.estimate_time,
-              distribution_price: address.order_total_price,
-              "markers.latitude": address.lat,
-              "markers.longitude": address.lng,
+              distribution_price: address.order_total_price
+            });
+            var markers = [{
+              iconPath: "../../assets/images/iconfont-addr.png",
+              latitude: address.lat,
+              longitude: address.lng,
+              width: 30,
+              height: 30
+            }];
+            that.setData({
+              markers: markers
             });
           }
         })
