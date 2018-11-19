@@ -271,48 +271,37 @@ Page({
             this.setData({
               textValue:''
             })
-            wx.showModal({
-              title: '提示信息',
-              content: data.msg,
-              showCancel: false,
-              confirmColor: '#479de6',
-              success: function (res) {
-                wx.navigateTo({
-                  url: '/pages/order/index'
+            // 发起支付
+            wx.requestPayment({
+              appId: data.data.appId,
+              timeStamp: data.data.timeStamp.toString(),
+              nonceStr: data.data.nonceStr,
+              package: data.data.package,
+              signType: data.data.signType,
+              paySign: data.data.paySign,
+              fail: function (aaa) {
+                if (aaa.errMsg == "requestPayment:fail cancel") {
+                  // console.log(data.data.sorder_sn)
+                  // App.HttpService.setSeedsDel({ sorder_sn: data.data.sorder_sn })
+                  //   .then(data => {
+                  //     //  console.log(data)
+                  //   })
+                }
+              },
+              success: function () {
+                wx.showModal({
+                  title: '提示信息',
+                  content: "支付成功",
+                  showCancel: false,
+                  confirmColor: '#479de6',
+                  success: function (res) {
+                    wx.navigateTo({
+                      url: '/pages/order/index',
+                    });
+                  }
                 })
               }
             })
-            // 发起支付
-            // wx.requestPayment({
-            //   appId: data.data.appId,
-            //   timeStamp: data.data.timeStamp.toString(),
-            //   nonceStr: data.data.nonceStr,
-            //   package: data.data.package,
-            //   signType: data.data.signType,
-            //   paySign: data.data.paySign,
-            //   fail: function (aaa) {
-            //     if (aaa.errMsg == "requestPayment:fail cancel") {
-            //       // console.log(data.data.sorder_sn)
-            //       // App.HttpService.setSeedsDel({ sorder_sn: data.data.sorder_sn })
-            //       //   .then(data => {
-            //       //     //  console.log(data)
-            //       //   })
-            //     }
-            //   },
-            //   success: function () {
-            //     wx.showModal({
-            //       title: '提示信息',
-            //       content: "支付成功",
-            //       showCancel: false,
-            //       confirmColor: '#479de6',
-            //       success: function (res) {
-            //         wx.redirectTo({
-            //           url: '/pages/order/index',
-            //         });
-            //       }
-            //     })
-            //   }
-            // })
           }else{
             wx.showModal({
               title: '提示信息',

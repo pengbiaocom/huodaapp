@@ -4,13 +4,13 @@
 <template is="nav" data="{{ navList, activeIndex }}"/>
 <scroll-view class="scroll-list" scroll-y="true" bindscrolltolower="lower">
    <view hidden="{{order.items ? false : true}}" wx:for-items="{{order.items}}" wx:key="{{index}}">
-    <view  class="order-list">
-      <navigator url="/pages/order/detail?id={{item.id}}" class="orderListTitle">
+    <navigator url="/pages/order/detail?id={{item.id}}" hover-class="none"  class="order-list">
+      <view class="orderListTitle">
         <view class="userImg"><image src="/assets/images/fa.png"></image></view>
         <text class="userName">{{item.order_number}}</text>
         <text class="orderStatus">交易成功</text>
-      </navigator>
-      <navigator url="/pages/order/detail?id={{item.id}}" class="orderListDetails">
+      </view>
+      <view  class="orderListDetails">
          <view class="details-list">
            <view class="list-left">发：</view>
            <view class="list-right">{{item.send_address}}</view>
@@ -19,17 +19,17 @@
            <view class="list-left">收：</view>
            <view class="list-right">{{item.get_address}}</view>
          </view>
-      </navigator>
+      </view>
       <view class="productCount">
          <view class="product-left">
             {{item.create_time}}
          </view>
          <view class="product-right">
-            <button class="btn topay-btn" wx:if="{{item.order_status==0}}" bindtap="toPayTap" data-id="{{item.order_number}}" data-money="{{item.order_total_price}}">马上付款</button>
-            <button class="btn cancel-btn" bindtap="toIndex" wx:else>再来一单</button>
+            <button class="btn topay-btn" wx:if="{{item.order_status==0}}" catchtap="toPayTap" data-id="{{item.order_number}}" data-money="{{item.order_total_price}}">马上付款</button>
+            <button class="btn cancel-btn" catchtap="toIndex" wx:else>再来一单</button>
          </view>
       </view>
-    </view>
+    </navigator>
     </view>
     
     <template is="prompt" data="{{ prompt }}"/>

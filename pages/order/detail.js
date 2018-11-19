@@ -20,7 +20,7 @@ Page({
     if (wx.getStorageSync('token')) {
       this.setData({
         id: options.id
-        // id:3
+        // id:39
       })
     } else {
       app.goLogin()
@@ -48,6 +48,7 @@ Page({
     };
     app.HttpService.getOrderDetail(param)
       .then(data => {
+        console.log(data)
         if (data.code == 0) {
           this.setData({
             'order.item': data.data
@@ -65,6 +66,7 @@ Page({
     };
     app.HttpService.getIsTui(param)
       .then(data => {
+        console.log(data)
         if (data.code == 0) {
           wx.showModal({
             title: '提示信息',
