@@ -1,13 +1,11 @@
 <!--pages/order/detail.wxml-->
 <view class="indexs">
-   <view class="detail-title" wx:if="{{order.item.order_status==0}}">订单进行中</view>
-   <view class="detail-title" wx:elif="{{order.item.order_status==1}}">订单已支付</view>
-   <view class="detail-title" wx:elif="{{order.item.order_status==2}}">订单已完成</view>
-   <view class="detail-title" wx:elif="{{order.item.order_status==3}}">订单已经取消</view>
-   <view class="detail-info" wx:elif="{{order.item.order_status==3}}">30分钟未完成支付，订单已取消</view>
+   <view class="detail-title" wx:if="{{order.item.order_status==1}}">订单进行中</view>
+   <view class="detail-title" wx:elif="{{order.item.order_status==2}}">订单进行中</view>
+   <view class="detail-title" wx:elif="{{order.item.order_status==3}}">订单已完成</view>
    <view class="detail-btn">
-      <button class="btn topay-btn" wx:if="{{order.item.order_status==0}}" bindtap="toPayTap" data-id="{{order.item.order_number}}" data-money="{{order.item.order_total_price}}">马上付款</button>
-      <button class="btn cancel-btn" bindtap="toIndex" wx:else>再来一单</button>
+      <!-- <button class="btn topay-btn" wx:if="{{order.item.order_status==0}}" bindtap="toPayTap" data-id="{{order.item.order_number}}" data-money="{{order.item.order_total_price}}">马上付款</button> -->
+      <button class="btn cancel-btn" data-id="{{order.item.order_number}}" bindtap="toIndex">再来一单</button>
       <button class="btn cancel-btn" bindtap="isTui" wx:if="{{order.item.is_tui==1}}">取消订单</button>
    </view>
 </view>

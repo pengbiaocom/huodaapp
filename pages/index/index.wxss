@@ -111,7 +111,7 @@ button::after{
 .weui-textarea{
   width: 94%;
   height: 200rpx;
-  font-size: 28rpx;
+  font-size: 26rpx;
   padding: 20rpx 20rpx;
   border:1px solid #DCDCDC;
   border-radius: 8rpx;

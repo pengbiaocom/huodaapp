@@ -1,5 +1,5 @@
 <view class="container">
-	<view class="userinfo" bindtap="goSetting">
+	<view class="userinfo" >  <!-- bindtap="goSetting" -->
 		<image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
 		<text class="userinfo-nickname">{{ userInfo.nickName }}</text>
     <!-- <image class="userinfo-avatar" src="/assets/images/zhutu.jpg" background-size="cover"></image> -->
@@ -33,5 +33,5 @@
     </button>  
   </view>
 
-  <view class="login-out">退出登录</view>
+  <!-- <view class="login-out">退出登录</view> -->
 </view>

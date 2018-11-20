@@ -77,7 +77,6 @@ Page({
           markers: markers
         });
       }
-      console.log(that.data.markers)
       if (single.estimated_time !=undefined){
         that.setData({
           estimated_time: single.estimated_time
@@ -91,9 +90,11 @@ Page({
       }
     }else{
       var uid = wx.getStorageSync('uid');
+      var order_number = app.globalData.order_number
       var params = {
         uid: uid,
-        type: 0
+        type: 0,
+        order_number: order_number
       };
       app.HttpService.getUserAddress(params)
         .then(data => {

@@ -73,6 +73,7 @@ App({
     single1: [],
     setwode:[],
     model_value:null,
+    order_number:'',
     tabBar: {
       "color": "#9E9E9E",
       "selectedColor": "#f00",

@@ -20,7 +20,7 @@ Page({
     endYear: 2050,
     multiArray: [],
     multiIndex: 0,
-    texts: "至少5个字",
+    texts: "所配送的易碎，贵重物品及所需带回的退货物品请特别说明。",
     min: 5,
     max: 20, 
     textValue:'',
@@ -45,6 +45,11 @@ Page({
       // app.editTabBar();
     } else {
       app.goLogin()
+    }
+    if(option.order_number != undefined){
+      this.setData({
+        order_number: option.order_number
+      })
     }
   },
   onShow:function(){
@@ -75,7 +80,7 @@ Page({
     //最少字数限制
     if (len <= this.data.min)
       this.setData({
-        texts: "至少5个字"
+        texts: ""
       })
     else if (len > this.data.min)
       this.setData({
@@ -113,9 +118,11 @@ Page({
     }
     
     var uid = wx.getStorageSync('uid');
+    var order_number = app.globalData.order_number
     var params = {
       uid: uid,
-      type: 0
+      type: 0,
+      order_number: order_number
     };
     app.HttpService.getUserAddress(params)
       .then(data => {
@@ -247,12 +254,6 @@ Page({
         content: "请填写收件人信息",
         showCancel: false
       })
-    }else if (len < this.data.min){
-      wx.showModal({
-        title: '提示信息',
-        content: this.data.texts,
-        showCancel: false
-      })
     }else{
       if (params.radio_value =='many'){
         if (params.model_value==''){
@@ -289,17 +290,9 @@ Page({
                 }
               },
               success: function () {
-                wx.showModal({
-                  title: '提示信息',
-                  content: "支付成功",
-                  showCancel: false,
-                  confirmColor: '#479de6',
-                  success: function (res) {
-                    wx.navigateTo({
-                      url: '/pages/order/index',
-                    });
-                  }
-                })
+                wx.navigateTo({
+                  url: '/pages/order/index',
+                });
               }
             })
           }else{

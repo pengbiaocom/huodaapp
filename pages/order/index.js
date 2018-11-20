@@ -38,8 +38,8 @@ Page({
           id: 1,
         },
         {
-          title: '完成单',
-          id: 2,
+          title: '已完成',
+          id: 3,
         },
         {
           title: '取消单',
@@ -54,6 +54,27 @@ Page({
   onShow: function () {
     this.initData()
     this.getOrderList()
+    this.changeTitle()
+  },
+  changeTitle:function(){
+    var status = this.data.order.params.status;
+    if (status == 'all') {
+      wx.setNavigationBarTitle({
+        title: "全部订单"
+      })
+    } else if (status == 1) {
+      wx.setNavigationBarTitle({
+        title: "进行中的订单"
+      })
+    } else if (status == 3) {
+      wx.setNavigationBarTitle({
+        title: "已完成的订单"
+      })
+    } else if (status == -1) {
+      wx.setNavigationBarTitle({
+        title: "已取消的订单"
+      })
+    }
   },
   initData() {
     const order = this.data.order
@@ -82,6 +103,7 @@ Page({
       'order.params.status': status,
     })
     this.getOrderList()
+    this.changeTitle()
   },
   getOrderList() {
     const order = this.data.order
@@ -145,7 +167,9 @@ Page({
     var money = e.currentTarget.dataset.money;
     wxpay.wxpay(app, money, orderId, "/pages/order/index");
   },
-  toIndex:function(){
+  toIndex:function(e){
+    var orderId = e.currentTarget.dataset.id;
+    app.globalData.order_number = orderId;
     wx.switchTab({
       url: '/pages/index/index'
     })

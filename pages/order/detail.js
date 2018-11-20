@@ -61,38 +61,42 @@ Page({
       })
   },
   isTui:function(){
-    var param = {
-      id: this.data.id
-    };
-    app.HttpService.getIsTui(param)
-      .then(data => {
-        console.log(data)
-        if (data.code == 0) {
-          wx.showModal({
-            title: '提示信息',
-            content: data.msg,
-            showCancel: false,
-            confirmColor: '#479de6',
-            success: function (res) {
-              wx.switchTab({
-                url: '/pages/user/index'
-              })
-            }
-          })
-        }else{
-          wx.showModal({
-            title: '提示信息',
-            content: data.msg,
-            showCancel: false,
-            confirmColor: '#479de6',
-            success: function (res) {
-              wx.switchTab({
-                url: '/pages/user/index'
-              })
-            }
-          })
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定要取消订单吗？',
+      success: function (sm) {
+        if (sm.confirm) {
+          // 用户点击了确定 可以调用删除方法了
+          var param = {
+            id: that.data.id
+          };
+          app.HttpService.getIsTui(param)
+            .then(data => {
+              if (data.code == 0) {
+                wx.switchTab({
+                  url: '/pages/user/index'
+                })
+              } else {
+                wx.showModal({
+                  title: '提示信息',
+                  content: data.msg,
+                  showCancel: false,
+                  confirmColor: '#479de6',
+                  success: function (res) {
+                    wx.switchTab({
+                      url: '/pages/user/index'
+                    })
+                  }
+                })
+              }
+            })
+        } else if (sm.cancel) {
+          console.log('用户点击取消')
         }
-      })
+      }
+    })
+    
   },
   copyBtn: function (e) {
     var that = this;
@@ -119,6 +123,8 @@ Page({
     wxpay.wxpay(app, money, orderId, "/pages/order/index");
   },
   toIndex: function () {
+    var orderId = e.currentTarget.dataset.id;
+    app.globalData.order_number = orderId;
     wx.navigateTo({
       url: '/pages/index/index'
     })
