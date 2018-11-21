@@ -26,7 +26,9 @@ Page({
     } else {
       app.goLogin()
     }
-    
+    wx.setNavigationBarTitle({
+      title: "常见问题"
+    })
   },
   /**
    * 生命周期函数--监听页面显示

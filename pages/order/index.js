@@ -15,7 +15,7 @@ Page({
       icon: '../../assets/images/empty.png',
       title: '您还没有相关的订单',
       text: '可以去看看有哪些想买的',
-    },
+    }
   },
 
   /**
@@ -62,18 +62,22 @@ Page({
       wx.setNavigationBarTitle({
         title: "全部订单"
       })
+
     } else if (status == 1) {
       wx.setNavigationBarTitle({
         title: "进行中的订单"
       })
+
     } else if (status == 3) {
       wx.setNavigationBarTitle({
         title: "已完成的订单"
       })
+
     } else if (status == -1) {
       wx.setNavigationBarTitle({
         title: "已取消的订单"
       })
+
     }
   },
   initData() {

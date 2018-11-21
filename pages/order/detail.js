@@ -25,6 +25,9 @@ Page({
     } else {
       app.goLogin()
     }
+    wx.setNavigationBarTitle({
+      title: "订单详细"
+    })
   },
 
   /**
@@ -74,8 +77,16 @@ Page({
           app.HttpService.getIsTui(param)
             .then(data => {
               if (data.code == 0) {
-                wx.switchTab({
-                  url: '/pages/user/index'
+                wx.showModal({
+                  title: '提示信息',
+                  content: "取消成功",
+                  showCancel: false,
+                  confirmColor: '#479de6',
+                  success: function (res) {
+                    wx.switchTab({
+                      url: '/pages/user/index'
+                    })
+                  }
                 })
               } else {
                 wx.showModal({
@@ -122,10 +133,10 @@ Page({
     var money = e.currentTarget.dataset.money;
     wxpay.wxpay(app, money, orderId, "/pages/order/index");
   },
-  toIndex: function () {
+  toIndex: function (e) {
     var orderId = e.currentTarget.dataset.id;
     app.globalData.order_number = orderId;
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/index/index'
     })
   }

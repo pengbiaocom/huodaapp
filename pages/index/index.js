@@ -80,11 +80,7 @@ Page({
     //最少字数限制
     if (len <= this.data.min)
       this.setData({
-        texts: ""
-      })
-    else if (len > this.data.min)
-      this.setData({
-        texts: " "
+        texts: "所配送的易碎，贵重物品及所需带回的退货物品请特别说明。"
       })
 
     //最多字数限制
@@ -207,7 +203,7 @@ Page({
             var multiArrays = [{ id: 0, name: '中件' }, { id: 0, name: '小件' }];
             var multiArray = [...data.data[0], ...multiArrays]
             that.setData({
-              multiArray: multiArray
+              multiArray: data.data[0]
             })
           }
         }

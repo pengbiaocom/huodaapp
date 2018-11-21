@@ -48,6 +48,9 @@ Page({
           this.setData({
             'messagelist.item': data.data
           })
+          wx.setNavigationBarTitle({
+            title: data.data.post_title
+          })
         }
         // 隐藏导航栏加载框
         wx.hideNavigationBarLoading();

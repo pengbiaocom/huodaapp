@@ -8,7 +8,11 @@
       <view class="orderListTitle">
         <view class="userImg"><image src="/assets/images/fa.png"></image></view>
         <text class="userName">{{item.order_number}}</text>
-        <text class="orderStatus">交易成功</text>
+        <text class="orderStatus" wx:if="{{item.order_status==1}}">进行中</text>
+        <text class="orderStatus" wx:elif="{{item.order_status==2}}">进行中</text>
+        <text class="orderStatus" wx:elif="{{item.order_status==3}}">已完成</text>
+        <text class="orderStatus" wx:elif="{{item.order_status==1}}">已取消</text>
+        <text class="orderStatus" wx:else>交易成功</text>
       </view>
       <view  class="orderListDetails">
          <view class="details-list">

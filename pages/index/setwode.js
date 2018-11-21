@@ -52,7 +52,6 @@ Page({
     var that = this;
     var keywords = e.detail.value;
     var key = __config.key;
-    console.log(key)
     if (keywords != '') {
       var myAmapFun = new amapFile.AMapWX({ key: key });
       myAmapFun.getInputtips({
@@ -76,7 +75,7 @@ Page({
 
   },
   bindSearch: function (e) {
-    var keywords = e.target.dataset.keywords;
+    var keywords = e.currentTarget.dataset.keywords;
     this.setData({
       address: keywords,
       tips: {}

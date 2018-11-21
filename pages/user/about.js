@@ -19,6 +19,9 @@ Page({
     } else {
       App.goLogin()
     }
+    wx.setNavigationBarTitle({
+      title: "关于我们"
+    })
   },
 
   /**
