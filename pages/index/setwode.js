@@ -49,29 +49,33 @@ Page({
     })
   },
   bindInput: function (e) {
-    var that = this;
     var keywords = e.detail.value;
-    var key = __config.key;
-    if (keywords != '') {
-      var myAmapFun = new amapFile.AMapWX({ key: key });
-      myAmapFun.getInputtips({
-        keywords: keywords,
-        city: '510100',
-        citylimit: true,
-        success: function (data) {
-          if (data && data.tips) {
-            that.setData({
-              tips: data.tips
-            });
-          }
+    this.setData({
+      address: keywords
+    })
+    // var that = this;
+    // var keywords = e.detail.value;
+    // var key = __config.key;
+    // if (keywords != '') {
+    //   var myAmapFun = new amapFile.AMapWX({ key: key });
+    //   myAmapFun.getInputtips({
+    //     keywords: keywords,
+    //     city: '510100',
+    //     citylimit: true,
+    //     success: function (data) {
+    //       if (data && data.tips) {
+    //         that.setData({
+    //           tips: data.tips
+    //         });
+    //       }
 
-        }
-      })
-    } else {
-      that.setData({
-        tips: []
-      });
-    }
+    //     }
+    //   })
+    // } else {
+    //   that.setData({
+    //     tips: []
+    //   });
+    // }
 
   },
   bindSearch: function (e) {
@@ -116,28 +120,38 @@ Page({
    */
   onShow: function () {
     var that = this;
-    var uid = wx.getStorageSync('uid');
-    var order_number = app.globalData.order_number
-    var params = {
-      uid: uid,
-      type: 0,
-      order_number: order_number
-    };
-    app.HttpService.getUserAddress(params)
-      .then(data => {
-        if (data.code == 1) {
-          var address = data.data[0];
-          that.setData({
-            user_name: address.send_username,
-            address: address.send_address,
-            user_tel: address.send_phone
-          });
-        }
-      })
+    var setwode = app.globalData.setwode;
+    if (setwode != ''){
+      that.setData({
+        user_name: setwode.user_name,
+        address: setwode.address,
+        user_tel: setwode.user_tel
+      });
+    }else{
+      var uid = wx.getStorageSync('uid');
+      var order_number = app.globalData.order_number
+      var params = {
+        uid: uid,
+        type: 0,
+        order_number: order_number
+      };
+      app.HttpService.getUserAddress(params)
+        .then(data => {
+          if (data.code == 1) {
+            var address = data.data[0];
+            that.setData({
+              user_name: address.send_username,
+              address: address.send_address,
+              user_tel: address.send_phone
+            });
+          }
+        })
+    }
   },
   submitForm(e) {
     var params = e.detail.value
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    var myphone = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
     if(params.address==''){
       wx.showModal({
         title: '提示信息',
@@ -150,23 +164,19 @@ Page({
         content: '请填写发件人姓名和电话',
         showCancel: false
       })
-    } else if (params.user_tel.length != 11){
-      wx.showModal({
-        title: '提示信息',
-        content: '手机号长度有误',
-        showCancel: false
-      })
-    } else if (!myreg.test(params.user_tel)){
-      wx.showModal({
-        title: '提示信息',
-        content: '请输入正确的手机号',
-        showCancel: false
-      })
     }else{
-      app.globalData.setwode = params;
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
+      if (myreg.test(params.user_tel) || myphone.test(params.user_tel)){
+        app.globalData.setwode = params;
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
+      }else{
+        wx.showModal({
+          title: '提示信息',
+          content: '请输入正确的联系方式',
+          showCancel: false
+        })
+      }
     }
   
   },
