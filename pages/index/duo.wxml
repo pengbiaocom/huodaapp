@@ -1,5 +1,5 @@
 <view class="indexs">
-   <textarea class="weui-textarea" bindinput="inputs" cursor-spacing ="120" placeholder="含多个大件或货物总体积过大的，需做出部分备件的明细说明。" />  
+   <textarea class="weui-textarea" bindinput="inputs" cursor-spacing ="120" placeholder="请写出部分体积较大的备件名称及数量。" />  
 </view>
 <view class="submits">
     <button bindtap="showModal" hover-class="btn-hover">确定</button>

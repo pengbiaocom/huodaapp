@@ -167,7 +167,7 @@ radio{
 }
 
 .beis{
-  color: #888;
+  color: red;
   font-size: 23rpx;
 }
 
