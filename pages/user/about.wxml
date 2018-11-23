@@ -7,14 +7,14 @@
    <view class="right">v1.0.0</view>
 </view>
 <view class="list" bindtap="copyTBL">
-   <view class="left">微信公众号</view>
+   <view class="left">微信号</view>
    <view class="right">{{taokouling}}</view>
 </view>
 <view class="list" bindtap="copyTBL1">
    <view class="left">微博</view>
-   <view class="right">货达</view>
+   <view class="right">{{weibo}}</view>
 </view>
 <view class="list last" bindtap="calling">
    <view class="left">客服电话</view>
-   <view class="right">400-612-6688</view>
+   <view class="right">187-8028-6786</view>
 </view>

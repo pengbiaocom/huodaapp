@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    taokouling:'huoda123',
+    taokouling:'zf504021463',
     weibo:'huoda'
   },
 
@@ -39,7 +39,7 @@ Page({
   },
   calling: function () {
     wx.makePhoneCall({
-      phoneNumber: '12345678900', //此号码并非真实电话号码，仅用于测试
+      phoneNumber: '18780286786', //此号码并非真实电话号码，仅用于测试
       success: function () {
         console.log("拨打电话成功！")
       },
