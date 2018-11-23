@@ -19,7 +19,7 @@
           </view>  
       </view>
 	</view>
-  <view class="weui-cells">
+  <!-- <view class="weui-cells">
     <button hover-class="btna_active" class="btna weui-cell weui-cell1" open-type="contact">
           <view class="weui-cell__hd">
               <image src="/assets/images/kefu.png" style="margin-bottom: 4rpx;margin-right: 8rpx;vertical-align: middle;width:20px; height: 20px;"></image>
@@ -31,7 +31,7 @@
               
           </view>
     </button>  
-  </view>
+  </view> -->
 
   <!-- <view class="login-out">退出登录</view> -->
 </view>
