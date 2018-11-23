@@ -52,9 +52,9 @@
             <view class="weui-cell__hd" hidden='true'>
               <image src="/assets/images/beizhu.png" class="imgs"></image>
             </view>
-            <view class="weui-cell__bd beis">
-              备注：所说的电风扇
-            </view>
+            <view class="weui-cell__bd beis" wx:if="{{radio_value=='small'}}">不超过：长85*宽25*高25(如：中网箱)、长45*宽45*高45(如：机油箱)等各种小配件！</view>
+            <view class="weui-cell__bd beis" wx:if="{{radio_value=='large'}}">可附带未明显增加货物体积量的小配件或不超过长25*宽25*高25的集散小件</view>
+            <view class="weui-cell__bd beis" wx:if="{{radio_value=='many'}}">含多个大件或货物总体积过大的，需做出部分备件的明细说明。</view>
          </view>
       </view>
       <view class="weui-cells" wx:if="{{radio_value=='large'}}">
