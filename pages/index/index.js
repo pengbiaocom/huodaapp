@@ -146,18 +146,20 @@ Page({
             });
           }
           if (single != '') {
+            var yuanPrice = parseFloat(single.distribution_price) - 5
             that.setData({
               duifang: single,
               estimated_time: single.estimated_time,
-              distribution_price: single.distribution_price,
-              youPrice: parseFloat(single.distribution_price) + 5
+              distribution_price: yuanPrice,
+              youPrice: parseFloat(single.distribution_price)
             });
           } else {
+            var yuanPrice = parseFloat(address.order_total_price) - 5
             that.setData({
               duifang: duifang1,
               estimated_time: address.estimate_time,
-              distribution_price: address.order_total_price,
-              youPrice: parseFloat(address.order_total_price) + 5
+              distribution_price: yuanPrice,
+              youPrice: parseFloat(address.order_total_price)
             })
           }
 

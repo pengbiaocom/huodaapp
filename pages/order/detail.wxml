@@ -43,6 +43,18 @@
         <view style="float:left;width:20%;padding-top:30rpx;"><view class="btns1" bindtap="copyBtn">复制</view></view>
       </view>
   </view>
+  <view class="info border-bottom" wx:if="{{order.item.order_status==2}}">
+      <view class="info-left">配送员</view>
+      <view class="info-right">
+        {{order.item.delivery_name }} 王大
+      </view>
+  </view>
+  <view class="info border-bottom" wx:if="{{order.item.order_status==2}}">
+      <view class="info-left">配送联系电话</view>
+      <view class="info-right">
+        {{order.item.delivery_phone}} 13645628547
+      </view>
+  </view>
   <view class="info border-bottom">
       <view class="info-left">备注信息</view>
       <view class="info-right">{{order.item.remarks}}</view>

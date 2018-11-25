@@ -14,7 +14,7 @@
           <image src="/assets/images/danyuan.png" class="imgs"></image>
         </view>
         <view class="weui-cell__bd">
-            <input class="weui-input" type="text" placeholder="详细地址" name="address" value="{{address}}" bindinput="bindInput" />
+            <input class="weui-input" type="text" placeholder="商铺地址及门牌号" name="address" value="{{address}}" bindinput="bindInput" />
         </view>
       </view>
     </view>
@@ -34,7 +34,7 @@
             <image src="/assets/images/fajianren.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" name="user_name" type="text" placeholder="发件人姓名" value="{{user_name}}" />
+              <input class="weui-input" name="user_name" type="text" placeholder="商铺名称" value="{{user_name}}" />
           </view>
         </view>
     </view>
@@ -44,7 +44,7 @@
             <image src="/assets/images/dianhua.png" class="imgs"></image>
           </view>
           <view class="weui-cell__bd">
-              <input class="weui-input" name="user_tel" type="text" placeholder="发件人电话" value="{{user_tel}}"/>
+              <input class="weui-input" name="user_tel" type="text" placeholder="联系电话" value="{{user_tel}}"/>
           </view>
         </view>
     </view>
