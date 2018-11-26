@@ -45,6 +45,17 @@ Page({
     wx.showNavigationBarLoading();
     this.getOrderDetail(this.data.id)
   },
+  calling: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.phone, //此号码并非真实电话号码，仅用于测试
+      success: function () {
+        console.log("拨打电话成功！")
+      },
+      fail: function () {
+        console.log("拨打电话失败！")
+      }
+    })
+  },
   getOrderDetail(id) {
     var param = {
       id:id
