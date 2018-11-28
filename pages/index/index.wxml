@@ -171,7 +171,7 @@
         <view class="nav-price">优惠价:￥{{distribution_price}}</view>
         <view class="nav-center price_line">原价:￥{{youPrice}}</view>
       </view>
-      <button class="button-red" bindtap="showModal" hover-class="btn-hover">立即下单</button>
+      <button class="{{isOpen?'button-red':'button-hide'}}" bindtap="showModal" hover-class="btn-hover">立即下单</button>
     </view>
 </view>
 <view class="animation-element-wrapper" animation="{{animation2}}" style="visibility:{{m_show2 ? 'visible':'hidden'}}" bindtap="hiddenFloatView2" data-id="444">
