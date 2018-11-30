@@ -189,22 +189,24 @@ Page({
           }
           if (single != '') {
             if (single.estimated_time != undefined){
+              var yuanPrice = parseFloat(single.distribution_price) - 5
               that.setData({
                 duifang: single,
                 estimated_time: single.estimated_time,
-                distribution_price: single.distribution_price,
-                youPrice: parseFloat(single.distribution_price) + 5
+                distribution_price: yuanPrice,
+                youPrice: parseFloat(single.distribution_price)
               });
             }else{
+              var yuanPrice = parseFloat(single.distribution_price) - 5
               that.setData({
                 duifang: single,
-                distribution_price: single.distribution_price,
-                youPrice: parseFloat(single.distribution_price) + 5
+                distribution_price: yuanPrice,
+                youPrice: parseFloat(single.distribution_price)
               });
             }
           } else{
             that.setData({
-              youPrice: parseFloat(this.data.distribution_price) + 5
+              youPrice: parseFloat(this.data.distribution_price)
             })
           }
 
