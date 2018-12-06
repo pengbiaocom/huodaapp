@@ -27,7 +27,7 @@ Page({
     max: 20, 
     textValue:'',
     estimated_time: 10,
-    distribution_price: 30,
+    distribution_price: 0,
     youPrice:0,
     lat:0,
     lng:0,
@@ -172,11 +172,12 @@ Page({
               youPrice: parseFloat(single.distribution_price)
             });
           } else {
+            var yuanPrice = parseFloat(address.order_total_price) - 5
             that.setData({
               duifang: duifang1,
               estimated_time: address.estimate_time,
-              distribution_price: parseFloat(address.order_total_price),
-              youPrice: parseFloat(address.order_total_price)+5
+              distribution_price: yuanPrice,
+              youPrice: parseFloat(address.order_total_price)
             })
           }
 
@@ -203,10 +204,6 @@ Page({
                 youPrice: parseFloat(single.distribution_price)
               });
             }
-          } else{
-            that.setData({
-              youPrice: parseFloat(this.data.distribution_price)
-            })
           }
 
         }

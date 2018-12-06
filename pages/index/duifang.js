@@ -94,7 +94,7 @@ Page({
         that.setData({
           address: single1.address,
           user_name: single1.user_name,
-          user_tel: single1.user_name
+          user_tel: single1.user_tel
         });
       }else{
         var uid = wx.getStorageSync('uid');
