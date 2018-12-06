@@ -76,6 +76,7 @@ Page({
             user_name:'',
             user_tel:''
           };
+          console.log(param)
           app.globalData.single = param;
           wx.navigateTo({
             url: '/pages/index/duifang'
