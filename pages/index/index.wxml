@@ -87,6 +87,49 @@
          </view>
       </view>
    </view>
+
+   <view class="indexs">
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/tui.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+              <view class="weui-title">带退货</view>
+            </view>
+            <view class="weui-cell__ft">
+               <switch class="wx-switch-input" checked="{{switch_value}}" bindchange="switch1Change"/> 
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/dai.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+              <view class="weui-title">带货款</view>
+            </view>
+            <view class="weui-cell__ft">
+               <switch class="wx-switch-input" checked="{{switch_dai}}" bindchange="switch2Change"/> 
+            </view>
+         </view>
+      </view>
+      <view class="weui-cells" hidden="{{!switch_dai}}">
+         <view class="weui-cell">
+            <view class="weui-cell__hd">
+              <image src="/assets/images/dai.png" class="imgs"></image>
+            </view>
+            <view class="weui-cell__bd">
+              <view class="weui-title">带货款</view>
+            </view>
+            <view class="weui-cell__ft">
+               <input placeholder="请输入金额" bindinput="bindKeyInput" class="weui-title" type="digit" step="0.01" />
+            </view>
+         </view>
+      </view>
+   </view>
+   
    <view class="indexs">
       <view class="weui-cells">
          <view class="weui-cell">
@@ -135,19 +178,6 @@
       <view class="weui-cells">
          <view class="weui-cell">
             <view class="weui-cell__hd">
-              <image src="/assets/images/tui.png" class="imgs"></image>
-            </view>
-            <view class="weui-cell__bd">
-              <view class="weui-title">带退货</view>
-            </view>
-            <view class="weui-cell__ft">
-               <switch class="wx-switch-input" checked="{{switch_value}}" bindchange="switch1Change"/> 
-            </view>
-         </view>
-      </view>
-      <view class="weui-cells">
-         <view class="weui-cell">
-            <view class="weui-cell__hd">
               <image src="/assets/images/beizhu.png" class="imgs"></image>
             </view>
             <view class="weui-cell__bd">
@@ -159,8 +189,10 @@
           <view class="zhishu">{{currentWordNumber|0}}/{{max}}</view>
         </view>
       </view>
-      
+
    </view>
+
+   
    <view style="width:100%;height:120rpx;"></view>
    <!-- 底部悬浮栏 -->
     <view class="detail-nav">

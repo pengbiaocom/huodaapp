@@ -41,6 +41,8 @@ Page({
     model_test:'请输入物品信息',
     model_value:'',
     switch_value:false,
+    switch_dai:false,
+    dai_money:0
   },
   onLoad: function (option) {
     if (wx.getStorageSync('token')) {
@@ -76,6 +78,16 @@ Page({
   switch1Change: function (e) {
     this.setData({
       switch_value: e.detail.value
+    })
+  },
+  switch2Change: function (e) {
+    this.setData({
+      switch_dai: e.detail.value
+    })
+  },
+  bindKeyInput(e) {
+    this.setData({
+      dai_money: e.detail.value
     })
   },
   radioChange: function (e) {
@@ -238,6 +250,22 @@ Page({
         return_goods = 1;
         price = this.data.youPrice;
       }
+      var is_dai = 0;
+      if (this.data.switch_dai == true){
+        is_dai = 1;
+        if (this.data.dai_money == 0){
+          wx.showModal({
+            title: '提示信息',
+            content: "请输入带货款金额",
+            showCancel: false
+          })
+          return false;
+        }
+      }else{
+        this.setData({
+          dai_money:0
+        })
+      }
       var params = {
         uid: uid,
         send_address: this.data.setwode.address,
@@ -254,7 +282,9 @@ Page({
         model_value: this.data.model_value,
         return_goods: return_goods,
         lat: this.data.duifang.lat,
-        lng: this.data.duifang.lng
+        lng: this.data.duifang.lng,
+        dai_money: this.data.dai_money,
+        is_dai: is_dai
       };
       var len = parseInt(params.remarks.length);
       if (params.send_address == '') {
@@ -280,6 +310,7 @@ Page({
             return false;
           }
         }
+
         app.HttpService.postAddOrder(params)
           .then(data => {
             console.log(data)
