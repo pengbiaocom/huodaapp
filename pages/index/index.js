@@ -240,133 +240,157 @@ Page({
       })
   },
   showModal: function () {
-    if(this.data.isOpen){
-      var uid = wx.getStorageSync('uid')
-      var dateTimeArray1 = this.data.dateTimeArray1;
-      var dateTime1 = this.data.dateTime1;
-      var return_goods = 0;
-      var price = this.data.distribution_price;
-      if (this.data.switch_value == true) {
-        return_goods = 1;
-        price = this.data.youPrice;
-      }
-      var is_dai = 0;
-      if (this.data.switch_dai == true){
-        is_dai = 1;
-        if (this.data.dai_money == 0){
-          wx.showModal({
-            title: '提示信息',
-            content: "请输入带货款金额",
-            showCancel: false
-          })
-          return false;
-        }
-      }else{
-        this.setData({
-          dai_money:0
-        })
-      }
-      var params = {
-        uid: uid,
-        send_address: this.data.setwode.address,
-        send_username: this.data.setwode.user_name,
-        send_phone: this.data.setwode.user_tel,
-        get_address: this.data.duifang.address,
-        get_username: this.data.duifang.user_name,
-        get_phone: this.data.duifang.user_tel,
-        cid: this.data.multiArray[this.data.multiIndex].id,
-        estimate_time: this.data.estimated_time,
-        remarks: this.data.textValue,
-        order_total_price: price,
-        radio_value: this.data.radio_value,
-        model_value: this.data.model_value,
-        return_goods: return_goods,
-        lat: this.data.duifang.lat,
-        lng: this.data.duifang.lng,
-        dai_money: this.data.dai_money,
-        is_dai: is_dai
-      };
-      var len = parseInt(params.remarks.length);
-      if (params.send_address == '') {
-        wx.showModal({
-          title: '提示信息',
-          content: "请填写发件人信息",
-          showCancel: false
-        })
-      } else if (params.get_address == '') {
-        wx.showModal({
-          title: '提示信息',
-          content: "请填写收件人信息",
-          showCancel: false
-        })
-      } else {
-        if (params.radio_value == 'many') {
-          if (params.model_value == '') {
-            wx.showModal({
-              title: '提示信息',
-              content: "请填写物品信息",
-              showCancel: false
-            })
-            return false;
-          }
-        }
-
-        app.HttpService.postAddOrder(params)
-          .then(data => {
-            console.log(data)
-            if (data.code == 0) {
-              this.setData({
-                textValue: ''
-              })
-              // 发起支付
-              wx.requestPayment({
-                appId: data.data.appId,
-                timeStamp: data.data.timeStamp.toString(),
-                nonceStr: data.data.nonceStr,
-                package: data.data.package,
-                signType: data.data.signType,
-                paySign: data.data.paySign,
-                fail: function (aaa) {
-                  if (aaa.errMsg == "requestPayment:fail cancel") {
-                    // console.log(data.data.sorder_sn)
-                    // App.HttpService.setSeedsDel({ sorder_sn: data.data.sorder_sn })
-                    //   .then(data => {
-                    //     //  console.log(data)
-                    //   })
-                  }
-                },
-                success: function () {
-                  wx.navigateTo({
-                    url: '/pages/order/index',
-                  });
-                }
-              })
+    var _this = this;
+    wx.showModal({
+      title: '提示信息',
+      content: '您确认要提交订单吗？',
+      showCancel: true,
+      success: function (res) {
+        if (res.confirm){
+          if (_this.data.isOpen) {
+            var uid = wx.getStorageSync('uid')
+            var dateTimeArray1 = _this.data.dateTimeArray1;
+            var dateTime1 = _this.data.dateTime1;
+            var return_goods = 0;
+            var price = _this.data.distribution_price;
+            if (_this.data.switch_value == true) {
+              return_goods = 1;
+              price = _this.data.youPrice;
+            }
+            var is_dai = 0;
+            if (_this.data.switch_dai == true) {
+              is_dai = 1;
+              if (_this.data.dai_money == 0) {
+                wx.showModal({
+                  title: '提示信息',
+                  content: "请输入带货款金额",
+                  showCancel: false
+                })
+                return false;
+              }
             } else {
-              wx.showModal({
-                title: '提示信息',
-                content: data.msg,
-                showCancel: false,
-                confirmColor: '#479de6',
-                success: function (res) {
-
-                }
+              _this.setData({
+                dai_money: 0
               })
             }
-        })
-      } 
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '12月1日 正式上线使用 敬请期待!',
-        success(res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
+            var params = {
+              uid: uid,
+              send_address: _this.data.setwode.address,
+              send_username: _this.data.setwode.user_name,
+              send_phone: _this.data.setwode.user_tel,
+              get_address: _this.data.duifang.address,
+              get_username: _this.data.duifang.user_name,
+              get_phone: _this.data.duifang.user_tel,
+              cid: _this.data.multiArray[_this.data.multiIndex].id,
+              estimate_time: _this.data.estimated_time,
+              remarks: _this.data.textValue,
+              order_total_price: price,
+              radio_value: _this.data.radio_value,
+              model_value: _this.data.model_value,
+              return_goods: return_goods,
+              lat: _this.data.duifang.lat,
+              lng: _this.data.duifang.lng,
+              dai_money: _this.data.dai_money,
+              is_dai: is_dai
+            };
+            var len = parseInt(params.remarks.length);
+            if (params.send_address == '') {
+              wx.showModal({
+                title: '提示信息',
+                content: "请填写发件人信息",
+                showCancel: false
+              })
+            } else if (params.get_address == '') {
+              wx.showModal({
+                title: '提示信息',
+                content: "请填写收件人信息",
+                showCancel: false
+              })
+            } else {
+              if (params.radio_value == 'many') {
+                if (params.model_value == '') {
+                  wx.showModal({
+                    title: '提示信息',
+                    content: "请填写物品信息",
+                    showCancel: false
+                  })
+                  return false;
+                }
+              }
+
+              app.HttpService.postAddOrder(params)
+                .then(data => {
+                  if (data.code == 0) {
+                    _this.setData({
+                      textValue: ''
+                    })
+
+                    //添加订单
+                    wx.showModal({
+                      title: '提示信息',
+                      content: "下单成功，等待配送员敛货",
+                      showCancel: false,
+                      success: function () {
+                        wx.navigateTo({
+                          url: '/pages/order/index',
+                        });
+                      }
+                    })
+                    // // 发起支付
+                    // wx.requestPayment({
+                    //   appId: data.data.appId,
+                    //   timeStamp: data.data.timeStamp.toString(),
+                    //   nonceStr: data.data.nonceStr,
+                    //   package: data.data.package,
+                    //   signType: data.data.signType,
+                    //   paySign: data.data.paySign,
+                    //   fail: function (aaa) {
+                    //     if (aaa.errMsg == "requestPayment:fail cancel") {
+                    //       // console.log(data.data.sorder_sn)
+                    //       // App.HttpService.setSeedsDel({ sorder_sn: data.data.sorder_sn })
+                    //       //   .then(data => {
+                    //       //     //  console.log(data)
+                    //       //   })
+                    //     }
+                    //   },
+                    //   success: function () {
+                    //     wx.navigateTo({
+                    //       url: '/pages/order/index',
+                    //     });
+                    //   }
+                    // })
+                  } else {
+                    wx.showModal({
+                      title: '提示信息',
+                      content: data.msg,
+                      showCancel: false,
+                      confirmColor: '#479de6',
+                      success: function (res) {
+
+                      }
+                    })
+                  }
+                })
+            }
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '12月1日 正式上线使用 敬请期待!',
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          }          
         }
-      })      
-    }
+      },
+      fail: function () {
+        
+      }
+    })
   },
   setWoDe:function(){
     wx.navigateTo({
