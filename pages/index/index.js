@@ -9,12 +9,12 @@ var moveY = 200;
 Page({
   data: {
     isOpen: true,
-    setwode:null,
-    duifang:null,
+    setwode: null,
+    duifang: null,
     quyuText: '请填写发件人地址',
     quyuAddress: '请完善信息',
-    quyuText1:'请填写收件人地址',
-    quyuAddress1:'请完善信息',
+    quyuText1: '请填写收件人地址',
+    quyuAddress1: '请完善信息',
     m_show2: show,
     dateTimeArray1: null,
     dateTime1: null,
@@ -24,29 +24,29 @@ Page({
     multiIndex: 0,
     texts: "所配送的易碎，贵重物品及所需带回的退货物品请特别说明。",
     min: 5,
-    max: 20, 
-    textValue:'',
+    max: 20,
+    textValue: '',
     estimated_time: 10,
     distribution_price: 0,
-    youPrice:0,
-    lat:0,
-    lng:0,
+    youPrice: 0,
+    lat: 0,
+    lng: 0,
     items: [
-      { name: '小件', value: 'small', checked: 'true'},
+      { name: '小件', value: 'small', checked: 'true' },
       { name: '大件', value: 'large' },
       { name: '多项', value: 'many' },
     ],
-    radio_value:'small',
-    hiddenmodalput: true,  
-    model_test:'请输入物品信息',
-    model_value:'',
-    switch_value:false,
-    switch_dai:false,
-    dai_money:0
+    radio_value: 'small',
+    hiddenmodalput: true,
+    model_test: '请输入物品信息',
+    model_value: '',
+    switch_value: false,
+    switch_dai: false,
+    dai_money: 0
   },
   onLoad: function (option) {
     if (wx.getStorageSync('token')) {
-      if (util.formatNewDate(new Date()) < 20181201){
+      if (util.formatNewDate(new Date()) < 20181201) {
         this.setData({
           isOpen: false
         })
@@ -66,13 +66,13 @@ Page({
     } else {
       app.goLogin()
     }
-    if(option.order_number != undefined){
+    if (option.order_number != undefined) {
       this.setData({
         order_number: option.order_number
       })
     }
   },
-  onShow:function(){
+  onShow: function () {
     this.getData();
   },
   switch1Change: function (e) {
@@ -99,7 +99,7 @@ Page({
     wx.navigateTo({
       url: '/pages/index/duo'
     })
-  },  
+  },
   //字数限制  
   inputs: function (e) {
     // 获取输入框的内容
@@ -121,7 +121,7 @@ Page({
       textValue: value
     });
   },
-  getData(){
+  getData() {
     var that = this;
     // 获取完整的年月日 时分秒，以及默认显示的数组
     var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
@@ -137,12 +137,12 @@ Page({
     var setwode = app.globalData.setwode;
     var single = app.globalData.single1;
     var model_value = app.globalData.model_value;
-    if (model_value != null){
+    if (model_value != null) {
       that.setData({
         model_value: model_value
       })
     }
-    
+
     var uid = wx.getStorageSync('uid');
     var order_number = app.globalData.order_number
     var params = {
@@ -163,8 +163,8 @@ Page({
             address: address.get_address,
             user_name: address.get_username,
             user_tel: address.get_phone,
-            lat:address.lat,
-            lng:address.lng
+            lat: address.lat,
+            lng: address.lng
           };
           if (setwode != '') {
             that.setData({
@@ -200,7 +200,7 @@ Page({
             });
           }
           if (single != '') {
-            if (single.estimated_time != undefined){
+            if (single.estimated_time != undefined) {
               var yuanPrice = parseFloat(single.distribution_price) - 5
               that.setData({
                 duifang: single,
@@ -208,7 +208,7 @@ Page({
                 distribution_price: yuanPrice,
                 youPrice: parseFloat(single.distribution_price)
               });
-            }else{
+            } else {
               var yuanPrice = parseFloat(single.distribution_price) - 5
               that.setData({
                 duifang: single,
@@ -220,7 +220,7 @@ Page({
 
         }
       })
-    
+
     //获取物品分类
     app.HttpService.getCargo({})
       .then(data => {
@@ -246,7 +246,7 @@ Page({
       content: '您确认要提交订单吗？',
       showCancel: true,
       success: function (res) {
-        if (res.confirm){
+        if (res.confirm) {
           if (_this.data.isOpen) {
             var uid = wx.getStorageSync('uid')
             var dateTimeArray1 = _this.data.dateTimeArray1;
@@ -384,15 +384,15 @@ Page({
                 }
               }
             })
-          }          
+          }
         }
       },
       fail: function () {
-        
+
       }
     })
   },
-  setWoDe:function(){
+  setWoDe: function () {
     wx.navigateTo({
       url: '/pages/index/setwode'
     })
@@ -402,7 +402,7 @@ Page({
       url: '/pages/index/duifang'
     })
   },
-  setCoupon:function(){
+  setCoupon: function () {
     wx.navigateTo({
       url: '/pages/coupon/index'
     })
@@ -438,7 +438,7 @@ Page({
   },
   hiddenFloatView2(e) {
     var xiaofei = e.currentTarget.dataset.xiaofei;
-    if (xiaofei != undefined){
+    if (xiaofei != undefined) {
       this.setData({
         xiaofei_text: xiaofei
       });
@@ -453,10 +453,10 @@ Page({
     var val = e.detail.value
     var xiao = that.data.xiao;
     that.setData({
-      xiaofei: '+'+xiao[val[0]]+'元'
+      xiaofei: '+' + xiao[val[0]] + '元'
     });
   },
-  
+
 })
 
 function animationEvents2(that, moveY, show) {
